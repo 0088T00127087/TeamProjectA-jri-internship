@@ -11,6 +11,6 @@ import com.systems.model.MappedClass;
 public interface Repo extends JpaRepository<MappedClass, Long>{
 	
 	@Query(value= "select first_name from `project-a-schema`.user_accounts where user_id = :userId",nativeQuery = true)
-	String retrieve9(@Param("userId")String userId);
+	String retrieve(@Param("userId")String userId);
 
 }

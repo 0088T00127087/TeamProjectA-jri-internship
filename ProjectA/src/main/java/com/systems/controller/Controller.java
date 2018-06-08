@@ -20,7 +20,7 @@ import com.systems.repository.Repo;
 @RequestMapping("/api")
 public class Controller {
 	
-	
+	//
 	@Autowired
 	Repo repository;
 	
@@ -31,7 +31,7 @@ public class Controller {
 	
 	@GetMapping("/getName/{userId}")
 	public String getIndividualResult(@PathVariable("userId") String userId){
-		return repository.retrieve9(userId);
+		return repository.retrieve(userId);
 	}
 	@GetMapping("/getAllUsers")
 	public List<MappedClass> getAllUsers(){
