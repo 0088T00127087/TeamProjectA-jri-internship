@@ -32,6 +32,7 @@ public class Controller {
 	public String getIndividualResult(@PathVariable("userId") String userId){
 		return repository.retrieve(userId);
 	}
+	
 	@GetMapping("/getAllUsers")
 	public List<MappedClass> getAllUsers(){
 		return repository.findAll();
