@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -29,6 +29,9 @@ public class MappedClass implements Serializable{
 	
 	@Column(name= "second_name")
     private String secondName;
+	
+	@Column(name = "hashed_password")
+	private String hashedPassword;
 
 	public long getUserId() {
 		return userId;
@@ -54,9 +57,17 @@ public class MappedClass implements Serializable{
 		this.secondName = secondName;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getHashedPassword() {
+		return hashedPassword;
 	}
+
+	public void setHashedPassword(String password) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(password);
+		System.out.println(hashedPassword);
+		this.hashedPassword = hashedPassword;
+	}
+	
 	
 
 }

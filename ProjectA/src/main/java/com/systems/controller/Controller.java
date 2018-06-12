@@ -20,7 +20,6 @@ import com.systems.repository.Repo;
 @RequestMapping("/api")
 public class Controller {
 	
-	//
 	@Autowired
 	Repo repository;
 	
