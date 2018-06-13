@@ -6,3 +6,19 @@ function sum(){
 	}
 	$("#answer").text(answer);
 }
+
+$(document).ready(function(){
+	$("#homepageVideo").get(0).play();
+	$("#homepageVideo").on("timeupdate", 
+		function(event){
+		  onTrackedVideoFrame(this.currentTime, this.duration);
+		});
+	$('#homepageVideo').on('ended',function(){
+		  $('#homepageVideo').animate({"opacity":"0"},500);
+	    });
+});
+
+function onTrackedVideoFrame(currentTime, duration){
+    $("#current").text(currentTime);
+    $("#duration").text(duration)
+}

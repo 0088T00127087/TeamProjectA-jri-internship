@@ -1,18 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<meta charset="UTF-8">
+
 <script src="/lms-front-end/js/common/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script src="/lms-front-end/js/custom/logIn.js" type="text/javascript"></script> 
 <link rel="stylesheet" href="/lms-front-end/css/base.css">
 
 <title>LMS</title>
 </head>
+
+
 <body>
-<img id="testImageDeleteMe" align="middle" src="/lms-front-end/extra-resources/images/bnes.jpg">
-<div id="qa" style="font-size:30px;text-align:center;margin-top:4%;color:white">
+ <video id="homepageVideo" style="margin-left:26%;margin-bottom:-4%;" width="640" height="440">
+  <source src="/lms-front-end/extra-resources/videos/toBeReversed.mp4" type="video/mp4">
+</video> 
+
+<div id="qa" style="font-size:30px;text-align:center;color:white">
 <p id="question">2 + 2 =
 <span id="answer">?</span>
 </p>
@@ -22,6 +30,10 @@
 This will be the landing/log in page.
 </button>
 </div>
+</div>
+<div style="color:white;">
+<p>Current Video Position:<span id="current"></span></p>
+<p>Video Duration:<span id="duration"></span></p>
 </div>
 </body>
 </html>

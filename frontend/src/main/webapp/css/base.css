@@ -1,3 +1,8 @@
+
+html {	
+	background-color: black;
+}
+
 .landingButton {
 	font-size: 20px;
 	font-family: san-serif;
@@ -7,14 +12,3 @@
 	min-height: 37px;
 }
 
-html {
-	
-	background-color: black;
-}
-
-#testImageDeleteMe {
-	margin-left: 24%;
-	width: 671px;
-	max-height: 300px;
-	margin-top: 2%;
-}
