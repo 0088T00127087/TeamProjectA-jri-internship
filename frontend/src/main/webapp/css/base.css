@@ -9,5 +9,12 @@
 
 html {
 	
-	background-color: lightslategray;
+	background-color: black;
+}
+
+#testImageDeleteMe {
+	margin-left: 24%;
+	width: 671px;
+	max-height: 300px;
+	margin-top: 2%;
 }

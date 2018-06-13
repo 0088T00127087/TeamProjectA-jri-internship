@@ -4,14 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="/frontend/js/common/jquery-3.3.1.min.js" type="text/javascript"></script>
-<script src="/frontend/js/logIn.js" type="text/javascript"></script> 
-<link rel="stylesheet" href="/frontend/css/base.css">
+<script src="/lms-front-end/js/common/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="/lms-front-end/js/custom/logIn.js" type="text/javascript"></script> 
+<link rel="stylesheet" href="/lms-front-end/css/base.css">
 
 <title>LMS</title>
 </head>
 <body>
-<div id="qa" style="font-size:30px;text-align:center;margin-top:20%;">
+<img id="testImageDeleteMe" align="middle" src="/lms-front-end/extra-resources/images/bnes.jpg">
+<div id="qa" style="font-size:30px;text-align:center;margin-top:4%;color:white">
 <p id="question">2 + 2 =
 <span id="answer">?</span>
 </p>
