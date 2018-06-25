@@ -20,6 +20,11 @@
     <version>2.5</version>
     <scope>provided</scope>
 </dependency>
+<dependency>
+    <groupId>org.apache.wink</groupId>
+    <artifactId>wink-client</artifactId>
+    <version>1.4</version>
+</dependency>
   </dependencies>
   <build>
     <finalName>frontend</finalName>
