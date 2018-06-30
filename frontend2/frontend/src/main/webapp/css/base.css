@@ -1,0 +1,14 @@
+
+html {	
+	background-color: black;
+}
+
+.landingButton {
+	font-size: 20px;
+	font-family: san-serif;
+	background-color: antiquewhite;
+	color: black;
+	min-width: 29%;
+	min-height: 37px;
+}
+
