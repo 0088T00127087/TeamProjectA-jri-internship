@@ -30,7 +30,7 @@ public class Controller {
 	
 	@GetMapping("/getName/{userId}")
 	public String getIndividualResult(@PathVariable("userId") String userId){
-		return repository.retrieve(userId);
+		return repository.retrieve(userId); //how does this know to point to the custom method written in Repo.java
 	}
 	
 	@GetMapping("/getAllUsers")
@@ -40,7 +40,7 @@ public class Controller {
 	
 	@PostMapping("/addUser")
 	public MappedClass createUser(@Valid @RequestBody MappedClass entity) {
-		return repository.save(entity);
+		return repository.save(entity); //to use this I assume you have to send all the relevant data, in the correct order
 	}
 
 }
