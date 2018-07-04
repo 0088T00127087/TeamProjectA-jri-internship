@@ -8,7 +8,7 @@
 
 <script src="/lms-front-end/js/common/jquery-3.3.1.min.js" type="text/javascript"></script>
 <script src="/lms-front-end/js/custom/logIn.js" type="text/javascript"></script> 
-<link rel="stylesheet" href="/lms-front-end/css/base.css"> 
+<link rel="stylesheet" href="/frontend/css/base.css"> 
 </head>
 
 <body>

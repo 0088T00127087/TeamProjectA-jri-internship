@@ -7,7 +7,7 @@ frontend set up.
 
 When server is set up locally, and both of these projects are installed, should have the option to add both projects to the server.
 	To clarify if it's functioning as expected:
-		frontend -- http://localhost:8080/lms-front-end/pages/welcome.jsp
+		frontend -- http://localhost:8080/frontend/pages/index.html
 		backend -- http://localhost:8080/ProjectA/api/getAllUsers
 		
 If you wish to update frontend:
