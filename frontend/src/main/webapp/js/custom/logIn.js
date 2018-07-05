@@ -1,14 +1,37 @@
 
 $(document).ready(function(){
-	$("#homepageVideo").get(0).play();
-	$("#homepageVideo").on("timeupdate", 
-		function(event){
-		  onTrackedVideoFrame(this.currentTime, this.duration);
-		});
-	$('#homepageVideo').on('ended',function(){
-		  $('#homepageVideo').animate({"opacity":"0"},500);
-	    });
+	$.get({
+		url: "/frontend/VideoPermissionsWebServlet",
+		cache: false,		
+		type : "GET",
+		data : {videoNumber: "1"}
+	}, function(validView){
+		if (validView === "valid"){
+			$("#homepageVideo").get(0).play();
+			$("#homepageVideo").on("timeupdate", 
+					function(event){
+				onTrackedVideoFrame(this.currentTime, this.duration);
+			});
+			$('#homepageVideo').on('ended',function(){
+				adjustVideoPermissions("watched");
+				$('#homepageVideo').animate({"opacity":"0"},500);
+			});	
+		} else {
+			console.log(validView);
+		}
+	});
 });
+
+function adjustVideoPermissions(change){
+	$.post({
+		url: "/frontend/VideoPermissionsWebServlet",
+		cache: false,		
+		type : "POST",
+		data : {videoNumber: "1"}
+	},function(result){
+		console.log(result);
+	});
+}
 
 function getUserName(){
 	makeServletRequest(function(response){ //calls the function makeServletRequest, a function; function(response){$("#returnedUserName").text(response);}); is pass and will be called later
@@ -19,7 +42,7 @@ function getUserName(){
 
 function makeServletRequest(callback){
 	var userId = $("#requestedUserId").val(); //get the value from the inputbox on servletExample.jsp
-	var servletURL = "/lms-front-end/TestServlet" 
+	var servletURL = "/frontend/TestServlet" 
 	
 	$.ajax({ //jquery ajax request
 		url :servletURL, //set the target of the get request

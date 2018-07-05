@@ -7,9 +7,9 @@
 
 <meta charset="UTF-8">
 
-<script src="/lms-front-end/js/common/jquery-3.3.1.min.js" type="text/javascript"></script>
-<script src="/lms-front-end/js/custom/logIn.js" type="text/javascript"></script> 
-<link rel="stylesheet" href="/lms-front-end/css/base.css">
+<script src="/frontend/js/common/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="/frontend/js/custom/logIn.js" type="text/javascript"></script> 
+<link rel="stylesheet" href="/frontend/css/base.css">
 
 <title>LMS</title>
 </head>
@@ -17,7 +17,7 @@
 
 <body>
  <video id="homepageVideo" style="margin-left:26%;margin-bottom:-4%;" width="640" height="440">
-  <source src="/lms-front-end/extra-resources/videos/toBeReversed.mp4" type="video/mp4">
+  <source src="/frontend/extra-resources/videos/toBeReversed.mp4" type="video/mp4">
 </video> 
 
 <div id="qa" style="font-size:30px;text-align:center;color:white">
