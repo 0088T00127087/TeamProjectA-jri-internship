@@ -1,0 +1,39 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+
+button{
+  color: #008000;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
+ 
+.button1{
+	color: #F7F9FB;
+	background-color: #687864;
+}
+
+.button2{
+	color: #F7F9FB;
+	background-color: #5085A5;
+}
+
+
+.footer {
+  position: relative;
+  margin-top: -150px; /* negative value of footer height */
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+} 
