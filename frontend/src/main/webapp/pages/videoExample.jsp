@@ -16,11 +16,12 @@
 
 
 <body>
+<button style="font-size:25px; color: red;" onclick="reAssignVideo()">Reassign Video</button>
  <video id="homepageVideo" style="margin-left:26%;margin-bottom:-4%;" width="640" height="440">
   <source src="/frontend/extra-resources/videos/toBeReversed.mp4" type="video/mp4">
 </video> 
 
-<div id="qa" style="font-size:30px;text-align:center;color:white">
+<div id="qa" style="font-size:30px;text-align:center;color:white;display:none;">
 <p id="question">2 + 2 =
 <span id="answer">?</span>
 </p>

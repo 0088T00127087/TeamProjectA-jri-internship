@@ -21,7 +21,12 @@ public interface VideoPermissionsRepository extends JpaRepository<VideoPermissio
 	
 	@Transactional
 	@Modifying(clearAutomatically = true)
-	@Query(value= "update `project-a-schema`.video_permissions set video_watched = 1 where video_number = :videoNumber",nativeQuery = true)
+	@Query(value= "update `project-a-schema`.video_permissions set video_watched = 1,requires_manager_approval = 1 where video_number = :videoNumber",nativeQuery = true)
 	void updateVideoWatched(@Param("videoNumber")String videoNumber);
+
+	@Transactional
+	@Modifying(clearAutomatically = true)
+	@Query(value= "update `project-a-schema`.video_permissions set video_watched = 0,requires_manager_approval = 0 where video_number = :videoNumber",nativeQuery = true)
+	void reassignVideo(@Param("videoNumber")String videoNumber);
 
 }

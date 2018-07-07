@@ -44,4 +44,15 @@ public class VideoPermissionsController {
 			return "failedToUpdateTable";
 		}
 	}
+	
+	@PostMapping("/assign/{videoNumber}")
+	public String managerReassignsVideo(@PathVariable("videoNumber") String videoNumber) {
+		try {
+			repo.reassignVideo(videoNumber);
+			return "success";
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return "failedToUpdateTable";
+		}
+	}
 }
