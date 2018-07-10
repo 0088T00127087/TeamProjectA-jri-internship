@@ -22,7 +22,8 @@
         // Set chart options
         var options = {'title':'Course Stats - Courses with Pass Grades',
                        'width':400,
-                       'height':300};
+                       'height':300,
+                       'backgroundColor':'#b3b3cc'};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
