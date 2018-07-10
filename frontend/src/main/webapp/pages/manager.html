@@ -10,11 +10,19 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/frontend/js/custom/manager.js"></script>
+  
+ <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="/frontend/js/custom/barChart.js"></script>
+    <script type="text/javascript" src="/frontend/js/custom/pieChart.js"></script>
+
 </head>
+
+
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 	<div class="container">
 		<div class="logoImage">
-			<img src="/frontend/extra-resources/images/logo.png">
+			<img class="resize" src="/frontend/extra-resources/images/logo.png">
 		</div>
 
 		<hr>
@@ -45,27 +53,31 @@
   </div>
 </nav>   
 
-<div id="section1" class="container-fluid">
-  <p id="reassignSuccess">Module Successfully Reassigned</p>
-  <h1>To Do List</h1>
-  <p id="toDoDescriptor"> Retrieving Details... </p>
-  <div id="reAssignVideoOne">
-  <div id="assignmentDetails">
-  <span>Video One - Name/Description etc. </span>
-  <span> User ID...</span>
-  </div>
-  <div> Questions they got wrong??</div>
-  <div>
-  <button onclick="reAssignVideo()">(functional) This button will reassign the module to **User X**</button>
-  </div>
-  </div>
-  
+<div id="section1" class="row container-fluid">
+	<div id="section1Child1" class="col-sm-6">
+	  <p id="reassignSuccess">Module Successfully Reassigned</p>
+	  <h1>To Do List</h1>
+	  <p id="toDoDescriptor"> Retrieving Details... </p>
+	  <div id="reAssignVideoOne">
+	  <div id="assignmentDetails">
+	  <span>Video One - Name/Description etc. </span>
+	  <span> User ID...</span>
+	  </div>
+	  <div> Questions they got wrong??</div>
+	  <div>
+	  <button onclick="reAssignVideo()">(functional) This button will reassign the module to **User X**</button>
+	  </div>
+	  </div>
+  	</div>
+  	<div id="section1Child2" class="col-sm-6">
+  	  <div  id="chart_div"></div>
+  	</div>
 </div>
-<div id="section21" class="container-fluid">
-  <h1>Section 2 Submenu 1</h1>
-</div>
+
+	<div  id="top_x_div"></div>
+	
 <div id="section3" class="container-fluid">
-  <h1>Section 3</h1>
+  <h1>Team Section</h1>
   </div> 
 	</div>  
   

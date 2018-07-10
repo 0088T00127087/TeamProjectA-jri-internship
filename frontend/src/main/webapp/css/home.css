@@ -1,11 +1,48 @@
 
   body {
       position: relative; 
+      font-family: Courier Header;
   }
-  #section1 {padding-top:50px;height:500px;color: #000000; background-color: #ffffff;}
-  #section2 {padding-top:50px;height:500px;color: #000000; background-color: #ffffff;}
-  #section3 {padding-top:50px;height:500px;color: #000000; background-color: #ffffff;}
-  #section21 {padding-top:50px;height:500px;color: #000000; background-color:#ffffff;}
+  
+  #section1, #section21, #section3 {
+  	padding-top:25px;
+  	height:500px;
+  	color: #000000; 
+  	background-color: #ffffff;
+  }
+  
+  #s1_child1{
+  	background-color: #b3b3cc;
+  	float: right;
+  	padding: 0;
+  	max-width: 100%;
+  	max-height: 100%;
+  	text-align: center;
+  	vertical-align: middle;
+  }
+  
+  #s1_child2{
+  	float: right;
+  	padding: 0;
+  }
+  
+  #courseHeading{
+  	text-align: center;
+  	vertical-align: middle;
+  }
+  
+  .resize{
+	width: auto;
+	height: 100px;;
+}
+  
+  .row{
+  	display: flex;
+  }
+  
+  .col{
+  	flex: 1;
+  }
   
  
  
@@ -17,4 +54,23 @@
   	width: 100px;
   	height: 5%;;
   } 
+  
+  .teamImg{
+  	max-width: 100%;
+  	max-height: 100%;
+  }
+  
+  .courseHead{
+  	 position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  border-radius: 3px;
+  }
+  
   
