@@ -11,18 +11,16 @@
 
         // Create the data table.
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
+        data.addColumn('string', 'Questions');
+        data.addColumn('number', 'Team Members');
         data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
+          ['Introduction', 3],
+          ['Functions', 1],
+          ['Variables', 1],
         ]);
 
         // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
+        var options = {'title':'Course Stats - Courses with Pass Grades',
                        'width':400,
                        'height':300};
 
