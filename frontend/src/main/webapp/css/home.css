@@ -4,12 +4,7 @@
       font-family: Courier Header;
   }
   
-  #section1, #section21, #section3 {
-  	padding-top:25px;
-  	height:500px;
-  	color: #000000; 
-  	background-color: #ffffff;
-  }
+  
   
   #s1_child1{
   	background-color: #b3b3cc;
@@ -26,9 +21,20 @@
   	padding: 0;
   }
   
-  #courseHeading{
+  #s3_child2, #s4_child2{
+  	background-color: #bfbfbf;
+  	font-family: "Times New Roman", Times, serif;
+  }
+  
+ 	#section4{
+  	padding-top: 20px;
+  }
+  
+  #section21{
   	text-align: center;
   	vertical-align: middle;
+  	padding-top: 20px;
+  	padding-bottom: 20px;
   }
   
   .resize{
@@ -60,8 +66,18 @@
   	max-height: 100%;
   }
   
+  .compImage{
+  	max-width: 100%;
+  	max-height: 100%;
+  }
+  
+  .peopleImg{
+  	max-width: 100%;
+  	max-height: 100%;
+  }
+  
   .courseHead{
-  	 position: absolute;
+  position: absolute;
   margin: auto;
   top: 0;
   right: 0;
