@@ -15,6 +15,12 @@ google.charts.load('current', {'packages':['bar']});
             title: 'Employee Performance',
             subtitle: 'Results of topics ',
           },
+          chartArea: {
+              backgroundColor: {
+                fill: '#00b33c',
+                fillOpacity: 0.5
+              }
+          },
           bars: 'horizontal' // Required for Material Bar Charts.
         };
 

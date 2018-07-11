@@ -7,6 +7,9 @@
 	opacity: 0;
 }
 
+#section1Child1{
+	background-color: #ff8000;
+}
 
 #top_x_div{
 	width: 100%; 
@@ -16,6 +19,11 @@
 .resize{
 	width: auto;
 	height: 100px;;
+}
+
+.row{
+	padding-top: 50px;
+	
 }
 
 #section3{
