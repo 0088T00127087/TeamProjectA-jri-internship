@@ -20,7 +20,15 @@
 }
 
 #s2_child2{
-	background-color: #bbbb77;
+	background-color: #df9fdf;
+}
+
+#s3_child2{
+	background-color: #d279d2;	
+}
+
+#s4_child2{
+	background-color: #bf40bf;	
 }
 
 #s2_child2,#s3_child2,#s4_child2{
@@ -32,16 +40,9 @@
   	vertical-align: middle;	
 }
 
-#s3_child2{
-	background-color: #aaaa55;	
-}
-
-#s4_child2{
-	background-color: #888844;	
-}
 
 .topicText{
-	 font-family: 'Black Ops One';	font-size: 22px;
+	 font-family: 'Shrikhand';	font-size: 22px;
 }
 
 
