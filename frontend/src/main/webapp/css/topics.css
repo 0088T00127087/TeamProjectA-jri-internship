@@ -7,6 +7,63 @@
 	height: 100px;;
 }
 
+#s2_child1{
+	background-color: #b3e0ff;
+}
+
+#s3_child1{
+	background-color: #80ccff;
+}
+
+#s4_child1{
+	background-color: #4db8ff;
+}
+
+#s2_child2{
+	background-color: #bbbb77;
+}
+
+#s2_child2,#s3_child2,#s4_child2{
+	float: right;
+  	padding: 0;
+  	max-width: 100%;
+  	max-height: 100%;
+  	text-align: center;
+  	vertical-align: middle;	
+}
+
+#s3_child2{
+	background-color: #aaaa55;	
+}
+
+#s4_child2{
+	background-color: #888844;	
+}
+
+.topicText{
+	 font-family: 'Black Ops One';	font-size: 22px;
+}
+
+
+
+
+
+.lockImg{
+	width: 40%;
+	height: 40%;
+	float: left;
+	vertical-align: middle;
+	padding-right: 0;
+}
+
+.numImg{
+	width: 25%;
+	height: 25%;
+	float:right;
+	vertical-align: middle;
+	display: block;
+}
+
 #section1{
 	text-align: center;
   	vertical-align: middle;
