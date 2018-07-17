@@ -1,5 +1,11 @@
 
 $(document).ready(function(){
+	var url = new URL(window.location.href);
+	var userName =  url.searchParams.get("username");
+//	if (userName === null){
+//		document.location.href = '/frontend/pages/index.html';
+//	}
+	window.history.replaceState({}, document.title, "/frontend/pages/topics.html");
 	$.get({
 		url: "/frontend/VideoPermissionsWebServlet",
 		cache: false,		

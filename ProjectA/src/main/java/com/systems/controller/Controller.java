@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.systems.model.MappedClass;
+import com.systems.model.UserAccounts;
 import com.systems.repository.Repo;
 
 
@@ -24,22 +24,22 @@ public class Controller {
 	Repo repository;
 	
 	@GetMapping("/getAll")
-	public List<MappedClass> getAllResults() {
+	public List<UserAccounts> getAllResults() {
 	    return repository.findAll();
 	}
 	
-	@GetMapping("/getName/{userId}")
-	public String getIndividualResult(@PathVariable("userId") String userId){
-		return repository.retrieve(userId); //how does this know to point to the custom method written in Repo.java
+	@GetMapping("/getName/{username}")
+	public String getIndividualResult(@PathVariable("username") String username){
+		return repository.retrieve(username);
 	}
 	
 	@GetMapping("/getAllUsers")
-	public List<MappedClass> getAllUsers(){
+	public List<UserAccounts> getAllUsers(){
 		return repository.findAll();
 	}
 	
 	@PostMapping("/addUser")
-	public MappedClass createUser(@Valid @RequestBody MappedClass entity) {
+	public UserAccounts createUser(@Valid @RequestBody UserAccounts entity) {
 		return repository.save(entity); //to use this I assume you have to send all the relevant data, in the correct order
 	}
 

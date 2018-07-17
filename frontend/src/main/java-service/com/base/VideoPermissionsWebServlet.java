@@ -28,7 +28,6 @@ public class VideoPermissionsWebServlet extends HttpServlet{
 			ClientResponse clientResponse = restClient.resource(URL).get();
 			resp.setContentType("text/plain");
 			resp.getWriter().write(clientResponse.getEntity(String.class));
-			
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}

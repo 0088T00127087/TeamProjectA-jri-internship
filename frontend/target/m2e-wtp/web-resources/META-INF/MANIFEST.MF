@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+Implementation-Title: frontend Maven Webapp
+Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: ian20_000
+Implementation-Vendor-Id: com.system
 Build-Jdk: 1.8.0_141
+Implementation-URL: http://maven.apache.org
 Created-By: Maven Integration for Eclipse
 
