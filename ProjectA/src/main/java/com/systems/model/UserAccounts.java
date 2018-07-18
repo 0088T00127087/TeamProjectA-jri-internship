@@ -68,10 +68,7 @@ public class UserAccounts implements Serializable{
 	}
 
 	public void setHashedPassword(String password) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String hashedPassword = passwordEncoder.encode(password);
-		System.out.println(hashedPassword);
-		this.hashedPassword = hashedPassword;
+		this.hashedPassword = password;
 	}
 
 	public String getUserName() {

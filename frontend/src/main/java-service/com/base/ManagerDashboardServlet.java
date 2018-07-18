@@ -23,7 +23,7 @@ public class ManagerDashboardServlet extends HttpServlet{
 		try {
 			String videoNumber = req.getParameter("videoNumber");
 			String URL = videoWatchedURL + videoNumber;
-			ClientResponse clientResponse = restClient.resource(URL).get();
+			ClientResponse clientResponse = restClient.resource(URL).post(null);
 			resp.setContentType("text/plain");
 			resp.getWriter().write(clientResponse.getEntity(String.class));
 		} catch (Exception ex) {

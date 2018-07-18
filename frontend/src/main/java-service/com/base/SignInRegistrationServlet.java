@@ -8,17 +8,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.MediaType;
 
 import org.apache.wink.client.ClientResponse;
 import org.apache.wink.client.RestClient;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 @WebServlet("/SignInRegistrationServlet")
 public class SignInRegistrationServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	private RestClient restClient = new RestClient();	
-	private String registrationURL = "http://localhost:8080/ProjectA/registration/signin/";
+	private String signInURL = "http://localhost:8080/ProjectA/registration/signin/";
+	private String registrationURL = "http://localhost:8080/ProjectA/api/addUser";
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@Override
@@ -27,7 +30,7 @@ public class SignInRegistrationServlet extends HttpServlet{
 			String username = req.getParameter("username");
 			String password = req.getParameter("password");
 			String encodedPassword =  URLEncoder.encode(password, "UTF-8");
-			String URL = registrationURL + username + "/" + encodedPassword;
+			String URL = signInURL + username + "/" + encodedPassword;
 			ClientResponse clientResponse = restClient.resource(URL).get();
 			String loggedPassword = clientResponse.getEntity(String.class);
 			
@@ -44,7 +47,23 @@ public class SignInRegistrationServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		super.doPost(req, resp);
+		String firstName = req.getParameter("firstName");
+		String surname = req.getParameter("surname");
+		String email = req.getParameter("email");
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		String URL = registrationURL;
+		String jsonBody = "{\"firstName\":\"" + firstName + "\",\"secondName\":\"" + surname +
+				"\",\"hashedPassword\":\""+ hashedPassword(password) + "\",\"userName\":\""+ username + "\",\"email\":\""+ email + "\"}";
+		String clientResponse =  restClient.resource(URL).contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON).post(String.class, jsonBody);
+		resp.setContentType("text/plain");
+		resp.getWriter().write(clientResponse);
+	}
+
+	private String hashedPassword(String password) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		return passwordEncoder.encode(password);
 	}
 	
 	
