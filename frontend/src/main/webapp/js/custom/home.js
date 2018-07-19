@@ -1,7 +1,7 @@
-
+var userName;
 $(document).ready(function(){
 	var url = new URL(window.location.href);
-	var userName =  url.searchParams.get("username");
+	userName =  url.searchParams.get("username");
 	if (userName === null){
 		document.location.href = '/frontend/pages/index.html';
 	}
@@ -18,3 +18,11 @@ $(document).ready(function(){
 		});		
 	},100);
 });
+
+function visitTopicsPage(){
+	document.location.href = '/frontend/pages/topics.html?username=' + userName;
+}
+
+function visitSandboxPage(){
+	document.location.href = '/frontend/pages/py-sandbox.html?username=' + userName;
+}
