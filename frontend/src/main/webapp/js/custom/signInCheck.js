@@ -24,6 +24,8 @@ function attemptSignIn(){
 		if (response === "true"){
 			document.location.href = '/frontend/pages/home.html?username=' + username;
 		} else {
+			//JE added alert box when invalid username/Password entered
+			alert("Username/Password invalid");
 			console.log("Could not retrieve user.");
 		}
 	});
