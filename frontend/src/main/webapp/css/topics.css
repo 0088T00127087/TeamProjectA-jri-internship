@@ -8,45 +8,29 @@
 }
 
 #s2_child1{
-	background-color: #b3e0ff;
+	background-color: #aaddff;
+
 }
 
 #s3_child1{
-	background-color: #80ccff;
+	background-color: #aaddff;
+
 }
 
 #s4_child1{
-	background-color: #4db8ff;
+	background-color: #aaddff;
+
 }
 
-#s2_child2{
-	background-color: #df9fdf;
-}
-
-#s3_child2{
-	background-color: #d279d2;	
-}
-
-#s4_child2{
-	background-color: #bf40bf;	
-}
 
 #s2_child2,#s3_child2,#s4_child2{
 	float: right;
   	padding: 0;
-  	max-width: 100%;
-  	max-height: 100%;
   	text-align: center;
   	vertical-align: middle;	
+  	height: 216px;
+  	background-color: #83b1eb;
 }
-
-
-.topicText{
-	 font-family: 'Shrikhand';	font-size: 22px;
-}
-
-
-
 
 
 .lockImg{
@@ -58,12 +42,29 @@
 }
 
 .numImg{
-	width: 25%;
-	height: 25%;
-	float:right;
-	vertical-align: middle;
-	display: block;
+	height: 40%;
+	width: 40%;
 }
+
+.topicText{
+	text-align: center;
+	vertical-align: middle;
+}
+
+.button {
+    background-color: #9595ff;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
 
 #section1{
 	text-align: center;
