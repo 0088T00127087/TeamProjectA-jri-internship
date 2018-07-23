@@ -21,7 +21,7 @@ public class SignInRegistrationServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private RestClient restClient = new RestClient();	
 	private String signInURL = "http://localhost:8080/ProjectA/registration/signin/";
-	private String registrationURL = "http://localhost:8080/ProjectA/api/addUser";
+	private String registrationURL = "http://localhost:8080/ProjectA/api/authenticate/";
 	private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@Override
@@ -47,18 +47,23 @@ public class SignInRegistrationServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String firstName = req.getParameter("firstName");
-		String surname = req.getParameter("surname");
-		String email = req.getParameter("email");
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
-		String URL = registrationURL;
-		String jsonBody = "{\"firstName\":\"" + firstName + "\",\"secondName\":\"" + surname +
-				"\",\"hashedPassword\":\""+ hashedPassword(password) + "\",\"userName\":\""+ username + "\",\"email\":\""+ email + "\"}";
-		String clientResponse =  restClient.resource(URL).contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON).post(String.class, jsonBody);
-		resp.setContentType("text/plain");
-		resp.getWriter().write(clientResponse);
+		try {
+			String firstName = req.getParameter("firstName");
+			String surname = req.getParameter("surname");
+			String email = req.getParameter("email");
+			String username = req.getParameter("username");
+			String password = req.getParameter("password");
+			String URL = registrationURL;
+			String jsonBody = "{\"firstName\":\"" + firstName + "\",\"secondName\":\"" + surname +
+					"\",\"hashedPassword\":\""+ hashedPassword(password) + "\",\"userName\":\""+ username + "\",\"email\":\""+ email + "\"}";
+			String clientResponse =  restClient.resource(URL).contentType(MediaType.APPLICATION_JSON)
+					.accept(MediaType.APPLICATION_JSON).post(String.class, jsonBody);
+			resp.setContentType("text/plain");
+			resp.getWriter().write(clientResponse);	
+		} catch (Exception ex) {
+			resp.setContentType("text/plain");
+			resp.getWriter().write("failure");	
+		}
 	}
 
 	private String hashedPassword(String password) {

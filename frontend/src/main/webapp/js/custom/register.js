@@ -35,12 +35,9 @@ function createAccount(){
 		type : "POST",
 		data : {firstName : firstName,surname: surname, email: email, username: username, password: password}
 	},function(result){
-		if (result.length > 0){
-			$("#success").text("Account Successfully Created, Redirecting back to log in page..");
+		if (result !== "failure"){
+			$("#success").text("Please check your email to continue the registration process.");
 			$("#success").css("visibility","visible");
-			setTimeout(function(){
-				document.location.href = '/frontend/pages/index.html';
-			},3000);
 		}
 	});
 }

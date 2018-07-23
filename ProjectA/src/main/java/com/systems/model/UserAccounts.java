@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
@@ -38,6 +37,9 @@ public class UserAccounts implements Serializable{
 	
 	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "account_activated")
+	private int accountActivated;
 	
 	public long getUserId() {
 		return userId;
@@ -86,4 +88,14 @@ public class UserAccounts implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public int getAccountActivated() {
+		return accountActivated;
+	}
+
+	public void setAccountActivated() {
+		this.accountActivated = 0;
+	}
+	
+	
 }
