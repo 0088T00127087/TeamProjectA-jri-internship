@@ -8,6 +8,15 @@ body {
   margin-bottom: 60px;
 }
 
+.jumboImg{
+	width: 1000px;
+	height: 300px;	
+}
+
+.jumbotron{
+	background-color: #ffffff;
+	border: none;
+}
 
 button{
   color: #008000;
