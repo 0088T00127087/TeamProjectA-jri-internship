@@ -42,6 +42,6 @@ function getActivationStatus(callback){
 function accountCreatedRedirect(){
 	$("#successfulCreation").css("display","inline");
 	setTimeout(function(){
-	//	document.location.href = '/frontend/pages/index.html';
+		document.location.href = '/frontend/pages/index.html';
 	},4000);
 }
