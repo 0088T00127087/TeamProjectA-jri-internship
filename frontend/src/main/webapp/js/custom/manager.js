@@ -2,6 +2,14 @@ var pendingActions;
 var assignmentSuccess;
 
 $(document).ready(function(){
+	$.get({
+		url: "/frontend/HomepageInitialLoadServlet",
+		cache: false,		
+		type : "GET",
+		data : {username: userName}
+	}, function(response){
+		$("#name").text(response);
+	});		
 	checkForPendingActions();
 			if (pendingActions){
 				displayReAssigningContent();
