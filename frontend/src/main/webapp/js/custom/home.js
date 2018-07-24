@@ -6,15 +6,8 @@ $(document).ready(function(){
 		document.location.href = '/frontend/pages/index.html';
 	}
 	window.history.replaceState({}, document.title, "/frontend/pages/home.html");
-
-		$.get({
-			url: "/frontend/HomepageInitialLoadServlet",
-			cache: false,		
-			type : "GET",
-			data : {username: userName}
-		}, function(response){
-			$("#name").text(response);
-		});		
+	customisation();
+	getCourseCredentials();
 });
 
 function visitTopicsPage(){
@@ -23,4 +16,30 @@ function visitTopicsPage(){
 
 function visitSandboxPage(){
 	document.location.href = '/frontend/pages/py-sandbox.html?username=' + userName;
+}
+
+function customisation(){
+	$.get({
+		url: "/frontend/HomepageInitialLoadServlet",
+		cache: false,		
+		type : "GET",
+		data : {username: userName}
+	}, function(response){
+		$("#name").text(response);
+	});	
+}
+
+function getCourseCredentials(){
+	var url = "http://localhost:8080/ProjectA/course-registration/getCurrentCourse/"
+	$.get({
+		url: url + userName,
+		cache: false,		
+		type : "GET",
+	}, function(response){
+		if (response.length > 0){
+			$("#pythonBeginners").css({"cursor":"pointer","pointer-events":"auto","background-color":"white"})
+		} else {
+			$("#pythonBeginners").css({"cursor":"not-allowed",})
+		}
+	});	
 }
