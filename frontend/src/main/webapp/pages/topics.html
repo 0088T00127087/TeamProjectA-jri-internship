@@ -80,7 +80,7 @@
 	  	</div>
 	  	<div id="s2_child2" class="col-sm-6">
 	  		<h1 class="topicText">INTRODUCTION TO <br> PYTHON</h1>
-	  		<button id="button1" class="button">GO</button>
+	  		<button disabled id="button1" class="button" onclick="introToPythonPreRequisites()">GO</button>
 	  	</div>
 	</div>
 	
@@ -91,7 +91,7 @@
 	  	</div>
 	  	<div id="s3_child2" class="col-sm-6">
 	  		<h1 class="topicText">VARIABLES</h1>
-	  		<button id="button2" class="button">GO</button>
+	  		<button disabled id="button2" class="button">GO</button>
 	  	</div>
 	</div>
 	
@@ -102,7 +102,7 @@
 	  	</div>
 	  	<div id="s4_child2" class="col-sm-6">
 	  		<h1 class="topicText">FUNCTIONS</h1>
-	  		<button id="button3" class="button">GO</button>
+	  		<button disabled id="button3" class="button">GO</button>
 	  	</div>
 	</div>
 
@@ -116,6 +116,28 @@
 	        <span class="text-muted">Developed by Team Project A</span>
 	      </div>
 	</footer>
+ 
+ <div id="introToPythonPreReq" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Introduction To Python - Prerequisites</h4>
+      </div>
+      <div class="modal-body">
+        <p>Style here as required,</p>
+         <p>Styling the modal is not a prerequisite to begin this course.</p>
+      </div>
+      <div class="modal-footer">
+      	 <button type="button" class="btn btn-default" onclick="beginTopicOne()">Proceed</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
  
 </body>
 </html>

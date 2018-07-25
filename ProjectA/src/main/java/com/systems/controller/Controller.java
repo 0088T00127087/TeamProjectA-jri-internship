@@ -81,4 +81,10 @@ public class Controller {
 	public String checkIfActivationHasExpired(@PathVariable("auth") String auth){
 		return accountActivationRepository.checkActivated(auth);
 	}
+	
+	@GetMapping("/getAllUnassignedUsers")
+	public void getAllUnassignedUsers() {
+		List<UserAccounts> returned = repository.findAll();
+		System.out.println(returned);
+	}
 }

@@ -39,7 +39,7 @@ function getCourseProgress(){
 	}, function(response){
 		if (response === "1"){
 			$("#lock1").css({"visibility":"hidden"});
-			$("#button1").css("background-color","blueviolet");
+			$("#button1").css("background-color","blueviolet").prop("disabled",false);
 			$("#s2_child1").css({"background":'url("/frontend/extra-resources/images/py1.jpg")',"background-size":"343px 218px"});
 		} else if (response === "2"){
 			$("#lock1").css({"visibility":"hidden"});
@@ -50,6 +50,14 @@ function getCourseProgress(){
 			$("#lock3").css({"visibility":"hidden"});
 		}
 	});	
+}
+
+function introToPythonPreRequisites(){
+	$("#introToPythonPreReq").modal();
+}
+
+function beginTopicOne(){
+	document.location.href = '/frontend/pages/introductionToPython.html?username=' + userName;
 }
 //
 //$.get({

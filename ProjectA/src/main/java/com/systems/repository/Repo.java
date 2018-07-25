@@ -29,7 +29,7 @@ public interface Repo extends JpaRepository<UserAccounts, Long>{
 
 	@Query(value= "select distinct email from `project-a-schema`.user_accounts where email = :email",nativeQuery = true)
 	String checkIfEmailHasBeenUsed(@Param("email")String email);
-	
+
 	@Transactional
 	@Modifying(clearAutomatically = true)
 	@Query(value= "update `project-a-schema`.user_accounts set account_activated = 1 where user_name = :username",nativeQuery = true)
