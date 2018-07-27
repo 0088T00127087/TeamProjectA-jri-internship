@@ -7,7 +7,19 @@ $(document).ready(function(){
 	}
 	window.history.replaceState({}, document.title, "/frontend/pages/introductionToPython.html");
 	customisation();
+	retrieveQuestions();
 });
+
+function retrieveQuestions(){
+	$.get({
+		url: "/frontend/QuestionBankServlet",
+		cache: false,		
+		type : "GET",
+		data : {username: userName}
+	}, function(response){
+		console.log(response);
+	});	
+}
 
 function customisation(){
 	$.get({
