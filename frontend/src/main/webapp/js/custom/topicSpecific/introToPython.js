@@ -57,6 +57,7 @@ function videoValidity(){
 			$('#homepageVideo').on('ended',function(){
 				questionModalLoader();
 		//		adjustVideoPermissions();
+				makeTranscriptBlank();
 			});	
 		//} 
 //		else {
@@ -83,4 +84,9 @@ function fullscreenVideo(){
     else if ($("#homepageVideo").get(0).msRequestFullscreen){
     	$("#homepageVideo").get(0).msRequestFullscreen();
     } 
+}
+
+function makeTranscriptBlank() {
+	$("#transcript").text("");
+	
 }

@@ -51,17 +51,117 @@
 		  </div>
 </nav>   
 </div>
-<h1 style="margin-left:8%;margin-bottom:2%;">Introduction To Python</h1>  
- <video id="homepageVideo" style="margin-left:8%;margin-bottom:0%;" width="640" height="440">
+
+
+<h1 style="margin-left: 8%; margin-bottom:2%;">Introduction To Python</h1> 
+<div style="float:left">
+ <video id="homepageVideo" style="margin-left:8%; margin-bottom:0%;" width="640" height="440">
   <source src="/frontend/extra-resources/videos/sampleVideo.mp4" type="video/mp4">
-</video> 
-<div style="margin-top:2%;">
-<span>
-<button id="fullscreenButton" onclick="fullscreenVideo()" style="margin-left:8%;">Fullscreen</button>
-<input style="width:200px;margin-left:20%;margin-top:-2.5%" type="range" id="volume" min="0" max="1" step="0.1" value="1" />
-<span style="font-size:20px;margin-left:25%;"> Volume(Not Functional)</span>
-</span>
+</video>
 </div>
+<div style= "height:440px; width: 500px; border:1px solid #ccc; font:16px/26px Georgia, Garamond, Serif; overflow:scroll; padding: 5px;">
+	<div id="transcript">Learning Objectives
+	<ul>
+		<li>What is Python</li>
+		<li>What a programming languages.</li>
+		<li>What Type of language is python.</li>
+		<li>Code our first python script.</li>
+		<li>What are variables.</li>
+		<li>What is a operator.</li>
+	</ul> 
+
+	Fun Facts. <br /><br />
+
+	Origin<br />
+	<ul>
+	<li>Python originated as a result of boredom of its author Van Rossum during the Christmas break of 1989. “He was looking for a hobby programming project that would keep him occupied during the week around Christmas. He Says “The office was be closed for the break, but I had a home computer, and not much else on my hands.”</li>
+	
+	<li>It’s name has nothing to do with a type of snake but with a sketch comedy group “Monty Python”. </li>
+	
+	<li>Python was ranked the #1 programming language in 2017</li>
+	
+	<li>And it is no wonder as Python’s overall structure is very clear and pretty easy for newcomers to programming to master. Since it is a high level language, using very clear and easy syntax and using few commands.</li> </ul>
+	
+	Productivity <br /><br />
+	As you become more competent in Python programming, you can create various scripts to simplify everyday work and increase your productivity. Allowing you to automate repetitive and manual tasks, so you can get on more done in less time.<br /><br />
+	
+	What is a programming language?<br /><br />
+		A programming language is a language that we use to communicate with our computers. This is achieved by giving the computer very specific set of instructions. 
+		There are many programming languages around today, these languages can be commonly grouped into what are known as high level languages and low-level languages. Python is a high-level language, which make it easy to read and understand. 
+		Don’t worry about these concepts for now we will learn more about these topics in later videos but for now just remember that a programming language allows us to interact with our computers.<br /><br />
+	
+	What is a program?<br /><br />
+	Remember we said that a programming language was a way for us to communicate with our computers, well a computer program contains a very specific set of instructions written in a programming language that the computer understands. #
+	In Python we call these scripts. <br /><br />
+	 
+	 
+	Now we will look at writing our first python script!<br />
+	Open up for your Python code editor.<br />
+	Now type: <br />
+		print("Hello world!")<br />
+	and press enter<br />
+	You should get an output of Hello World!<br /><br />
+	
+	
+	Let’s dive deeper into what we just wrote. The first part of this syntax, syntax is the name given to programming code, is print(). This is known as a function. A function is a part of a program which performs a specific task. In this case, output onto the screen whatever is between the brackets.
+	The second part is the value within the brackets, known as an argument. An argument is a value which the function uses. When you use a value in a function like this it is known as passing an argument to a function. However, we will cover this and how to make your own function in greater detail in a later video.
+	You will notice that we have the text hello world surrounded by quotation marks. This is to tell the computer that this is a text value. In programming we call values which are contained within Quotation marks strings.
+	However manually inputting a string or value each time we want to use it, especially if it is a long or complex value can lead to a lot repetition and does not allow us to dynamically change / modify values.<br />
+	The solution? Variables!<br /><br />
+	
+	A variable is a container in which we can store a value and access it later.<br />
+	In python declaring variables is very easy. We use the following format:<br />
+		variableName = value<br />
+	Python does not require you to select what type of value it will hold, i.e. no need to explicitly say this variable is a string or an integer, unlike other programming languages<br /><br />
+	
+	
+	As an example, we will recreate our hello world example from earlier using a variable.<br />
+	Firstly, type:<br />
+		value = "Hello World"<br />
+	Press enter<br />
+	Next:<br />
+		print(value)<br />
+	Press enter again.<br />
+	and you should get Hello World as your output.<br />
+	The great advantage of using variables is that we can change the value which they hold at any time.<br />
+	Now if we type:<br />
+		value = 5<br />
+	and press enter<br />
+	and then type<br />
+		print(value)<br />
+	The output should be 5.<br /><br />
+	
+	For this final example we will use 3 variables and an operator.<br />
+	An operator is a symbol which we can use to perform a certain job e.g. Addition, subtraction, joining strings together etc.<br />
+	to start:<br />
+		x = 5<br />
+	Enter<br />
+		y = 7<br />
+	Enter<br />
+	These are the variables which we will use the addition operator on<br />
+	next type:<br />
+		z = x+y<br />
+	Enter<br />
+		print(z)<br />
+	Enter.<br />
+	And you output should read: 12<br />
+	This is a really good example as it covers declaring variables, using variables and using operators <br />
+	</div>
+	</div>
+
+
+
+	<div style=" margin-left:8%; margin-top:2%;">
+	<span>
+	<button id="fullscreenButton" onclick="fullscreenVideo()" style=>Fullscreen</button>
+	<input style="width:200px;margin-left:20%;margin-top:-2.5%" type="range" id="volume" min="0" max="1" step="0.1" value="1" />
+	<span style="font-size:20px;margin-left:25%;"> Volume(Not Functional)</span>
+	</span>
+	</div>
+
+
+
+
 
 <div id="questionModal" class="modal fade" role="dialog">
   <div class="modal-dialog" style="width:75%;">
@@ -73,9 +173,10 @@
         <p>Some text in the modal.</p>
       </div>
     </div>
-
   </div>
 </div>
+
+
   
 
 

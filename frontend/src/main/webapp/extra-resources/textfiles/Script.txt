@@ -1,0 +1,90 @@
+Learning Objectives
+What is Python
+ What a programming languages.
+What Type of language is python. 
+Code our first python script. 
+What are variables.
+What is a operator. 
+
+
+
+
+Fun Facts. 
+
+Origin
+	Python originated as a result of boredom of its author Van Rossum during the Christmas break of 1989. 
+	“He was looking for a hobby programming project that would keep him occupied during the week around Christmas. He Says “The office was be closed for the break, but I had a home computer, and not much else on my hands.”
+
+It’s name has nothing to do with a type of snake but with a sketch comedy group “Monty Python”. 
+
+Python was ranked the #1 programming language in 2017
+
+And it is no wonder as Python’s overall structure is very clear and pretty easy for newcomers to programming to master. Since it is a high level language, using very clear and easy syntax and using few commands. 
+
+Productivity
+As you become more competent in Python programming, you can create various scripts to simplify everyday work and increase your productivity. Allowing you to automate repetitive and manual tasks, so you can get on more done in less time.
+
+
+
+What is a programming language?
+	A programming language is a language that we use to communicate with our computers. This is achieved by giving the computer very specific set of instructions. 
+	There are many programming languages around today, these languages can be commonly grouped into what are known as high level languages and low-level languages. Python is a high-level language, which make it easy to read and understand. Don’t worry about these concepts for now we will learn more about these topics in later videos but for now just remember that a programming language allows us to interact with our computers.
+
+What is a program?
+Remember we said that a programming language was a way for us to communicate with our computers, well a computer program contains a very specific set of instructions written in a programming language that the computer understands. In Python we call these scripts. *** cut to animation about a computer receiving input and thinking 010110101010 *****
+ 
+ 
+
+Storyboard 5
+
+Now we will look at writing our first python script!
+Open up for your Python code editor.
+Now type: 
+	print("Hello world!")
+and press enter
+You should get an output of Hello World!
+
+Storyboard 6
+Let’s dive deeper into what we just wrote. The first part of this syntax, syntax is the name given to programming code, is print(). This is known as a function. A function is a part of a program which performs a specific task. In this case, output onto the screen whatever is between the brackets.
+The second part is the value within the brackets, known as an argument. An argument is a value which the function uses. When you use a value in a function like this it is known as passing an argument to a function. However, we will cover this and how to make your own function in greater detail in a later video.
+You will notice that we have the text hello world surrounded by quotation marks. This is to tell the computer that this is a text value. In programming we call values which are contained within Quotation marks strings.
+However manually inputting a string or value each time we want to use it, especially if it is a long or complex value can lead to a lot repetition and does not allow us to dynamically change / modify values.
+The solution? Variables!
+Storyboard 7
+A variable is a container in which we can store a value and access it later.
+In python declaring variables is very easy. We use the following format:
+	variableName = value
+Python does not require you to select what type of value it will hold, i.e. no need to explicitly say this variable is a string or an integer, unlike other programming languages
+
+Storyboard 8
+As an example, we will recreate our hello world example from earlier using a variable.
+Firstly, type:
+	value = "Hello World"
+Press enter
+Next:
+	print(value)
+Press enter again.
+and you should get Hello World as your output.
+The great advantage of using variables is that we can change the value which they hold at any time.
+Now if we type:
+	value = 5
+and press enter
+and then type
+	print(value)
+The output should be 5.
+Storyboard 9
+For this final example we will use 3 variables and an operator.
+An operator is a symbol which we can use to perform a certain job e.g. Addition, subtraction, joining strings together etc.
+to start:
+	x = 5
+Enter
+	y = 7
+Enter
+These are the variables which we will use the addition operator on
+next type:
+	z = x+y
+Enter
+	print(z)
+Enter.
+And you output should read: 13
+This is a really good example as it covers declaring variables, using variables and using operators
