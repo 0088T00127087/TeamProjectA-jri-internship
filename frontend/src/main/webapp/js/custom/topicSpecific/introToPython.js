@@ -6,18 +6,75 @@ $(document).ready(function(){
 		document.location.href = '/frontend/pages/index.html';
 	}
 	window.history.replaceState({}, document.title, "/frontend/pages/introductionToPython.html");
-	customisation();
-	retrieveQuestions();
-	videoValidity();
-	$("#homepageVideo").get(0).prop("volume", this.value);
-	$('#volume').on('change', function() {
-		$("#homepageVideo").get(0).prop("volume", this.value);
-	});
+	$.get({
+		url: "http://localhost:8080/ProjectA/course-registration/retrieveUserTopicLegibility/" + userName + "/1/",
+		cache: false,
+		type : "GET",
+	}, function(response){
+		if (response === "true"){
+			$.get({
+				url: "http://localhost:8080/ProjectA/course-registration/checkTheUsersTopicStatus/" + userName + "/1/",
+				cache: false,
+				type : "GET",
+			}, function(response){
+				if (response === 0){
+					customisation();
+					updateDatabaseAndNotifyManager();
+					retrieveQuestions();
+					videoValidity();
+					$("#pageContent").css("display","inline");
+					$("#homepageVideo").get(0).prop("volume", this.value);		
+				} else if (response === 1){
+					$("#navigationError").css("display","inline");
+					registerFailureAndRevertToNotStarted();
+					setTimeout(function(){
+						document.location.href = '/frontend/pages/topics.html?username=' + userName;
+					},5000);
+				} else if (response === 2){
+					$("#managerApprovalRequired").css("display","inline");
+					setTimeout(function(){
+						document.location.href = '/frontend/pages/topics.html?username=' + userName;
+					},5000);
+				}
+			});
+		} else {
+			$("#managerApprovalRequired").css("display","inline");
+			setTimeout(function(){
+				document.location.href = '/frontend/pages/topics.html?username=' + userName;
+			},5000);
+		}
+	});	
 });
+
+function registerFailureAndRevertToNotStarted(){
+	$.get({
+		url: "http://localhost:8080/ProjectA/course-registration/registerFirstFailure/" + userName + "/1/",
+		cache: false,
+		type : "GET",
+	}, function(response){
+		console.log(response);
+	});
+}
 
 $(function() {
     $(document).scrollTop( $("#homepageVideo").offset().top );  
+    $('#volume').on('change', function() {
+    	$("#homepageVideo").get(0).prop("volume", this.value);
+    });	
 });
+
+function updateDatabaseAndNotifyManager(){
+	$.get({
+		url: "http://localhost:8080/ProjectA/course-registration/updateToInProgress/" + userName + "/1/",
+		cache: false,		
+		type : "GET",
+	}, function(response){
+		console.log(response);
+	});	
+}
+
+function managerReviewCheck(){
+}
 
 function retrieveQuestions(){
 	$.get({
@@ -67,7 +124,7 @@ function videoValidity(){
 }
 
 function questionModalLoader(){
-	$('#questionModal').modal({backdrop: 'static', keyboard: false})
+	$('#questionModal').modal({backdrop: 'static', keyboard: false});
 }
 
 

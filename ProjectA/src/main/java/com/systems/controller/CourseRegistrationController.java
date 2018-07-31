@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.systems.business.GlobalMailSenderRepository;
 import com.systems.model.CourseRegistrationEntity;
 import com.systems.model.UserAccounts;
 import com.systems.repository.CourseRegistrationRepository;
@@ -24,6 +25,10 @@ public class CourseRegistrationController {
 	
 	@Autowired
 	CourseRegistrationRepository repository;
+	@Autowired
+	Repo userAccountsRepo;
+	
+	GlobalMailSenderRepository sender = new GlobalMailSenderRepository();
 	
 	@Autowired
 	Repo userAccountsRepository;
@@ -44,25 +49,63 @@ public class CourseRegistrationController {
 		return repository.retrieveCourseStatus(userName);
 	}
 	
-//	@GetMapping("/getAllUnassignedUsers")
-//	public List<String> getAllUnassignedUsers(){
-//		List<UserAccounts> unassignedUsers = new ArrayList<UserAccounts>();
-//		List<String> allAccounts = new ArrayList<String>();
-//		List<String> assignedAccounts = new ArrayList<String>();
-//		for (UserAccounts i :  userAccountsRepository.findAll()) {
-//			allAccounts.add(i.getUserName());
-//		}
-//		for (CourseRegistrationEntity i : repository.findAll()) {
-//			assignedAccounts.add(i.getUserName());
-//		}
-//		for (String i : allAccounts) {
-//			if (!assignedAccounts.contains(i)) {
-//			unassignedUsers.add(allAccounts.get(Integer.parseInt(i)));
-//			}
-//		}
-//		return unassignedUsers;
-//		
-//	}
+	@GetMapping("/updateToInProgress/{userName}/{videoTracker}")
+	public void chosenTopicInProgressUpdate(@PathVariable("userName") String userName,
+			@PathVariable("videoTracker") String videoTracker) {
+		String topicName = "";
+		repository.updateToInProgress(userName,videoTracker);
+		if (videoTracker.equals("1")) {
+			topicName = "Introduction To Python";
+		} else {
+			topicName = "";
+		}
+		sender.sendNotifierOfTopicStartToManager(userAccountsRepo.retrieve(userName) + " " + userAccountsRepo.retrieveSurname(userName),topicName);
+	}
+	
+	@GetMapping("/retrieveUserTopicLegibility/{userName}/{videoTracker}")
+	public String retrieveUserTopicLegibility(@PathVariable("userName") String userName,
+			@PathVariable("videoTracker") String videoTracker) {
+		int managerReviewCount = repository.examineIfUserIsLegibleToTakeTopic(userName,videoTracker);
+		if (managerReviewCount < 2) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+	
+	@GetMapping("/retrieveAllUsersThatRequireManagerReview")
+	public List<CourseRegistrationEntity> retrieveAllUsersThatRequireManagerReview(){
+		List<CourseRegistrationEntity> usersRequiringReview = new ArrayList<CourseRegistrationEntity>();
+		List<CourseRegistrationEntity> allAssignments = repository.findAll();
+		for (CourseRegistrationEntity ent : allAssignments) {
+			if (ent.getCountOfManagerReview() == 2) {
+				usersRequiringReview.add(ent);
+			}
+		}
+		return usersRequiringReview;
+	}
+	
+	@GetMapping("/checkTheUsersTopicStatus/{userName}/{videoTracker}")
+	public int checkTheUsersTopicStatus(@PathVariable("userName") String userName,
+			@PathVariable("videoTracker") String videoTracker) {
+		return repository.examineIfUserHasNotFailedOrNavigatedAway(userName, videoTracker);
+	}
+	
+	@GetMapping("/registerFirstFailure/{userName}/{videoTracker}")
+		public void registerUsersFirstFailure(@PathVariable("userName") String userName,
+			@PathVariable("videoTracker") String videoTracker) {
+		int countOfManagerReview = repository.examineIfUserIsLegibleToTakeTopic(userName, videoTracker);
+		if (countOfManagerReview < 2) {
+			repository.updateManagerReviewCountAndStatus(userName, videoTracker, ++countOfManagerReview);			
+		} 	
+	}
+	
+	@GetMapping("/reAssignCourseToUser/{userName}/{videoTracker}")
+	public void reassignCourseToUser(@PathVariable("userName") String userName,
+		@PathVariable("videoTracker") String videoTracker) {
+		repository.updateManagerReviewCountAndStatus(userName, videoTracker, 0);			
+
+}
 	
 	@GetMapping("/retrieveAllUnassignedUsers")
 	public List<UserAccounts> retrieveAllUnassignedUsers(){

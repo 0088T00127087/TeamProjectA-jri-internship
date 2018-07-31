@@ -5,13 +5,13 @@ import javax.mail.*;
 import javax.mail.internet.*;
 
 import com.systems.model.UserAccounts;
-import com.systems.repository.Repo;
 
 import java.util.*;
 
 public class GlobalMailSenderRepository {
 	
-	public void sendAuthorisationEmailTo(UserAccounts entity, Repo repository, String authenticator) {
+	
+	public void sendAuthorisationEmailTo(UserAccounts entity, String authenticator) {
         try {
             Message message = new MimeMessage(authoriseEmailConnection());
             message.setFrom(new InternetAddress("teamprojectalms@gmail.com"));
@@ -28,6 +28,36 @@ public class GlobalMailSenderRepository {
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
+	}
+	
+	public void sendNotifierOfTopicStartToManager(String traineeUserName,String courseId) {
+		try {
+			Message message = new MimeMessage(authoriseEmailConnection());
+			message.setFrom(new InternetAddress("teamprojectalms@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("ian2009saul@gmail.com"));
+			message.setSubject(traineeUserName + " has commenced training | Team Project A - LMS");
+			message.setText("This is an automated message to inform you that " + traineeUserName + " has commenced '"+courseId + "'." +
+			"\n\n No further action is required at this time." +
+			"\n\n The Team @ Team Project A");
+			 Transport.send(message);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void sendNotifierOfTopicFirstFailureToManager(String traineeUserName,String courseId) {
+		try {
+			Message message = new MimeMessage(authoriseEmailConnection());
+			message.setFrom(new InternetAddress("teamprojectalms@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("ian2009saul@gmail.com"));
+			message.setSubject(traineeUserName + " has failed training | Team Project A - LMS");
+			message.setText("This is an automated message to inform you that " + traineeUserName + " has failed '"+courseId + "'." +
+			"\n\n No further action is required at this time. " + traineeUserName + " is legible to reattempt. " + 
+			"\n\n The Team @ Team Project A");
+			 Transport.send(message);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	private static Session authoriseEmailConnection() {

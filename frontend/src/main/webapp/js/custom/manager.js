@@ -1,16 +1,14 @@
 var pendingActions;
 var assignmentSuccess;
+var userName;
 
 $(document).ready(function(){	
 //	customisation();
-	checkForPendingActions();
 	checkForUsersRequiringAssignment();
-			if (pendingActions){
-				$("#toDoDescriptor").text("Pending Actions will appear here.");
-			//	displayReAssigningContent();
-			} else {
-				$("#toDoDescriptor").text("Pending Actions will appear here.");
-			}			
+	checkForPendingActions();
+	if ($("#toDoDescriptor").css("display") !== "none"){
+		$("#toDoDescriptor").text("Pending Actions will appear here.");
+	}		
 });
 
 function customisation(){
@@ -37,19 +35,51 @@ function hideReAssigningContent(){
 
 function checkForPendingActions(){
 	$.get({
-		url: "/frontend/VideoPermissionsWebServlet",
-		cache: false,	
-		async: false,
+		url: "http://localhost:8080/ProjectA/course-registration/retrieveAllUsersThatRequireManagerReview",
+		cache: false,
 		type : "GET",
-		data : {videoNumber: "1"}
-	}, function(approval){
-		if (approval === "approvalRequired"){
-			pendingActions = true;
+	}, function(response){
+		if (response[0] !== undefined){
+			$("#toDoDescriptor").css("display","none");
+			for (var i = 0; i < response.length;i++){
+				$("<p class='userRequiringManagerAttention'>" + response[i].userName + " requires attention</p>" +
+						"<button onclick='reAssignCourseToChosenUser(\""+ response[i].userName + "\")' " +
+								"style='float:right;margin-right:583px;margin-top:-42px;'>Reassign Course</button>").appendTo("#usersRequiringAttention");	
+			}
+			$("select#usersRequiringAttention").prop('selectedIndex',0);
+			$("#examineUser").prop("disabled",false);
 		} else {
-			pendingActions = false;
+			$("#toDoDescriptor").css("display","inline");
 		}
 	});
 }
+
+function expandDetailsConcerningUser(userName){
+	$("#expandOnUserThatRequiresAttention").modal();
+	userName = userName;
+	
+}
+
+function expandOnUserRequiringAttention(){
+	var selectedUser = $("#usersRequiringAttention :selected").val();
+	userName = selectedUser;
+	$("#expandOnUserThatRequiresAttention").modal();
+	
+};
+
+function reAssignCourseToChosenUser(userAssignment){
+	var userName = userAssignment;
+	$.get({
+		url: "http://localhost:8080/ProjectA/course-registration/reAssignCourseToUser/" + userName + "/1/",
+		cache: false,
+		type : "GET",
+	}, function(response){
+		if (response === ""){
+			$("#usersRequiringAttention").empty();
+			checkForPendingActions();
+		}
+});
+};
 
 function checkForUsersRequiringAssignment(){
 	$.get({
@@ -88,32 +118,3 @@ function courseAssignmentResult(result){
 	console.log(result);
 	checkForUsersRequiringAssignment();
 }
-
-
-//function reAssignVideo(){
-//	makeReAssignRequest();
-//	if (assignmentSuccess){
-//		$("#reassignSuccess").css("display","inline");
-//		$("#reassignSuccess").animate({opacity:1},400);
-//		hideReAssigningContent();
-//		setTimeout(function(){
-//			$("#reassignSuccess").animate({opacity:0},400);
-//		},3000);
-//	}
-//}
-//
-//function makeReAssignRequest(){
-//	$.post({
-//		url: "/frontend/ManagerDashboardServlet",
-//		cache: false,	
-//		async: false,
-//		type : "POST",
-//		data : {videoNumber: "1"}
-//	},function(result){
-//		if (result === "success"){
-//			assignmentSuccess = true;
-//		} else {
-//			assignmentSuccess = false;
-//		}
-//	});
-//}

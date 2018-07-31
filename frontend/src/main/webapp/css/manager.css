@@ -59,3 +59,10 @@
     background-color: #4CAF50;
     color: white;
 }
+
+.userRequiringManagerAttention{
+	cursor:pointer;
+	font-style:italic;
+	color:red;
+	
+}
