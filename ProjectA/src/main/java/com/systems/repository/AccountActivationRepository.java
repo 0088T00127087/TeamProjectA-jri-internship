@@ -17,6 +17,9 @@ public interface AccountActivationRepository extends JpaRepository<AccountActiva
 	@Query(value= "update `project-a-schema`.account_activation set activated = 1 where auto_generated_url = :authenticator",nativeQuery = true)
 	void autheticationConfirmed(@Param("authenticator")String authenticator);
 	
+	@Query(value = "select activated from `project-a-schema`.account_activation where auto_generated_url = :auth",nativeQuery = true)
+	int retrieveActivationStatusOfAuth(@Param("auth") String auth);
+	
 	@Query(value= "select distinct user_name from `project-a-schema`.account_activation where auto_generated_url = :auth",nativeQuery = true)
 	String retrieveAccountUserName(@Param("auth")String auth);
 	

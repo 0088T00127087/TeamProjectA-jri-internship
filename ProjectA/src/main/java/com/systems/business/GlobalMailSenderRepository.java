@@ -11,17 +11,17 @@ import java.util.*;
 public class GlobalMailSenderRepository {
 	
 	
-	public void sendAuthorisationEmailTo(UserAccounts entity, String authenticator) {
+	public void sendAuthorisationEmailTo(String email, String authenticator) {
         try {
             Message message = new MimeMessage(authoriseEmailConnection());
             message.setFrom(new InternetAddress("teamprojectalms@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse(entity.getEmail()));
+                InternetAddress.parse(email));
             message.setSubject("Account Registration | Team Project A");
-            message.setText("Dear " + entity.getFirstName() + 
-            		", \n\n To complete registration securely, please authenticate your details"+
+            message.setText("Welcome To The Team Project A LMS!" + 
+            		" \n\n To complete registration securely, please reigster your details"+
             		" by clicking the link below. \n\n Happy Learning! \n The Team @ Team Project A \n\n\n" +
-            		"http://localhost:8080/frontend/pages/activation.html?auth=" + authenticator );
+            		"http://localhost:8080/frontend/pages/registration.html?auth=" + authenticator );
 
             Transport.send(message);
 

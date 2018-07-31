@@ -53,7 +53,7 @@ public class SignInRegistrationServlet extends HttpServlet{
 			String email = req.getParameter("email");
 			String username = req.getParameter("username");
 			String password = req.getParameter("password");
-			String URL = registrationURL;
+			String URL = registrationURL + "/" + req.getParameter("auth");
 			String jsonBody = "{\"firstName\":\"" + firstName + "\",\"secondName\":\"" + surname +
 					"\",\"hashedPassword\":\""+ hashedPassword(password) + "\",\"userName\":\""+ username + "\",\"email\":\""+ email + "\"}";
 			String clientResponse =  restClient.resource(URL).contentType(MediaType.APPLICATION_JSON)

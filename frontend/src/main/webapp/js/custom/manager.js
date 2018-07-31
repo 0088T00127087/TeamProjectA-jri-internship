@@ -22,6 +22,36 @@ function customisation(){
 	});	
 }
 
+function inviteUser(){
+	var emailAddress = $("#emailAddress").val();
+	console.log(emailAddress);
+	$.get({
+		url: "http://localhost:8080/ProjectA/api/sendRegistrationInvite/" + emailAddress,
+		cache: false,		
+		type : "GET",
+		data : {username: userName}
+	}, function(response){
+		if (response === ""){
+			$("#invitationResult").css({"color":"green","visibility":"visible"});
+			$("#invitationResult").text("Invitation Sent To " + emailAddress);
+			$("#emailAddress").val("");
+			$("#invitationResult").animate({opacity:1,},400);
+			setTimeout(function(){
+				$("#invitationResult").animate({opacity:0,},400);
+				$("#invitationResult").css("visibility","hidden");
+			},3400);
+		} else if (response === "failure"){
+			$("#invitationResult").css({"color":"red","visibility":"visible"});
+			$("#invitationResult").text("Failed to send invite to " + emailAddress);
+			$("#invitationResult").animate({opacity:1,},400);
+			setTimeout(function(){
+				$("#invitationResult").css("visibility","hidden");
+			},3000);
+		}
+	});
+	
+}
+
 function displayReAssigningContent(){
 	$("#toDoDescriptor").css("display","none");
 	$("#reAssignVideoOne").css("display","inline");

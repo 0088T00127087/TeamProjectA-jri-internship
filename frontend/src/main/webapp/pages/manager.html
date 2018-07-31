@@ -57,6 +57,7 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li><a>Manager Dashboard</a></li>
+          <li><a onclick="location.href = '/frontend/pages/index.html'">Sign Out</a></li>
         </ul>
       </div>
     </div>
@@ -71,6 +72,18 @@
 	<div id="section1Child2" class="col-sm-6">
 		 <div id="barChart_div"  style="width: 900px; height: 500px;"></div>
   	</div>
+</div>
+
+<div id="userInvitation" style="margin-bottom: 50px;">
+<h1>Trainee Invitation</h1>
+<p>Input the email address of the employee that you wish to invite to register with your team:</p>
+<div>
+<input style="width:340px;margin-left:175px;" type="text" id="emailAddress"> 
+<button id="inviteUser" onclick="inviteUser()" style="float:right;margin-right:460px;">Invite User</button>
+<p id="invitationResult" style="opacity:0;visibility:hidden;display:inline;float:right;margin-right:480px;"></p>
+</div>
+
+
 </div>
 
 <div id="courseAssignment" style="margin-bottom: 50px;">

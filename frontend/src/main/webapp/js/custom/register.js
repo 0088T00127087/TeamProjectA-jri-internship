@@ -3,7 +3,21 @@
 	var email;
 	var username;
 	var password;
+	var auth;
 
+$(document).ready(function(){
+	var url = new URL(window.location.href);
+	auth =  url.searchParams.get("auth");
+	if (auth === null){
+		document.location.href = '/frontend/pages/index.html';
+	}
+	getActivationStatus(function(response){
+		if (response !== "0"){
+			document.location.href = '/frontend/pages/index.html';
+		}
+	});
+});	
+	
 function attemptRegistration(){
 	$("#success").text("Loading..");
 	$("#success").css("visibility","visible");
@@ -28,16 +42,37 @@ function attemptRegistration(){
 	}
 }
 
+
+function getActivationStatus(callback){
+	$.ajax({
+		url: "/frontend/AccountActivationServlet",
+		cache: false,	
+		async: false,
+		data : {auth: auth},
+		success: function (data){
+			callback(data);
+		}
+	});
+}
+
+
 function createAccount(){
-	$.post({
-		url: "/frontend/SignInRegistrationServlet",
-		cache: false,		
-		type : "POST",
-		data : {firstName : firstName,surname: surname, email: email, username: username, password: password}
-	},function(result){
-		if (result !== "failure"){
-			$("#success").text("Please check your email to continue the registration process.");
-			$("#success").css("visibility","visible");
+	getActivationStatus(function(response){
+		if (response === "0"){
+			$.post({
+				url: "/frontend/SignInRegistrationServlet",
+				cache: false,		
+				type : "POST",
+				data : {firstName : firstName,surname: surname, email: email, username: username, password: password, auth: auth}
+			},function(result){
+				if (result !== "failure"){
+					$("#success").text("Please check your email to continue the registration process. Navigating back to the Home Page.");
+					$("#success").css("visibility","visible");
+					setTimeout(function(){
+						document.location.href = '/frontend/pages/index.html';
+					},4000);
+				}
+			});
 		}
 	});
 }

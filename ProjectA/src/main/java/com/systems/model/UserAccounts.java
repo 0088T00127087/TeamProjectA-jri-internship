@@ -94,7 +94,7 @@ public class UserAccounts implements Serializable{
 	}
 
 	public void setAccountActivated() {
-		this.accountActivated = 0;
+		this.accountActivated = 1;
 	}
 	
 	
