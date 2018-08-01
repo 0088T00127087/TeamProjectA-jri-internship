@@ -164,7 +164,7 @@
 	<div style=" margin-left:8%; margin-top:2%;">
 	<span>
 	<button id="fullscreenButton" onclick="fullscreenVideo()" style=>Fullscreen</button>
-	<input style="width:200px;margin-left:20%;margin-top:-2.5%" type="range" id="volume" min="0" max="1" step="0.1" value="1" />
+	<input style="width:200px;margin-left:20%;margin-top:-2.5%" type="range" id="volume" min="0" max="1" step="0.1" value="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"/>
 	<span style="font-size:20px;margin-left:25%;"> Volume(Not Functional)</span>
 	</span>
 	</div>

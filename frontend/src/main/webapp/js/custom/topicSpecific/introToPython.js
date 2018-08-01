@@ -147,3 +147,11 @@ function makeTranscriptBlank() {
 	$("#transcript").text("");
 	
 }
+
+function SetVolume(val)
+{
+    var player = document.getElementById('homepageVideo');
+    console.log('Before: ' + player.volume);
+    player.volume = val / 1;
+    console.log('After: ' + player.volume);
+}
