@@ -1,4 +1,10 @@
 var userName;
+var questionAndAnswerBank;
+var questionNumber = 0;
+var correctAnswerIdList = [];
+var wrongAnswerIdList = [];
+var timeTakenToAnswerList = [];
+
 $(document).ready(function(){
 	var url = new URL(window.location.href);
 	userName =  url.searchParams.get("username");
@@ -21,7 +27,7 @@ $(document).ready(function(){
 					customisation();
 					updateDatabaseAndNotifyManager();
 					retrieveQuestions();
-					videoValidity();
+					videoFunctionality();
 					$("#pageContent").css("display","inline");
 					$("#homepageVideo").get(0).prop("volume", this.value);		
 				} else if (response === 1){
@@ -44,6 +50,9 @@ $(document).ready(function(){
 			},5000);
 		}
 	});	
+	$("input[name='answers']").change(function(){
+	    $("#submitAnswer").css("background-color","green").prop("disabled",false);
+	});
 });
 
 function registerFailureAndRevertToNotStarted(){
@@ -83,7 +92,7 @@ function retrieveQuestions(){
 		type : "GET",
 		data : {username: userName}
 	}, function(response){
-		console.log(response);
+		questionAndAnswerBank = JSON.parse(response);
 	});	
 }
 
@@ -98,29 +107,62 @@ function customisation(){
 	});	
 }
 
-function videoValidity(){
-//	$.get({
-//		url: "/frontend/VideoPermissionsWebServlet",
-//		cache: false,		
-//		type : "GET",
-//		data : {videoNumber: "1"}
-//	}, function(validView){
-	//	if (validView === "valid"){
-			$("#homepageVideo").get(0).play();
-//			$("#homepageVideo").on("timeupdate", 
-//					function(event){
-//				onTrackedVideoFrame(this.currentTime, this.duration);
-//			});
-			$('#homepageVideo').on('ended',function(){
-				questionModalLoader();
-		//		adjustVideoPermissions();
-				makeTranscriptBlank();
-			});	
-		//} 
-//		else {
-//			console.log(validView);
-//		}
-//	});
+function videoFunctionality(){
+	$("#homepageVideo").get(0).play();
+	$('#homepageVideo').on('ended',function(){
+		questionModalLoader();
+		loadNextQuestion();
+		makeTranscriptBlank();
+	});	
+}
+
+function submitAnswer(){
+	if (questionNumber <= 5){
+		chosenAnswer = $('input[name=answers]:checked', '#answerList').val();
+		if (chosenAnswer === questionAndAnswerBank[questionNumber].correctAnswer){
+			correctAnswerIdList.push(questionAndAnswerBank[questionNumber].questId);
+		} else {
+			wrongAnswerIdList.push(questionAndAnswerBank[questionNumber].questId);
+		} 
+		$("#answerA").prop("checked",false);
+		$("#answerB").prop("checked",false);
+		$("#answerC").prop("checked",false);
+		$("#answerD").prop("checked",false);
+		$("#submitAnswer").css("background-color","lightgray").prop("disabled",true);
+		questionNumber++;
+		loadNextQuestion();
+	}
+}
+
+function loadNextQuestion(){
+	if (questionNumber <= 5){
+		var questionAnswerList = [questionAndAnswerBank[questionNumber].correctAnswer,
+			questionAndAnswerBank[questionNumber].wrgAns1,questionAndAnswerBank[questionNumber].wrgAns2,
+			questionAndAnswerBank[questionNumber].wrgAns3];
+		questionAnswerList = shuffleArray(questionAnswerList);
+		$("#question").text(questionAndAnswerBank[questionNumber].questionString);
+		$("#answerA").val(questionAnswerList[0]);
+		$("#answerB").val(questionAnswerList[1]);
+		$("#answerC").val(questionAnswerList[2]);
+		$("#answerD").val(questionAnswerList[3]);
+		$('label[for=answerA]').html(questionAnswerList[0]);
+		$('label[for=answerB]').html(questionAnswerList[1]);
+		$('label[for=answerC]').html(questionAnswerList[2]);
+		$('label[for=answerD]').html(questionAnswerList[3]);
+	} else {
+		console.log(correctAnswerIdList);
+		console.log(wrongAnswerIdList);
+	}
+}
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
 }
 
 function questionModalLoader(){

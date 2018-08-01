@@ -4,6 +4,7 @@ var userName;
 
 $(document).ready(function(){	
 //	customisation();
+	
 	checkForUsersRequiringAssignment();
 	checkForPendingActions();
 	if ($("#toDoDescriptor").css("display") !== "none"){

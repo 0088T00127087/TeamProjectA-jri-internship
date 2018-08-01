@@ -66,7 +66,7 @@
 <h1 style="margin-left: 8%; margin-bottom:2%;">Introduction To Python</h1> 
 <div style="float:left">
  <video id="homepageVideo" style="margin-left:8%; margin-bottom:0%;" width="640" height="440">
-  <source src="/frontend/extra-resources/videos/sampleVideo.mp4" type="video/mp4">
+  <source src="/frontend/extra-resources/videos/sampleVideo2.mp4" type="video/mp4">
 </video>
 </div>
 <div style= "height:440px; width: 500px; border:1px solid #ccc; font:16px/26px Georgia, Garamond, Serif; overflow:scroll; padding: 5px;">
@@ -165,7 +165,7 @@
 	<span>
 	<button id="fullscreenButton" onclick="fullscreenVideo()" style=>Fullscreen</button>
 	<input style="width:200px;margin-left:20%;margin-top:-2.5%" type="range" id="volume" min="0" max="1" step="0.1" value="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"/>
-	<span style="font-size:20px;margin-left:25%;"> Volume(Not Functional)</span>
+	<span style="font-size:20px;margin-left:25%;"> Volume</span>
 	</span>
 	</div>
 
@@ -177,10 +177,17 @@
   <div class="modal-dialog" style="width:75%;">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Train Remember Integrate Cant-remember-what-C-stands-for</h4>
+        <h4 class="modal-title">Train Remember Integrate Comprehend</h4>
       </div>
       <div class="modal-body" style="height:500px;">
-        <p>Some text in the modal.</p>
+        <h2 id="question" style="margin-left:35px;"></h2>        
+		<form id="answerList" style="margin-top:50px" action="">
+		  <input id="answerA" name="answers" type="radio" value="">    <label style="font-size:30px;" for="answerA"></label> <br>
+		  <input id="answerB" name="answers" type="radio" value="">    <label style="font-size:30px;" for="answerB"></label> <br>
+		  <input id="answerC" name="answers" type="radio" value="">    <label style="font-size:30px;" for="answerC"></label> <br>
+		  <input id="answerD" name="answers" type="radio" value="">    <label style="font-size:30px;" for="answerD"></label>  
+		</form>
+		<button disabled="disabled" style="background-color:lightgray;color:white;float:right;" id="submitAnswer" onclick="submitAnswer()">Submit Answer</button>
       </div>
     </div>
   </div>
