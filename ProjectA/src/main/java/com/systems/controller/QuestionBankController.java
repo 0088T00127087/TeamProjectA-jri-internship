@@ -46,5 +46,16 @@ public class QuestionBankController {
 		}
 		return questionData;
 	}
+	
+	@GetMapping("/getVideoIds")
+	public List<Integer> getVideoIds(){
+		List<Integer> listVids = new ArrayList<>();
+		List<QuestionBankEntity> allVids = questionBankRepository.findAll();
+		for(QuestionBankEntity i : allVids) {
+			listVids.add(i.getVideoId());
+		}		
+		return listVids;
+	}
+	
 
 }

@@ -82,9 +82,6 @@ function updateDatabaseAndNotifyManager(){
 	});	
 }
 
-function managerReviewCheck(){
-}
-
 function retrieveQuestions(){
 	$.get({
 		url: "/frontend/QuestionBankServlet",
@@ -124,14 +121,38 @@ function submitAnswer(){
 		} else {
 			wrongAnswerIdList.push(questionAndAnswerBank[questionNumber].questId);
 		} 
+		timeTakenToAnswerList.push($("#timer").val());
 		$("#answerA").prop("checked",false);
 		$("#answerB").prop("checked",false);
 		$("#answerC").prop("checked",false);
 		$("#answerD").prop("checked",false);
 		$("#submitAnswer").css("background-color","lightgray").prop("disabled",true);
-		questionNumber++;
-		loadNextQuestion();
+		if (questionNumber == 5){
+			submitResults();
+		} else {
+			questionNumber++;
+			loadNextQuestion();			
+		}
 	}
+}
+
+function submitResults(){
+	var videoId = "1";
+	var result = passFailCheck();
+	var noOfQuestionsCorrect = correctAnswerIdList.length;
+	var noOfQuestionsIncorrect = wrongAnswerIdList.length;
+	var timeTakenPerQuestion = "TBC";
+	var wrongAnswerIds = wrongAnswerIdList.toString();
+	$.post({
+		url: "/frontend/ResultsTableServlet",
+		cache: false,		
+		type : "POST",
+		data : {videoId: videoId,userName: userName,result:result,
+			noOfQuestionsCorrect:noOfQuestionsCorrect,noOfQuestionsIncorrect:noOfQuestionsIncorrect,
+			timeTakenPerQuestion: timeTakenPerQuestion, wrongAnswerIds: wrongAnswerIds}
+	},function(result){
+		console.log(result);
+	});
 }
 
 function loadNextQuestion(){
@@ -149,10 +170,41 @@ function loadNextQuestion(){
 		$('label[for=answerB]').html(questionAnswerList[1]);
 		$('label[for=answerC]').html(questionAnswerList[2]);
 		$('label[for=answerD]').html(questionAnswerList[3]);
+
+//		jQuery(function ($) {
+//			var thirtySeconds = 30,
+//			display = $('#timer');
+//			startTimer(thirtySeconds, display);			
+//		});
 	} else {
 		console.log(correctAnswerIdList);
 		console.log(wrongAnswerIdList);
 	}
+}
+
+function passFailCheck(){
+	if (wrongAnswerIdList.length >= 2){
+		return "fail";
+	} else {
+		return "pass";
+	}
+}
+
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.text(seconds);
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
 }
 
 function shuffleArray(array) {
@@ -193,7 +245,5 @@ function makeTranscriptBlank() {
 function SetVolume(val)
 {
     var player = document.getElementById('homepageVideo');
-    console.log('Before: ' + player.volume);
     player.volume = val / 1;
-    console.log('After: ' + player.volume);
 }
