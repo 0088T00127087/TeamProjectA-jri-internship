@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Charts</title>
-</head>
-<body>
-
-<p> This is for dash-boards</p>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-
-        <canvas id="myChart" width="50" height="50">Canvas</canvas>
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
+ var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'polarArea',
@@ -31,10 +17,3 @@
     // Configuration options go here
     options: {}
 });
-
-</script>
-
-
-
-</body>
-</html>
