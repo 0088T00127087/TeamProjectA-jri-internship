@@ -1,5 +1,7 @@
 package com.systems.repository;
 
+import java.util.ArrayList;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.systems.model.UserAccounts;
+
+import antlr.collections.List;
 
 @Repository
 public interface Repo extends JpaRepository<UserAccounts, Long>{
@@ -38,6 +42,10 @@ public interface Repo extends JpaRepository<UserAccounts, Long>{
 	// NB
 	@Query(value = "select count(user_id) from `project-a-schema`.user_accounts", nativeQuery = true)
 	int countUserIds();
+	
+	// NB Charts
+	@Query(value = "select first_name from `project-a-schema`.user_accounts where user_id = 2088", nativeQuery = true)
+	String outputUserNames();
 
 
 }

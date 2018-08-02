@@ -1,5 +1,6 @@
 package com.systems.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -35,6 +36,12 @@ public class Controller {
 	@GetMapping("/getNumIds")
 	public int countUserIds() {
 		return repository.countUserIds();
+	}
+	
+	// NB Charts
+	@GetMapping("/getNames")
+	public String outputUserNames() {
+		return repository.outputUserNames();
 	}
 	
 	@GetMapping("/getAll")

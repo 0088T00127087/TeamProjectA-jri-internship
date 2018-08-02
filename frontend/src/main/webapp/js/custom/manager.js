@@ -4,6 +4,7 @@ var userName;
 
 $(document).ready(function(){	
 //	customisation();
+	getNames();
 	countUserIds();
 	checkForUsersRequiringAssignment();
 	checkForPendingActions();
@@ -16,6 +17,17 @@ $(document).ready(function(){
 function countUserIds(){
 	$.get({
 		url: "http://localhost:8080/ProjectA/api/getNumIds",
+		cache: false,		
+		type : "GET"
+	}, function(response){
+		console.log(response);
+	});	
+}
+
+// NB Charts
+function getNames(){
+	$.get({
+		url: "http://localhost:8080/ProjectA/api/getNames",
 		cache: false,		
 		type : "GET"
 	}, function(response){
