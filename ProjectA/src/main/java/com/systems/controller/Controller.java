@@ -31,6 +31,12 @@ public class Controller {
 
 	GlobalMailSenderRepository mailSender = new GlobalMailSenderRepository();
 	
+	// NB
+	@GetMapping("/getNumIds")
+	public int countUserIds() {
+		return repository.countUserIds();
+	}
+	
 	@GetMapping("/getAll")
 	public List<UserAccounts> getAllResults() {
 	    return repository.findAll();

@@ -34,6 +34,10 @@ public interface Repo extends JpaRepository<UserAccounts, Long>{
 	@Modifying(clearAutomatically = true)
 	@Query(value= "update `project-a-schema`.user_accounts set account_activated = 1 where user_name = :username",nativeQuery = true)
 	void activateUserAccount(@Param("username")String username);
+	
+	// NB
+	@Query(value = "select count(user_id) from `project-a-schema`.user_accounts", nativeQuery = true)
+	int countUserIds();
 
 
 }

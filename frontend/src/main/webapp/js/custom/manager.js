@@ -4,13 +4,24 @@ var userName;
 
 $(document).ready(function(){	
 //	customisation();
-	
+	countUserIds();
 	checkForUsersRequiringAssignment();
 	checkForPendingActions();
 	if ($("#toDoDescriptor").css("display") !== "none"){
 		$("#toDoDescriptor").text("Pending Actions will appear here.");
 	}		
 });
+
+//NB
+function countUserIds(){
+	$.get({
+		url: "http://localhost:8080/ProjectA/api/getNumIds",
+		cache: false,		
+		type : "GET"
+	}, function(response){
+		console.log(response);
+	});	
+}
 
 function customisation(){
 	$.get({
