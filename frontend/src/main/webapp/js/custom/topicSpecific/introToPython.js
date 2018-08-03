@@ -1,9 +1,11 @@
 var userName;
 var questionAndAnswerBank;
 var questionNumber = 0;
+var countdown;
 var correctAnswerIdList = [];
 var wrongAnswerIdList = [];
 var timeTakenToAnswerList = [];
+var downloadTimer;
 
 $(document).ready(function(){
 	var url = new URL(window.location.href);
@@ -12,6 +14,13 @@ $(document).ready(function(){
 		document.location.href = '/frontend/pages/index.html';
 	}
 	window.history.replaceState({}, document.title, "/frontend/pages/introductionToPython.html");
+	$("input[name='answers']").change(function(){
+	    $("#submitAnswer").css("background-color","green").prop("disabled",false);
+	});
+});
+
+function commenceTopic(){
+	$("#commenceTopic").css("display","none");
 	$.get({
 		url: "http://localhost:8080/ProjectA/course-registration/retrieveUserTopicLegibility/" + userName + "/1/",
 		cache: false,
@@ -27,8 +36,10 @@ $(document).ready(function(){
 					customisation();
 					updateDatabaseAndNotifyManager();
 					retrieveQuestions();
-					videoFunctionality();
-					$("#pageContent").css("display","inline");
+					setTimeout(function(){
+						videoFunctionality();
+						$("#pageContent").css("display","inline");						
+					},3000);
 					$("#homepageVideo").get(0).prop("volume", this.value);		
 				} else if (response === 1){
 					$("#navigationError").css("display","inline");
@@ -50,10 +61,7 @@ $(document).ready(function(){
 			},5000);
 		}
 	});	
-	$("input[name='answers']").change(function(){
-	    $("#submitAnswer").css("background-color","green").prop("disabled",false);
-	});
-});
+}
 
 function registerFailureAndRevertToNotStarted(){
 	$.get({
@@ -113,26 +121,63 @@ function videoFunctionality(){
 	});	
 }
 
+//function startTimer(duration, display) {
+//    var timer = duration, minutes, seconds;
+//     countdown = setIn(function () {
+//        minutes = parseInt(timer / 60, 10);
+//        seconds = parseInt(timer % 60, 10);
+//
+//        minutes = minutes < 10 ? "0" + minutes : minutes;
+//        seconds = seconds < 10 ? "0" + seconds : seconds;
+//
+//        display.text(minutes + ":" + seconds);
+//
+//        if (--timer < 0) {
+//        	clearInterval(countdown);
+//            display.text("Out Of Time");
+//        }
+//    }, 1000);
+//}
+
 function submitAnswer(){
-	if (questionNumber <= 5){
-		chosenAnswer = $('input[name=answers]:checked', '#answerList').val();
-		if (chosenAnswer === questionAndAnswerBank[questionNumber].correctAnswer){
-			correctAnswerIdList.push(questionAndAnswerBank[questionNumber].questId);
-		} else {
-			wrongAnswerIdList.push(questionAndAnswerBank[questionNumber].questId);
-		} 
-		timeTakenToAnswerList.push($("#timer").val());
-		$("#answerA").prop("checked",false);
-		$("#answerB").prop("checked",false);
-		$("#answerC").prop("checked",false);
-		$("#answerD").prop("checked",false);
-		$("#submitAnswer").css("background-color","lightgray").prop("disabled",true);
+//	clearInterval(countdown);
+	clearInterval(downloadTimer);
+	if ($("input[name='answers']:checked").val()){
+		if (questionNumber <= 5){
+			chosenAnswer = $('input[name=answers]:checked', '#answerList').val();
+			if (chosenAnswer === questionAndAnswerBank[questionNumber].correctAnswer){
+				correctAnswerIdList.push(questionAndAnswerBank[questionNumber].questId);
+			} else {
+				wrongAnswerIdList.push(questionAndAnswerBank[questionNumber].questId);
+			} 
+			timeTakenToAnswerList.push(30 - parseInt($("#timer").text()));
+			$("#answerA").prop("checked",false);
+			$("#answerB").prop("checked",false);
+			$("#answerC").prop("checked",false);
+			$("#answerD").prop("checked",false);
+			$("#submitAnswer").css("background-color","lightgray").prop("disabled",true);
+			if (questionNumber == 5){
+				submitResults();
+			} else {
+				setTimeout(function(){
+					questionNumber++;
+					loadNextQuestion();								
+				},2000);
+			}
+		}	
+	} else {
+		// Marked as Wrong Answer
+		wrongAnswerIdList.push(questionAndAnswerBank[questionNumber].questId);
+		timeTakenToAnswerList.push(30);
 		if (questionNumber == 5){
 			submitResults();
 		} else {
-			questionNumber++;
-			loadNextQuestion();			
+			setTimeout(function(){
+				questionNumber++;
+				loadNextQuestion();				
+			},2000);
 		}
+		
 	}
 }
 
@@ -141,7 +186,7 @@ function submitResults(){
 	var result = passFailCheck();
 	var noOfQuestionsCorrect = correctAnswerIdList.length;
 	var noOfQuestionsIncorrect = wrongAnswerIdList.length;
-	var timeTakenPerQuestion = "TBC";
+	var timeTakenPerQuestion = timeTakenToAnswerList.toString();
 	var wrongAnswerIds = wrongAnswerIdList.toString();
 	$.post({
 		url: "/frontend/ResultsTableServlet",
@@ -157,6 +202,7 @@ function submitResults(){
 
 function loadNextQuestion(){
 	if (questionNumber <= 5){
+		timer();
 		var questionAnswerList = [questionAndAnswerBank[questionNumber].correctAnswer,
 			questionAndAnswerBank[questionNumber].wrgAns1,questionAndAnswerBank[questionNumber].wrgAns2,
 			questionAndAnswerBank[questionNumber].wrgAns3];
@@ -170,16 +216,23 @@ function loadNextQuestion(){
 		$('label[for=answerB]').html(questionAnswerList[1]);
 		$('label[for=answerC]').html(questionAnswerList[2]);
 		$('label[for=answerD]').html(questionAnswerList[3]);
-
-//		jQuery(function ($) {
-//			var thirtySeconds = 30,
-//			display = $('#timer');
-//			startTimer(thirtySeconds, display);			
-//		});
+//		var thirtySeconds = 10,
+//        display = $('#timer');
+//		startTimer(thirtySeconds, display);
 	} else {
 		console.log(correctAnswerIdList);
 		console.log(wrongAnswerIdList);
 	}
+}
+
+function timer(){
+	  var timeleft = 30;
+	    downloadTimer = setInterval(function(){
+	    timeleft--;
+	    document.getElementById("timer").textContent = timeleft;
+	    if(timeleft <= 0)
+	    	submitAnswer();
+	    },1000);
 }
 
 function passFailCheck(){
@@ -242,8 +295,19 @@ function makeTranscriptBlank() {
 	
 }
 
-function SetVolume(val)
-{
+function SetVolume(val){
     var player = document.getElementById('homepageVideo');
     player.volume = val / 1;
+}
+
+function countDown(secs, elem) {
+	var element = document.getElementById(elem);
+	element.innerHTML = "Seconds remaining: "+secs;
+	if(secs<1){ 
+		//clearTimeout(timer);
+		element.innerHTML = '<h2>You are out of time</h2>';
+		submitAnswer();
+	}
+	secs--;
+	var timer = setTimeout('countDown('+secs+',"'+elem+'")',1000);
 }
