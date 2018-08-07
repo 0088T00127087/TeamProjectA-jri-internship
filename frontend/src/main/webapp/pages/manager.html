@@ -31,6 +31,8 @@
     <script type="text/javascript" src="/frontend/js/custom/barChart.js"></script>
     <script type="text/javascript" src="/frontend/js/custom/pieChart.js"></script>
     <script type="text/javascript" src="/frontend/js/custom/polarChart.js"></script>
+    <script type="text/javascript" src="/frontend/extra-resources/charts/chart_0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     
 
 </head>
@@ -69,17 +71,63 @@
 <!-- JE Container for the charts -->
 <div>
 
-<div id="ChartsContainer" style="display:flex; width: 70pc; height:25pc;  justify-content:space-between; margin-bottom:20px;" class="col-sm-6">
+<div id="ChartsContainer" style="display:flex; width: 70pc; height:20pc;  justify-content:space-between; margin-bottom:25px;" class="col-sm-6">
   	  
   	  <!-- Container for dashboard one -->
-  	  <div  id="container_box" style="margin-right:1pc;width: 70pc; height: 25pc; border: 1px solid red">
+  	  <div  id="container_box" style="margin-right:1pc; padding: 25px 25px 25px 25px;  width: 70pc; height: 20pc; border: 1px solid red">
   	  
-  	  <p>The first chart goes here</p>
-  	  
+  	    	<canvas id="chart_0" width="250px" height="250px" style="margin-left:auto; margin-right:auto;"></canvas>
+<script>
+var data = {
+		  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+		  datasets: [{
+		    label: "Dataset #1",
+		    backgroundColor: "rgba(255,99,132,0.2)",
+		    borderColor: "rgba(255,99,132,1)",
+		    borderWidth: 2,
+		    hoverBackgroundColor: "rgba(255,99,132,0.4)",
+		    hoverBorderColor: "rgba(255,99,132,1)",
+		    data: [65, 59, 20, 81, 56, 55, 40],
+		  }]
+		};
+
+		var option = {
+		  responsive: false,
+		  scales: {
+		    yAxes: [{
+		      stacked: true,
+		      gridLines: {
+		        display: true,
+		        color: "rgba(255,99,132,0.2)"
+		      }
+		    }],
+		    xAxes: [{
+		      gridLines: {
+		        display: false
+		      }
+		    }]
+		  }
+		};
+
+		Chart.Bar('chart_0', {
+		  options: option,
+		  data: data
+		});
+</script>
+		
+		<button Style="margin-left:auto; margin-right:auto; background-color: white; text-decoration:none; border: none; color:#5085A5;">View Chart</button>
+  	  	
   	  </div> <!-- End of Container for dashboard one -->
   	  
-  	  <div id="ChartboxA" style="margin-right:1pc; width: 70pc; height: 25pc; border: 1px solid green;"></div>
-  	  <div id="ChartboxB" style=" width: 70pc; height: 25pc; border: 1px solid blue;"></div>
+  	  <!-- Container for dashboard TWO -->
+  	  <div id="ChartboxA" style="margin-right:1pc; width: 70pc; height: 20pc; border: 1px solid green;">
+  	  
+  	  <p>The second chart goes here. </p>
+  	  </div><!-- END OF Container for dashboard TWO -->
+  	  
+  	  
+  	  <!-- Container for dashboard THREE -->
+  	  <div id="ChartboxB" style=" width: 70pc; height: 20pc; border: 1px solid blue;"></div>
   	  
   	  
 </div>
