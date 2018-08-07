@@ -9,7 +9,7 @@
 		$(".se-pre-con").fadeOut(1500);
 	});
 </script>
-  <title>Manager Dashboard</title>
+  <title>Managements View</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -57,8 +57,8 @@
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a>Manager Dashboard</a></li>
-          <li><a onclick="location.href = '/frontend/pages/managerAdmin.html'">Manager Admin</a></li>
+          <li><a>Dashboard</a></li>
+          <li><a onclick="location.href = '/frontend/pages/managerAdmin.html'">Administration</a></li>
           <li><a onclick="location.href = '/frontend/pages/index.html'">Sign Out</a></li>
         </ul>
       </div>
@@ -66,144 +66,25 @@
   </div>
 </nav>   
 
-<div id="section1" class="row container-fluid" style="margin-bottom: 50px;">
-	<div id="section1Child1" class="col-sm-6">
-  	  <div  id="chart_div"></div>
+<!-- JE Container for the charts -->
+<div>
+
+<div id="ChartsContainer" class="col-sm-6">
+  	  <div  id="container_box" style="position: relative; width: 70pc; height: 25pc; border: 1px solid black"></div>
   	</div>
 
-	<div id="section1Child2" class="col-sm-6">
-		 <div id="barChart_div"  style="width: 900px; height: 500px;"></div>
-  	</div>
-</div>
-
-<div>
-<canvas id="myChart" width="600" height="400"></canvas>
-</div>
-
-<div id="userInvitation" style="margin-bottom: 50px;">
-<h1>Trainee Invitation</h1>
-<p>Input the email address of the employee that you wish to invite to register with your team:</p>
-<div>
-<input style="width:340px;margin-left:175px;" type="text" id="emailAddress"> 
-<button id="inviteUser" onclick="inviteUser()" style="float:right;margin-right:460px;">Invite User</button>
-<p id="invitationResult" style="opacity:0;visibility:hidden;display:inline;float:right;margin-right:480px;"></p>
-</div>
-
 
 </div>
 
-<div id="courseAssignment" style="margin-bottom: 50px;">
-<h1>Course Assignment</h1>
-<div>
-<select style="width:40%" id="userName" size="10">
-</select>
-<select style="width:40%; margin-left:47px;" id="courseName" size="10">
-<option id="1" value="1">Python Beginners</option>
-</select>
-<button id="assignCourse" onclick="assignCourse()" style="float:right;margin-right:-10px;margin-top:85px">Assign Course</button>
-</div>
+		<div class="footer" style="position:fixed; width: 70pc; height: 5pc; float: bottom; border: 1px solid red">
+			<footer>
+				  <div class="container">
+				      <span class="text-muted">Developed by Team Project A</span>
+				 </div>
+			</footer>
+		</div>
 
-
-</div>
-
-<div id="section3" class="container-fluid" style="margin-bottom: 50px;">
-	 <p id="reassignSuccess">Module Successfully Reassigned</p>
-		  <h1>To Do List</h1>
-		  <p id="toDoDescriptor"> Retrieving Details... </p>
-		  <div id="usersRequiringAttention">
-		  </div>
-		  
-</div>
-	
-<div id="section4" class="container-fluid">
-  <h1>Team Section</h1>
- <table id="customers">
-  <tr>
-    <th>Name</th>
-    <th>Course</th>
-    <th>Test Results 1</th>
-    <th>Test Results 2</th>
-    <th>Test Results 3</th>
-    <th>Passes</th>
-    <th>Fails</th>
-  </tr>
-  <tr>
-    <td>John Long</td>
-    <td>Python</td>
-    <td>65</td>
-    <td>70</td>
-    <td>80</td>
-    <td>3</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td>Joe Enright</td>
-    <td>Python</td>
-    <td>24</td>
-    <td>60</td>
-    <td>85</td>
-    <td>2</td>
-    <td>1</td>
-  </tr>
-  <tr>
-  	<td>Shannen Dowling</td>
-  	<td>Python</td>
-  	<td>70</td>
-  	<td>72</td>
-  	<td>75</td>
-  	<td>3</td>
-  	<td>0</td>
-  </tr>  
-   <tr>
-  	<td>Ian Saul</td>
-  	<td>Python</td>
-  	<td>80</td>
-  	<td>85</td>
-  	<td>90</td>
-  	<td>3</td>
-  	<td>0</td>
-  </tr>  
-   <tr>
-  	<td>Enda Sugrue</td>
-  	<td>Python</td>
-  	<td>78</td>
-  	<td>80</td>
-  	<td>34</td>
-  	<td>2</td>
-  	<td>1</td>
-  </tr>  
-   <tr>
-  	<td>Jack Herlihy</td>
-  	<td>Python</td>
-  	<td>42</td>
-  	<td>60</td>
-  	<td>80</td>
-  	<td>3</td>
-  	<td>0</td>
-  </tr>  
-   <tr>
-  	<td>Denis Drogon</td>
-  	<td>Python</td>
-  	<td>70</td>
-  	<td>60</td>
-  	<td>50</td>
-  	<td>3</td>
-  	<td>0</td>
-  </tr>  
-</table>
- 
-</div>  
-
-  
-
-<div>
-	<footer class="footer">
-	      <div class="container">
-	        <span class="text-muted">Developed by Team Project A</span>
-	      </div>
-	</footer>
-</div>
-</div>  
+</div> <!-- End of Container div --> 
 
 </body>
 </html>

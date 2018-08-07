@@ -64,7 +64,121 @@
       </div>
     </div>
   </div>
-</nav>   
+</nav> 
+
+<div id="section4" class="container-fluid">
+  <h1>Team Section</h1>
+ <table id="customers">
+  <tr>
+    <th>Name</th>
+    <th>Course</th>
+    <th>Test Results 1</th>
+    <th>Test Results 2</th>
+    <th>Test Results 3</th>
+    <th>Passes</th>
+    <th>Fails</th>
+  </tr>
+  <tr>
+    <td>John Long</td>
+    <td>Python</td>
+    <td>65</td>
+    <td>70</td>
+    <td>80</td>
+    <td>3</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Joe Enright</td>
+    <td>Python</td>
+    <td>24</td>
+    <td>60</td>
+    <td>85</td>
+    <td>2</td>
+    <td>1</td>
+  </tr>
+  <tr>
+  	<td>Shannen Dowling</td>
+  	<td>Python</td>
+  	<td>70</td>
+  	<td>72</td>
+  	<td>75</td>
+  	<td>3</td>
+  	<td>0</td>
+  </tr>  
+   <tr>
+  	<td>Ian Saul</td>
+  	<td>Python</td>
+  	<td>80</td>
+  	<td>85</td>
+  	<td>90</td>
+  	<td>3</td>
+  	<td>0</td>
+  </tr>  
+   <tr>
+  	<td>Enda Sugrue</td>
+  	<td>Python</td>
+  	<td>78</td>
+  	<td>80</td>
+  	<td>34</td>
+  	<td>2</td>
+  	<td>1</td>
+  </tr>  
+   <tr>
+  	<td>Jack Herlihy</td>
+  	<td>Python</td>
+  	<td>42</td>
+  	<td>60</td>
+  	<td>80</td>
+  	<td>3</td>
+  	<td>0</td>
+  </tr>  
+   <tr>
+  	<td>Denis Drogon</td>
+  	<td>Python</td>
+  	<td>70</td>
+  	<td>60</td>
+  	<td>50</td>
+  	<td>3</td>
+  	<td>0</td>
+  </tr>  
+</table>
+ 
+</div> 
+
+
+<div id="userInvitation" style="margin-bottom: 50px;">
+<h1>Trainee Invitation</h1>
+<p>Input the email address of the employee that you wish to invite to register with your team:</p>
+<div>
+<input style="width:340px;margin-left:175px;" type="text" id="emailAddress"> 
+<button id="inviteUser" onclick="inviteUser()" style="float:right;margin-right:460px;">Invite User</button>
+<p id="invitationResult" style="opacity:0;visibility:hidden;display:inline;float:right;margin-right:480px;"></p>
+</div>
+</div>
+
+
+<div id="courseAssignment" style="margin-bottom: 50px;">
+<h1>Course Assignment</h1>
+<div>
+<select style="width:40%" id="userName" size="10">
+</select>
+<select style="width:40%; margin-left:47px;" id="courseName" size="10">
+<option id="1" value="1">Python Beginners</option>
+</select>
+<button id="assignCourse" onclick="assignCourse()" style="float:right;margin-right:-10px;margin-top:85px">Assign Course</button>
+</div>
+</div>
+
+
+<div id="section3" class="container-fluid" style="margin-bottom: 50px;">
+	 <p id="reassignSuccess">Module Successfully Reassigned</p>
+		  <h1>To Do List</h1>
+		  <p id="toDoDescriptor"> Retrieving Details... </p>
+		  <div id="usersRequiringAttention">
+		  </div>
+		  
+</div>
+
 
   
 
