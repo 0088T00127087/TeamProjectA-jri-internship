@@ -13,3 +13,7 @@ body {
 	z-index: 9999;
 	background: url(images/loader-64x/Preloader_2.gif) center no-repeat #fff;
 }
+
+li{
+	cursor: pointer;
+}
