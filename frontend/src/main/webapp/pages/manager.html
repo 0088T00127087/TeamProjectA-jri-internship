@@ -69,22 +69,38 @@
 <!-- JE Container for the charts -->
 <div>
 
-<div id="ChartsContainer" class="col-sm-6">
-  	  <div  id="container_box" style="position: relative; width: 70pc; height: 25pc; border: 1px solid black"></div>
-  	</div>
+<div id="ChartsContainer" style="display:flex; width: 70pc; height:25pc;  justify-content:space-between; margin-bottom:20px;" class="col-sm-6">
+  	  
+  	  <!-- Container for dashboard one -->
+  	  <div  id="container_box" style="margin-right:1pc;width: 70pc; height: 25pc; border: 1px solid red">
+  	  
+  	  <p>The first chart goes here</p>
+  	  
+  	  </div> <!-- End of Container for dashboard one -->
+  	  
+  	  <div id="ChartboxA" style="margin-right:1pc; width: 70pc; height: 25pc; border: 1px solid green;"></div>
+  	  <div id="ChartboxB" style=" width: 70pc; height: 25pc; border: 1px solid blue;"></div>
+  	  
+  	  
+</div>
 
 
 </div>
 
-		<div class="footer" style="position:fixed; width: 70pc; height: 5pc; float: bottom; border: 1px solid red">
+		
+
+</div> <!-- End of Container div --> 
+
+<!-- FOOTER CONAINTER..  -->
+<!-- I just used this to get positioning. John Long if you could update the css file rather than having the css embedded.  -->
+<div class="footer" style="position:relative; margin-left: 7.5pc; padding-top:20px; width: 70pc; height:5pc; float:bottom; border:1px solid red">
 			<footer>
-				  <div class="container">
+				  <div class="container" >
 				      <span class="text-muted">Developed by Team Project A</span>
 				 </div>
 			</footer>
 		</div>
 
-</div> <!-- End of Container div --> 
 
 </body>
 </html>
