@@ -68,99 +68,52 @@
   </div>
 </nav>   
 
+
+
+
+
 <!-- JE Container for the charts -->
 
 
 <div id="ChartsContainer"  class="col-sm-6">
   	  
+  	    	  
   	  <!-- Container for dashboard one -->
   	  <div  id="container_box1">
   	  
   	    	<canvas id="chart_0">
-  	    	<script>
-var data = {
-		  labels: ["Python","Java","SQL","Automation","Unit Testing"],
-		  datasets: [{
-		    label: "Dataset #1",
-		    backgroundColor: "rgba(255,99,132,0.2)",
-		    borderColor: "rgba(255,99,132,1)",
-		    borderWidth: 2,
-		    hoverBackgroundColor: "rgba(255,99,132,0.4)",
-		    hoverBorderColor: "rgba(255,99,132,1)",
-		    data: [65, 59, 30, 81, 56, ],
-		  }]
-		};
-
-		var option = {
-		  responsive: false,
-		  scales: {
-		    yAxes: [{
-		      stacked: true,
-		      gridLines: {
-		        display: true,
-		        color: "rgba(255,99,132,0.2)"
-		      }
-		    }],
-		    xAxes: [{
-		      gridLines: {
-		        display: false
-		      }
-		    }]
-		  }
-		};
-		
-		Chart.Radar('chart_0', {
-		  options: option,
-		  data: data
-		});
-		
-		</script>
+  	    	<script src="/frontend/js/custom/chartA.js"></script>
   	    	
   	    	</canvas>
 
-		<button id="chartExpandBtn"  href="#">Expand</button>
-  	 </div> <!-- End of Container for dashboard one -->
-  	 <!-- -------------------------------------------------------------------------------------- -->
+		<button id="chartExpandBtn1"  href="#">Expand</button>
+  	 </div> 
   	  
   	  
-  	  <!-- -------------------------------------------------------------------------------------- -->
-  	  <!-- Container for dashboard TWO -->
-  	  <div id="Chartbox2" >
-  	 <canvas id="chart_0">
-  	
-  	 
-  	 </canvas>
+  	  <div  id="container_box2">
+  	  
+  	    	<canvas id="chart_1">
+  	    	<script src="/frontend/js/custom/chartB.js"></script>
+  	    	
+  	    	</canvas>
 
-  	  
-  	  <button id="chartExpandBtn"  href="#">Expand</button>
-  	  
-  	  
-  	  </div> <!-- END OF Container for chartbox TWO -->
-  	  <!-- -------------------------------------------------------------------------------------- -->
-  	  <!-- -------------------------------------------------------------------------------------- -->
-  	  <!-- -------------------------------------------------------------------------------------- -->
-  	  <!-- -------------------------------------------------------------------------------------- -->
-  	  <!-- -------------------------------------------------------------------------------------- -->
+		<button id="chartExpandBtn1"  href="#">Expand</button>
+  	 </div> 
   	 
   	 
   	  <!-- Container for chartbox3 THREE -->
   	  <div id="Chartbox3">
-  	  <canvas id="chart_0"></canvas>
-    
+  	  <canvas id="chart_2">
+  	    	<script src="/frontend/js/custom/chartC.js"></script>
+  	    	
+  	    	</canvas>
   	  
   	  
-  	  		<button id="chartExpandBtn"  href="#">Expand</button>
-  	  		
+  	  		<button id="chartExpandBtn1"  href="#">Expand</button>
+  	  		  		
   	  </div>
-  	  <!-- -------------------------------------------------------------------------------------- -->
-  	  
-  	  
+	  
 </div>
-
-
-
-
-		
 
 </div> <!-- End of Container div --> 
 
