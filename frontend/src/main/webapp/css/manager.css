@@ -20,7 +20,7 @@
 }
 
 #chart_div{
-	width: 540;
+	width: 10;
 }
 
 .resize{
@@ -47,6 +47,47 @@
     border: 1px solid #ddd;
     padding: 8px;
 }
+
+#ChartsContainer{
+	display:flex; width: 70pc; height:30pc;  justify-content:space-between; margin-bottom:25px;
+}
+
+
+#container_box1{
+	margin-right:1pc;   width: 75pc; height: 20pc;  
+}
+
+#chart_0{
+	width="230px"; height="230px";  padding-right:10px; margin-bottom: 10px;
+}
+
+#Chartbox2{
+	margin-right:1pc; padding: 25px 25px 25px 25px; width: 70pc; height: 20pc; border: 1px solid green; background-color:grey;
+}
+
+
+
+#Chartbox3{
+	 padding: 25px 25px 25px 25px; width: 70pc; height: 20pc; border: 1px solid blue;
+}
+
+
+#chartExpandBtn{
+	position:relative;
+	float:bottom;
+	margin-left:50px;  
+	background-color: white; 
+	text-decoration:none; 
+	border: none; 
+	color:#5085A5;	
+}
+
+#chartExpandBtn:hover{
+	background-color: #bfbfbf; 
+	
+}
+
+
 
 #customers tr:nth-child(even){background-color: #f2f2f2;}
 

@@ -69,17 +69,17 @@
 </nav>   
 
 <!-- JE Container for the charts -->
-<div>
 
-<div id="ChartsContainer" style="display:flex; width: 70pc; height:20pc;  justify-content:space-between; margin-bottom:25px;" class="col-sm-6">
+
+<div id="ChartsContainer"  class="col-sm-6">
   	  
   	  <!-- Container for dashboard one -->
-  	  <div  id="container_box" style="margin-right:1pc; padding: 25px 25px 25px 25px;  width: 70pc; height: 20pc; border: 1px solid red">
+  	  <div  id="container_box1">
   	  
-  	    	<canvas id="chart_0" width="250px" height="250px" style="margin-left:auto; margin-right:auto;"></canvas>
-<script>
+  	    	<canvas id="chart_0">
+  	    	<script>
 var data = {
-		  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+		  labels: ["Python","Java","SQL","Automation","Unit Testing"],
 		  datasets: [{
 		    label: "Dataset #1",
 		    backgroundColor: "rgba(255,99,132,0.2)",
@@ -87,7 +87,7 @@ var data = {
 		    borderWidth: 2,
 		    hoverBackgroundColor: "rgba(255,99,132,0.4)",
 		    hoverBorderColor: "rgba(255,99,132,1)",
-		    data: [65, 59, 20, 81, 56, 55, 40],
+		    data: [65, 59, 30, 81, 56, ],
 		  }]
 		};
 
@@ -108,32 +108,57 @@ var data = {
 		    }]
 		  }
 		};
-
-		Chart.Bar('chart_0', {
+		
+		Chart.Radar('chart_0', {
 		  options: option,
 		  data: data
 		});
-</script>
 		
-		<button Style="margin-left:auto; margin-right:auto; background-color: white; text-decoration:none; border: none; color:#5085A5;">View Chart</button>
-  	  	
-  	  </div> <!-- End of Container for dashboard one -->
+		</script>
+  	    	
+  	    	</canvas>
+
+		<button id="chartExpandBtn"  href="#">Expand</button>
+  	 </div> <!-- End of Container for dashboard one -->
+  	 <!-- -------------------------------------------------------------------------------------- -->
   	  
+  	  
+  	  <!-- -------------------------------------------------------------------------------------- -->
   	  <!-- Container for dashboard TWO -->
-  	  <div id="ChartboxA" style="margin-right:1pc; width: 70pc; height: 20pc; border: 1px solid green;">
+  	  <div id="Chartbox2" >
+  	 <canvas id="chart_0">
+  	
+  	 
+  	 </canvas>
+
   	  
-  	  <p>The second chart goes here. </p>
-  	  </div><!-- END OF Container for dashboard TWO -->
+  	  <button id="chartExpandBtn"  href="#">Expand</button>
   	  
   	  
-  	  <!-- Container for dashboard THREE -->
-  	  <div id="ChartboxB" style=" width: 70pc; height: 20pc; border: 1px solid blue;"></div>
+  	  </div> <!-- END OF Container for chartbox TWO -->
+  	  <!-- -------------------------------------------------------------------------------------- -->
+  	  <!-- -------------------------------------------------------------------------------------- -->
+  	  <!-- -------------------------------------------------------------------------------------- -->
+  	  <!-- -------------------------------------------------------------------------------------- -->
+  	  <!-- -------------------------------------------------------------------------------------- -->
+  	 
+  	 
+  	  <!-- Container for chartbox3 THREE -->
+  	  <div id="Chartbox3">
+  	  <canvas id="chart_0"></canvas>
+    
+  	  
+  	  
+  	  		<button id="chartExpandBtn"  href="#">Expand</button>
+  	  		
+  	  </div>
+  	  <!-- -------------------------------------------------------------------------------------- -->
   	  
   	  
 </div>
 
 
-</div>
+
 
 		
 
