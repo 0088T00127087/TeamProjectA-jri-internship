@@ -34,17 +34,11 @@
    <nav class="navbar navbar-light  navbar-fixed">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
-		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-		          <span class="icon-bar"></span>
-		          <span class="icon-bar"></span>
-		          <span class="icon-bar"></span>                        
-		      </button>
 		      <a id="name" class="navbar-brand"></a>
 		    </div>
 		    <div>
 		      <div class="collapse navbar-collapse" id="myNavbar">
 		        <ul class="nav navbar-nav">
-		          <li><a onclick="location.href = '/frontend/pages/index.html'">Sign Out</a></li>
 		        </ul>
 		      </div>
 		    </div>
@@ -63,7 +57,9 @@
 <p> Redirecting back to topics page...</p>
 </div>
 
-<button style="font-size:40px;left:50%;" id="commenceTopic" onclick="commenceTopic()">Start</button>
+<div style="margin-left:516px;">
+<button style="font-size:47px;left:50%;border-radius:50%;padding-left:25px;padding-right:25px;padding-bottom:10px;border-color:black;background-color:lightblue;" id="commenceTopic" onclick="commenceTopic()">Start Topic</button>
+</div>
 <div id="pageContent" style="display:none;">
 <h1 style="margin-left: 8%; margin-bottom:2%;">Introduction To Python</h1> 
 <div style="float:left">
@@ -182,6 +178,12 @@
         <h4 class="modal-title">Train Remember Integrate Comprehend</h4>
       </div>
       <div class="modal-body" style="height:500px;">
+      <div id="tricResults" style="display:none;">
+      <h2 id="resultsHeader">Results</h2>
+      <p id="resultsGreeting"></p>
+      <p id="resultsLogistics">You have achieved <span id="percentageFigure"></span> in 'Introduction To Python'.</p>
+      <button id="resultsStageButton">Return To Topics.</button>
+      </div>
         <h2 id="question" style="margin-left:35px;"></h2>        
 		<form id="answerList" style="margin-top:50px;margin-left:35px;'" action="">
 		  <input id="answerA" name="answers" type="radio" value="">    <label style="font-size:30px;margin-left:35px;" for="answerA"></label> <br>

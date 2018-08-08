@@ -32,27 +32,7 @@ function commenceTopic(){
 				cache: false,
 				type : "GET",
 			}, function(response){
-				if (response === 0){
-					customisation();
-					updateDatabaseAndNotifyManager();
-					retrieveQuestions();
-					setTimeout(function(){
-						videoFunctionality();
-						$("#pageContent").css("display","inline");						
-					},3000);
-					$("#homepageVideo").get(0).prop("volume", this.value);		
-				} else if (response === 1){
-					$("#navigationError").css("display","inline");
-					registerFailureAndRevertToNotStarted();
-					setTimeout(function(){
-						document.location.href = '/frontend/pages/topics.html?username=' + userName;
-					},5000);
-				} else if (response === 2){
-					$("#managerApprovalRequired").css("display","inline");
-					setTimeout(function(){
-						document.location.href = '/frontend/pages/topics.html?username=' + userName;
-					},5000);
-				}
+				commenceTRICOnResponseResult(response);
 			});
 		} else {
 			$("#managerApprovalRequired").css("display","inline");
@@ -61,6 +41,30 @@ function commenceTopic(){
 			},5000);
 		}
 	});	
+}
+
+function commenceTRICOnResponseResult(response){
+	if (response === 0){
+		customisation();
+	//	updateDatabaseAndNotifyManager();
+		retrieveQuestions();
+		setTimeout(function(){
+			videoFunctionality();
+			$("#pageContent").css("display","inline");						
+		},3000);
+		$("#homepageVideo").get(0).prop("volume", this.value);		
+	} else if (response === 1){
+		$("#navigationError").css("display","inline");
+		registerFailureAndRevertToNotStarted();
+		setTimeout(function(){
+			document.location.href = '/frontend/pages/topics.html?username=' + userName;
+		},5000);
+	} else if (response === 2){
+		customisation();
+	//	$("#managerApprovalRequired").css("display","inline");
+		$("#pageContent").css("display","inline");
+		videoFunctionalityWhenCompletePrior();
+	}
 }
 
 function registerFailureAndRevertToNotStarted(){
@@ -121,26 +125,17 @@ function videoFunctionality(){
 	});	
 }
 
-//function startTimer(duration, display) {
-//    var timer = duration, minutes, seconds;
-//     countdown = setIn(function () {
-//        minutes = parseInt(timer / 60, 10);
-//        seconds = parseInt(timer % 60, 10);
-//
-//        minutes = minutes < 10 ? "0" + minutes : minutes;
-//        seconds = seconds < 10 ? "0" + seconds : seconds;
-//
-//        display.text(minutes + ":" + seconds);
-//
-//        if (--timer < 0) {
-//        	clearInterval(countdown);
-//            display.text("Out Of Time");
-//        }
-//    }, 1000);
-//}
+function videoFunctionalityWhenCompletePrior(){
+	$("#homepageVideo").get(0).play();
+	$('#homepageVideo').on('ended',function(){
+		setTimeout(function(){
+			document.location.href = '/frontend/pages/topics.html?username=' + userName;			
+		},3000);
+	});	
+}
+
 
 function submitAnswer(){
-//	clearInterval(countdown);
 	clearInterval(downloadTimer);
 	if ($("input[name='answers']:checked").val()){
 		if (questionNumber <= 5){
@@ -157,6 +152,7 @@ function submitAnswer(){
 			$("#answerD").prop("checked",false);
 			$("#submitAnswer").css("background-color","lightgray").prop("disabled",true);
 			if (questionNumber == 5){
+				displayResultsToUser();
 				submitResults();
 			} else {
 				setTimeout(function(){
@@ -166,10 +162,10 @@ function submitAnswer(){
 			}
 		}	
 	} else {
-		// Marked as Wrong Answer
 		wrongAnswerIdList.push(questionAndAnswerBank[questionNumber].questId);
 		timeTakenToAnswerList.push(30);
 		if (questionNumber == 5){
+			displayResultsToUser();
 			submitResults();
 		} else {
 			setTimeout(function(){
@@ -200,6 +196,21 @@ function submitResults(){
 	});
 }
 
+function displayResultsToUser(){
+	$("#question").css("display","none");
+	$("#submitAnswer").css("display","none");
+	$("#timer").css("display","none");
+	$("#answerList").css("display","none");
+	$("#resultsGreeting").text("Congratulations!");
+	$("#percentageFigure").text(resultCalculator());
+	$("#tricResults").css("display","inline");
+}
+
+function resultCalculator(){
+	var noOfCorrectAnswers = correctAnswerIdList.length;
+	return ((100 * noOfCorrectAnswers) / 6).toFixed(2) + "%";
+}
+
 function loadNextQuestion(){
 	if (questionNumber <= 5){
 		timer();
@@ -216,9 +227,6 @@ function loadNextQuestion(){
 		$('label[for=answerB]').html(questionAnswerList[1]);
 		$('label[for=answerC]').html(questionAnswerList[2]);
 		$('label[for=answerD]').html(questionAnswerList[3]);
-//		var thirtySeconds = 10,
-//        display = $('#timer');
-//		startTimer(thirtySeconds, display);
 	} else {
 		console.log(correctAnswerIdList);
 		console.log(wrongAnswerIdList);
@@ -226,7 +234,7 @@ function loadNextQuestion(){
 }
 
 function timer(){
-	  var timeleft = 30;
+	  var timeleft = 31;
 	    downloadTimer = setInterval(function(){
 	    timeleft--;
 	    document.getElementById("timer").textContent = timeleft;
@@ -300,14 +308,3 @@ function SetVolume(val){
     player.volume = val / 1;
 }
 
-function countDown(secs, elem) {
-	var element = document.getElementById(elem);
-	element.innerHTML = "Seconds remaining: "+secs;
-	if(secs<1){ 
-		//clearTimeout(timer);
-		element.innerHTML = '<h2>You are out of time</h2>';
-		submitAnswer();
-	}
-	secs--;
-	var timer = setTimeout('countDown('+secs+',"'+elem+'")',1000);
-}

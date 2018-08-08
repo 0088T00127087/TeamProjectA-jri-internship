@@ -53,7 +53,7 @@ public class CourseRegistrationController {
 	public void chosenTopicInProgressUpdate(@PathVariable("userName") String userName,
 			@PathVariable("videoTracker") String videoTracker) {
 		String topicName = "";
-		repository.updateToInProgress(userName,videoTracker);
+		repository.updateStatus(userName,videoTracker, "1");
 		if (videoTracker.equals("1")) {
 			topicName = "Introduction To Python";
 		} else {

@@ -22,8 +22,9 @@ public interface CourseRegistrationRepository extends JpaRepository<CourseRegist
 
 	@Transactional
 	@Modifying(clearAutomatically = true)
-	@Query(value = "update `project-a-schema`.course_registration set status = 1 where user_name = :userName and course_id = :courseId",nativeQuery = true)
-	void updateToInProgress(@Param("userName")String userName, @Param("courseId")String courseId);
+	@Query(value = "update `project-a-schema`.course_registration set status = :status where user_name = :userName and course_id = :courseId",nativeQuery = true)
+	void updateStatus(@Param("userName")String userName, @Param("courseId")String courseId, @Param("status") String status);
+	
 	
 	@Transactional
 	@Modifying(clearAutomatically = true)
