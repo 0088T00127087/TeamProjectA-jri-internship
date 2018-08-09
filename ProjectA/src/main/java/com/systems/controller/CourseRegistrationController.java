@@ -73,6 +73,17 @@ public class CourseRegistrationController {
 		}
 	}
 	
+	@GetMapping("/updateVideoTrackingNo/{userName}/{courseNo}")
+	public String updateVideoTrackingNo(@PathVariable("userName") String userName,
+			@PathVariable("courseNo") String courseNo) {
+		try {
+			repository.updateVideoTrackingNumber(userName, courseNo);
+			return "";
+		} catch (Exception ex) {
+			return "failure";
+		}
+	}
+	
 	@GetMapping("/retrieveAllUsersThatRequireManagerReview")
 	public List<CourseRegistrationEntity> retrieveAllUsersThatRequireManagerReview(){
 		List<CourseRegistrationEntity> usersRequiringReview = new ArrayList<CourseRegistrationEntity>();
@@ -83,6 +94,23 @@ public class CourseRegistrationController {
 			}
 		}
 		return usersRequiringReview;
+	}
+	
+	@GetMapping("/retrieveCourseProgressFor/{userName}")
+	public List<Integer> retrieveCourseProgressFor(@PathVariable("userName") String userName){
+		try {
+			int status = repository.retrieveStatus(userName);
+			int videoTrackingNo = repository.retrieveVideoTrackingNo(userName);
+			List<Integer> response = new ArrayList<Integer>();
+			response.add(status);
+			response.add(videoTrackingNo);
+			return response;			
+		} catch (Exception ex) {
+			List<Integer> noContent = new ArrayList<Integer>();
+			noContent.add(-1);
+			noContent.add(-1);
+			return noContent;
+		}
 	}
 	
 	@GetMapping("/checkTheUsersTopicStatus/{userName}/{videoTracker}")
@@ -111,19 +139,35 @@ public class CourseRegistrationController {
 	public List<UserAccounts> retrieveAllUnassignedUsers(){
 		List<UserAccounts> unassignedUsers = new ArrayList<UserAccounts>();
 		List<UserAccounts> allAccounts = userAccountsRepository.findAll();
-		List<String> assignedAccounts = new ArrayList<String>();
+		List<CourseRegistrationEntity> assignedAccounts = new ArrayList<CourseRegistrationEntity>();
+		List<String> assignedAccountNames = new ArrayList<String>();
 		List<String> allUserNames = new ArrayList<String>();
+		List<String> allNamesAwaitingFurtherAssignment = new ArrayList<String>();
 		for (UserAccounts i :  allAccounts) {
 			allUserNames.add(i.getUserName());
 		}
 		for (CourseRegistrationEntity i : repository.findAll()) {
-			assignedAccounts.add(i.getUserName());
+			assignedAccounts.add(i);
+			assignedAccountNames.add(i.getUserName());
 		}
 		for (int i = 0; i < allUserNames.size(); i++ ) {
-			if (!assignedAccounts.contains(allUserNames.get(i))) {
+			if (!assignedAccountNames.contains(allUserNames.get(i))) {
 			unassignedUsers.add(allAccounts.get(i));
 			}
 		}
+		for (int i = 0; i < assignedAccountNames.size(); i++) {
+				if (assignedAccounts.get(i).getStatus() == 2 && assignedAccounts.get(i).getVideoTrackingNo() == 1) {
+					allNamesAwaitingFurtherAssignment.add(assignedAccounts.get(i).getUserName());
+				}				
+		}
+		for (int i = 0; i < allNamesAwaitingFurtherAssignment.size(); i++) {
+			for (int j = 0; j < allAccounts.size(); j++) {
+				if (allAccounts.get(j).getUserName().equals(allNamesAwaitingFurtherAssignment.get(i))) {
+					unassignedUsers.add(allAccounts.get(j));
+				}
+			}
+		}
+		
 		return unassignedUsers;
 	}
 	

@@ -46,7 +46,7 @@ function commenceTopic(){
 function commenceTRICOnResponseResult(response){
 	if (response === 0){
 		customisation();
-	//	updateDatabaseAndNotifyManager();
+		updateDatabaseAndNotifyManager();
 		retrieveQuestions();
 		setTimeout(function(){
 			videoFunctionality();
@@ -201,9 +201,15 @@ function displayResultsToUser(){
 	$("#submitAnswer").css("display","none");
 	$("#timer").css("display","none");
 	$("#answerList").css("display","none");
-	$("#resultsGreeting").text("Congratulations!");
-	$("#percentageFigure").text(resultCalculator());
-	$("#tricResults").css("display","inline");
+	if (wrongAnswerIdList.length <= 1){
+		$("#resultsGreeting").text("Congratulations!");
+		$("#percentageFigure").text(resultCalculator());
+		$("#tricResults").css("display","inline");
+	} else {
+		$("#resultsGreeting").text("Unlucky..");
+		$("#percentageFigure").text(resultCalculator());
+		$("#tricResults").css("display","inline");
+	}
 }
 
 function resultCalculator(){
@@ -306,5 +312,9 @@ function makeTranscriptBlank() {
 function SetVolume(val){
     var player = document.getElementById('homepageVideo');
     player.volume = val / 1;
+}
+
+function returnToTopics(){
+	document.location.href = '/frontend/pages/topics.html?username=' + userName;
 }
 

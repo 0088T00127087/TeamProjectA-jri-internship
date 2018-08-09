@@ -45,14 +45,30 @@ public class GlobalMailSenderRepository {
 		}
 	}
 	
-	public void sendNotifierOfTopicFirstFailureToManager(String traineeUserName,String courseId) {
+	public void sendNotifierOfTopicFirstFailureToManager(String traineeUserName) {
 		try {
 			Message message = new MimeMessage(authoriseEmailConnection());
 			message.setFrom(new InternetAddress("teamprojectalms@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("ian2009saul@gmail.com"));
 			message.setSubject(traineeUserName + " has failed training | Team Project A - LMS");
-			message.setText("This is an automated message to inform you that " + traineeUserName + " has failed '"+courseId + "'." +
-			"\n\n No further action is required at this time. " + traineeUserName + " is legible to reattempt. " + 
+			message.setText("This is an automated message to inform you that " + traineeUserName + " has failed 'Introduction to Python'." +
+			"\n\n To take appropriate action, visit the Manager Administration Dashboard." +
+			"\n\n  http://localhost:8080/frontend/pages/managerAdmin.html"+
+			"\n\n The Team @ Team Project A");
+			 Transport.send(message);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void sendNotifierOfTopicPassToManager(String traineeUserName) {
+		try {
+			Message message = new MimeMessage(authoriseEmailConnection());
+			message.setFrom(new InternetAddress("teamprojectalms@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("ian2009saul@gmail.com"));
+			message.setSubject(traineeUserName + " has completed 'Introduction to Python' | Team Project A - LMS");
+			message.setText("This is an automated message to inform you that " + traineeUserName + " has passed 'Introduction to Python'." +
+			"\n\n No further action is required at this time. " + traineeUserName + " is legible to be assigned new material on the Manager Administration Dashboard. " + 
 			"\n\n The Team @ Team Project A");
 			 Transport.send(message);
 		} catch (MessagingException e) {

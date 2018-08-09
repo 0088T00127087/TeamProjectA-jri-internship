@@ -22,9 +22,19 @@ public interface CourseRegistrationRepository extends JpaRepository<CourseRegist
 
 	@Transactional
 	@Modifying(clearAutomatically = true)
+	@Query(value = "update `project-a-schema`.course_registration set video_tracking_no = :videoTrackingNo where user_name = :userName and course_id = :courseId",nativeQuery = true)
+	void updateVideoTrackingId(@Param("userName")String userName, @Param("courseId")String courseId, @Param("videoTrackingNo") String videoTrackingNo);
+	
+	@Transactional
+	@Modifying(clearAutomatically = true)
+	@Query(value = "update `project-a-schema`.course_registration set video_tracking_no = :videoTrackingNo where user_name = :userName",nativeQuery = true)
+	void updateVideoTrackingNumber(@Param("userName")String userName, @Param("videoTrackingNo") String videoTrackingNo);
+	
+	
+	@Transactional
+	@Modifying(clearAutomatically = true)
 	@Query(value = "update `project-a-schema`.course_registration set status = :status where user_name = :userName and course_id = :courseId",nativeQuery = true)
 	void updateStatus(@Param("userName")String userName, @Param("courseId")String courseId, @Param("status") String status);
-	
 	
 	@Transactional
 	@Modifying(clearAutomatically = true)
@@ -36,6 +46,12 @@ public interface CourseRegistrationRepository extends JpaRepository<CourseRegist
 	
 	@Query(value= "select distinct status from `project-a-schema`.course_registration where user_name = :userName and course_id = :courseId",nativeQuery = true)
 	int examineIfUserHasNotFailedOrNavigatedAway(@Param("userName")String userName, @Param("courseId")String courseId);
+	
+	@Query(value= "select status from `project-a-schema`.course_registration where user_name = :userName",nativeQuery = true)
+	int retrieveStatus(@Param("userName")String userName);
+	
+	@Query(value= "select video_tracking_no from `project-a-schema`.course_registration where user_name = :userName",nativeQuery = true)
+	int retrieveVideoTrackingNo(@Param("userName")String userName);
 
 	
 	

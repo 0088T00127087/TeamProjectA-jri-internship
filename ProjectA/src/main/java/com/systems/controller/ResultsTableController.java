@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.systems.business.GlobalMailSenderRepository;
 import com.systems.model.ResultsTableEntity;
+import com.systems.repository.CourseRegistrationRepository;
 import com.systems.repository.ResultsTableRepository;
 
 @RestController
@@ -23,9 +25,23 @@ public class ResultsTableController {
 	@Autowired
 	ResultsTableRepository resultsTableRepository;
 	
+	@Autowired
+	CourseRegistrationRepository courseRegistrationRepository;
+	
+	GlobalMailSenderRepository sender = new GlobalMailSenderRepository();
+	
 	@PostMapping("/logTricResult")
 	public String logResultsOfTricToDatabase(@Valid @RequestBody ResultsTableEntity entity) {
 		try {
+			if (entity.getResult().equals("pass")) {
+				sender.sendNotifierOfTopicPassToManager(entity.getUserName());
+				courseRegistrationRepository.updateStatus(entity.getUserName(), String.valueOf(entity.getVideoId()),"2");	
+				courseRegistrationRepository.updateVideoTrackingId(entity.getUserName(), String.valueOf(entity.getVideoId()), "2");
+			} else if (entity.getResult().equals("fail")) {
+				sender.sendNotifierOfTopicFirstFailureToManager(entity.getUserName());
+				courseRegistrationRepository.updateStatus(entity.getUserName(), String.valueOf(entity.getVideoId()),"0");	
+				courseRegistrationRepository.updateVideoTrackingId(entity.getUserName(), String.valueOf(entity.getVideoId()), "2");
+			}
 			entity.setResultSubmissionTime();
 			resultsTableRepository.save(entity);
 			return "";

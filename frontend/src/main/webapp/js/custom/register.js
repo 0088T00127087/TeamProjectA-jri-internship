@@ -66,7 +66,7 @@ function createAccount(){
 				data : {firstName : firstName,surname: surname, email: email, username: username, password: password, auth: auth}
 			},function(result){
 				if (result !== "failure"){
-					$("#success").text("Please check your email to continue the registration process. Navigating back to the Home Page.");
+					$("#success").text("Account Created! Navigating back to the Home Page.");
 					$("#success").css("visibility","visible");
 					setTimeout(function(){
 						document.location.href = '/frontend/pages/index.html';

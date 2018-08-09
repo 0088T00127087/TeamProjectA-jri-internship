@@ -4,36 +4,12 @@ var userName;
 
 $(document).ready(function(){	
 //	customisation();
-	getNames();
-	countUserIds();
 	checkForUsersRequiringAssignment();
 	checkForPendingActions();
 	if ($("#toDoDescriptor").css("display") !== "none"){
 		$("#toDoDescriptor").text("Pending Actions will appear here.");
 	}		
 });
-
-//NB
-function countUserIds(){
-	$.get({
-		url: "http://localhost:8080/ProjectA/api/getNumIds",
-		cache: false,		
-		type : "GET"
-	}, function(response){
-		console.log(response);
-	});	
-}
-
-// NB Charts
-function getNames(){
-	$.get({
-		url: "http://localhost:8080/ProjectA/api/getNames",
-		cache: false,		
-		type : "GET"
-	}, function(response){
-		console.log(response);
-	});	
-}
 
 function customisation(){
 	$.get({
@@ -48,7 +24,6 @@ function customisation(){
 
 function inviteUser(){
 	var emailAddress = $("#emailAddress").val();
-	console.log(emailAddress);
 	$.get({
 		url: "http://localhost:8080/ProjectA/api/sendRegistrationInvite/" + emailAddress,
 		cache: false,		
@@ -136,6 +111,7 @@ function reAssignCourseToChosenUser(userAssignment){
 };
 
 function checkForUsersRequiringAssignment(){
+	$("#assignCourse").prop("disabled",true);
 	$.get({
 		url: "http://localhost:8080/ProjectA/course-registration/retrieveAllUnassignedUsers",
 		cache: false,	
@@ -149,26 +125,63 @@ function checkForUsersRequiringAssignment(){
 function insertResponseIntoTable(response){
 	$("#userName").empty();
 	for (var i=0; i < response.length;i++){
-		$("<option value='" + response[i].userName + "' id='" + response[i].userName + "'>" + response[i].firstName + " " + response[i].secondName + " (" + response[i].userName + ")</option>").appendTo("#userName");
+		$("<option onclick=\"retrieveAvailableCoursesForSelected()\" value='" + response[i].userName + "' id='" + response[i].userName + "'>" + response[i].firstName + " " + response[i].secondName + " (" + response[i].userName + ")</option>").appendTo("#userName");
 	}
-	$("select#userName").prop('selectedIndex',0);
+	//$("select#userName").prop('selectedIndex',0);
+//	$("select#courseName").prop('selectedIndex',0);
+}
+
+function retrieveAvailableCoursesForSelected(){
+	var chosenUser = $("#userName :selected").val();
+	$("#courseName").empty();
+	$.get({
+		url: "http://localhost:8080/ProjectA/course-registration/retrieveCourseProgressFor/" + chosenUser,
+		cache: false,	
+		async: false,
+		type : "GET",
+	}, function(response){
+		console.log(response);
+		displayRelevantTopicsForChosenUser(response);
+	});
+	// retrieve VideoTrackingNo and Status For UserName
+}
+
+function displayRelevantTopicsForChosenUser(response){
+	if (response[0] === 2 && response[1] === 1){
+		$("<option value='2' id='variables'> Python - Variables </option>").appendTo("#courseName");
+	} else if (response[0] === -1 && response[1] === -1){
+		$("<option value='2' id='variables'> Introduction To Python </option>").appendTo("#courseName");
+	}
 	$("select#courseName").prop('selectedIndex',0);
+	$("#assignCourse").prop("disabled",false);
 }
 
 function assignCourse(){
 	var selectedUser = $("#userName :selected").val();
 	var selectedCourse = $("#courseName :selected").val();
-	$.post({
-		url: "/frontend/CourseAssignmentServlet",
-		cache: false,		
-		type : "POST",
-		data : {courseId: selectedCourse,userName: selectedUser,status:"0",countOfManagerReview:"0",videoTrackingNo:"1"}
-	},function(result){
-		courseAssignmentResult(result);
-	});
+	if (selectedCourse === "1"){
+		$.post({
+			url: "/frontend/CourseAssignmentServlet",
+			cache: false,		
+			type : "POST",
+			data : {courseId: selectedCourse,userName: selectedUser,status:"0",countOfManagerReview:"0",videoTrackingNo:selectedCourse}
+		},function(result){
+			courseAssignmentResult(result);
+		});	
+	} else if (selectedCourse === "2"){
+		$.get({
+			url: "http://localhost:8080/ProjectA/course-registration/updateVideoTrackingNo/" + selectedUser + "/" + "2",
+			cache: false,	
+			async: false,
+			type : "GET",
+		}, function(response){
+			console.log(response);
+			$("#courseName").empty();
+			checkForUsersRequiringAssignment();
+		});
+	}
 }
 
 function courseAssignmentResult(result){
-	console.log(result);
 	checkForUsersRequiringAssignment();
 }
