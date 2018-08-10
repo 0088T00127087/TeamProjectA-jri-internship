@@ -46,7 +46,7 @@ function getCourseProgress(){
 			$("#button1").css("background-color","blueviolet").prop("disabled",false);
 			$("#button2").css("background-color","blueviolet").prop("disabled",false);
 			$("#s2_child1").css({"background":'url("/frontend/extra-resources/images/pygif.gif")',"background-size":"325px 218px"});
-			$("#s3_child1").css({"background":'url("/frontend/extra-resources/images/py2.jpg")',"background-size":"550px 218px"});
+			$("#s3_child1").css({"background":'url("/frontend/extra-resources/images/pygif2.gif")',"background-size":"570px 218px"});
 			$("#lock2").css({"visibility":"hidden"});
 		} else if (response === "3"){
 			$("#lock1").css({"visibility":"hidden"});
