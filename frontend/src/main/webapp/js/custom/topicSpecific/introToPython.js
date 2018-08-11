@@ -6,6 +6,7 @@ var correctAnswerIdList = [];
 var wrongAnswerIdList = [];
 var timeTakenToAnswerList = [];
 var downloadTimer;
+var questionCount = 0;
 
 $(document).ready(function(){
 	var url = new URL(window.location.href);
@@ -61,7 +62,6 @@ function commenceTRICOnResponseResult(response){
 		},5000);
 	} else if (response === 2){
 		customisation();
-	//	$("#managerApprovalRequired").css("display","inline");
 		$("#pageContent").css("display","inline");
 		videoFunctionalityWhenCompletePrior();
 	}
@@ -220,19 +220,22 @@ function resultCalculator(){
 function loadNextQuestion(){
 	if (questionNumber <= 5){
 		timer();
-		var questionAnswerList = [questionAndAnswerBank[questionNumber].correctAnswer,
-			questionAndAnswerBank[questionNumber].wrgAns1,questionAndAnswerBank[questionNumber].wrgAns2,
-			questionAndAnswerBank[questionNumber].wrgAns3];
-		questionAnswerList = shuffleArray(questionAnswerList);
-		$("#question").text(questionAndAnswerBank[questionNumber].questionString);
-		$("#answerA").val(questionAnswerList[0]);
-		$("#answerB").val(questionAnswerList[1]);
-		$("#answerC").val(questionAnswerList[2]);
-		$("#answerD").val(questionAnswerList[3]);
-		$('label[for=answerA]').html(questionAnswerList[0]);
-		$('label[for=answerB]').html(questionAnswerList[1]);
-		$('label[for=answerC]').html(questionAnswerList[2]);
-		$('label[for=answerD]').html(questionAnswerList[3]);
+		setTimeout(function(){
+			questionCounter();
+			var questionAnswerList = [questionAndAnswerBank[questionNumber].correctAnswer,
+				questionAndAnswerBank[questionNumber].wrgAns1,questionAndAnswerBank[questionNumber].wrgAns2,
+				questionAndAnswerBank[questionNumber].wrgAns3];
+			questionAnswerList = shuffleArray(questionAnswerList);
+			$("#question").text(questionAndAnswerBank[questionNumber].questionString);
+			$("#answerA").val(questionAnswerList[0]);
+			$("#answerB").val(questionAnswerList[1]);
+			$("#answerC").val(questionAnswerList[2]);
+			$("#answerD").val(questionAnswerList[3]);
+			$('label[for=answerA]').html(questionAnswerList[0]);
+			$('label[for=answerB]').html(questionAnswerList[1]);
+			$('label[for=answerC]').html(questionAnswerList[2]);
+			$('label[for=answerD]').html(questionAnswerList[3]);	
+		},1000);
 	} else {
 		console.log(correctAnswerIdList);
 		console.log(wrongAnswerIdList);
@@ -247,6 +250,11 @@ function timer(){
 	    if(timeleft <= 0)
 	    	submitAnswer();
 	    },1000);
+}
+
+function questionCounter(){
+	questionCount++;
+	$("#questionCount").text(questionCount);
 }
 
 function passFailCheck(){
