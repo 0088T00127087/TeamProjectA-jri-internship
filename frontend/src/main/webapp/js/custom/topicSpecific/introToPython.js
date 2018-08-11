@@ -14,6 +14,7 @@ $(document).ready(function(){
 	if (userName === null){
 		document.location.href = '/frontend/pages/index.html';
 	}
+	retrieveQuestions();
 	window.history.replaceState({}, document.title, "/frontend/pages/introductionToPython.html");
 	$("input[name='answers']").change(function(){
 	    $("#submitAnswer").css("background-color","green").prop("disabled",false);
@@ -48,7 +49,6 @@ function commenceTRICOnResponseResult(response){
 	if (response === 0){
 		customisation();
 		updateDatabaseAndNotifyManager();
-		retrieveQuestions();
 		setTimeout(function(){
 			videoFunctionality();
 			$("#pageContent").css("display","inline");						

@@ -62,4 +62,25 @@ public class ResultsTableController {
 		}
 		return listOfResults;
 	}
+	
+	@GetMapping("/retrieveWrongQuestions/{userName}")
+	public List<String> retrieveWrongIfQuestions(@PathVariable("userName") String userName){
+		List<String> listOfResults = new ArrayList<String>();
+		List<ResultsTableEntity> allRows = resultsTableRepository.findAll();
+		for (ResultsTableEntity row : allRows) {
+			if (row.getUserName().equals(userName)) {
+				listOfResults.add(row.getResult());
+			}
+		}
+		return listOfResults;
+	}
+	
+	@GetMapping("/retrieveQuestionsAnsweredIncorrectly/{userName}")
+	public String retrieveWrongQuestions(@PathVariable("userName") String userName) {
+		try {
+			return resultsTableRepository.retrieveAllWrongQuestions(userName);
+		} catch (Exception ex) {
+			return "";
+		}
+	}
 }
