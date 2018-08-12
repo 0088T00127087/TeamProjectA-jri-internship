@@ -98,4 +98,10 @@ public class ResultsTableController {
 		}
 		return mostRecentResults;
 	}
+	
+	@GetMapping("/getUserResult/{userAccount}")
+	public String getUserResult(@PathVariable("userAccount") String userAccount) {
+		return resultsTableRepository.getUserResult(userAccount);
+		
+	}
 }
