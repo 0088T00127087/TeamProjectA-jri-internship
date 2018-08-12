@@ -83,4 +83,19 @@ public class ResultsTableController {
 			return "";
 		}
 	}
+	
+	
+	@GetMapping("/retrieveMostRecentResults")
+	public List<ResultsTableEntity> retrieveMostRecentResults(){
+		List<ResultsTableEntity> mostRecentResults = new ArrayList<ResultsTableEntity>();
+		try {
+			List<String> allUsersThatTookATest = resultsTableRepository.retrieveDistinctUserList();
+			for (int i=0; i < allUsersThatTookATest.size();i++) {
+				mostRecentResults.add(resultsTableRepository.retrieveMostRecentResultForUser(allUsersThatTookATest.get(i)));
+			}			
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return mostRecentResults;
+	}
 }

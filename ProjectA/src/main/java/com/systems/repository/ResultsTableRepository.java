@@ -14,5 +14,11 @@ public interface ResultsTableRepository extends JpaRepository<ResultsTableEntity
 	
 	@Query(value= "select distinct wrong_answer_ids from `project-a-schema`.results_table where user_name = :userName and result_submission_time = (select max(result_submission_time) from `project-a-schema`.results_table where user_name = :userName)",nativeQuery = true)
 	String retrieveAllWrongQuestions(@Param("userName")String username);
+	
+	@Query(value = "select distinct user_name from `project-a-schema`.results_table",nativeQuery = true)
+	List<String> retrieveDistinctUserList();
+	
+	@Query(value = "select * from `project-a-schema`.results_table where user_name = :userName and result_submission_time = (select max(result_submission_time) from results_table where user_name = :userName);",nativeQuery = true)
+	ResultsTableEntity retrieveMostRecentResultForUser(@Param("userName") String userName);
 
 }

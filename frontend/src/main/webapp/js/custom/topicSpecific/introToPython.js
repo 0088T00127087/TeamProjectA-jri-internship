@@ -119,10 +119,23 @@ function customisation(){
 function videoFunctionality(){
 	$("#homepageVideo").get(0).play();
 	$('#homepageVideo').on('ended',function(){
+		fullScreenRemover();
 		questionModalLoader();
 		loadNextQuestion();
 		makeTranscriptBlank();
 	});	
+}
+
+function fullScreenRemover(){
+	   if (document.exitFullscreen) {
+	        document.exitFullscreen(); 
+	    } else if (document.webkitExitFullscreen) {
+	        document.webkitExitFullscreen();
+	    } else if (document.mozCancelFullScreen) {
+	        document.mozCancelFullScreen();
+	    } else if (document.msExitFullscreen) {
+	        document.msExitFullscreen();
+	    }
 }
 
 function videoFunctionalityWhenCompletePrior(){
@@ -298,6 +311,21 @@ function questionModalLoader(){
 
 
 function fullscreenVideo(){
+    if($("#homepageVideo").get(0).requestFullscreen){
+    	$("#homepageVideo").get(0).requestFullscreen();
+    } 
+    else if ($("#homepageVideo").get(0).webkitRequestFullscreen){
+    	$("#homepageVideo").get(0).webkitRequestFullscreen();
+    }
+    else if ($("#homepageVideo").get(0).mozRequestFullScreen){
+    	$("#homepageVideo").get(0).mozRequestFullScreen();
+    }
+    else if ($("#homepageVideo").get(0).msRequestFullscreen){
+    	$("#homepageVideo").get(0).msRequestFullscreen();
+    } 
+}
+
+function exitFullScreenVideo(){
     if($("#homepageVideo").get(0).requestFullscreen){
     	$("#homepageVideo").get(0).requestFullscreen();
     } 
