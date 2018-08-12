@@ -1,5 +1,17 @@
 # TeamProjectA-jri-internship
 
+
+http://localhost:8080/frontend/pages/index.html
+
+As of 12/08:
+Requirements - 
+	Manager Dashboard Data Display (currently nothing).
+	Large scale UI display upgrade.
+	Email confirmation, ensure all instances captured.
+	"Log for informal chat" option to be implemented.
+	Unit tests.
+
+
 As of 12/06:
 
 ProjectA (Backend) connected to database.
