@@ -15,9 +15,14 @@ public class RegistrationController {
 	@Autowired
 	Repo repository;
 	
+	@Autowired
+	RegistrationController(Repo repository){
+		this.repository = repository;
+	}
+	
 
-	@GetMapping("/signin/{username}/{password}")
-	public String checkIfUserExists(@PathVariable("username") String username, @PathVariable("password") String password){
+	@GetMapping("/signin/{username}")
+	public String retrieveHashedPassword(@PathVariable("username") String username){
 		return repository.retrieveHashedPassword(username);
 	}
 	

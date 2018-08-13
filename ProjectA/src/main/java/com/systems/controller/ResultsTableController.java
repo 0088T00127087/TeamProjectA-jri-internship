@@ -28,6 +28,14 @@ public class ResultsTableController {
 	@Autowired
 	CourseRegistrationRepository courseRegistrationRepository;
 	
+	@Autowired
+	public ResultsTableController(ResultsTableRepository resultsTableRepository,
+			CourseRegistrationRepository courseRegistrationRepository) {
+		this.resultsTableRepository = resultsTableRepository;
+		this.courseRegistrationRepository = courseRegistrationRepository;
+	}
+	
+	
 	GlobalMailSenderRepository sender = new GlobalMailSenderRepository();
 	
 	@PostMapping("/logTricResult")

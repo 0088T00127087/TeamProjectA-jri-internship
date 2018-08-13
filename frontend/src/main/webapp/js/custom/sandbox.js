@@ -1,5 +1,6 @@
 var userName;
 $(document).ready(function(){
+	loader();
 	var url = new URL(window.location.href);
 	userName =  url.searchParams.get("username");
 	if (userName === null){
@@ -9,6 +10,22 @@ $(document).ready(function(){
 	customisation();
 	window.history.replaceState({}, document.title, "/frontend/pages/py-sandbox.html");
 });
+
+function loader(){
+	$("#spinner").css("display","inline");
+setTimeout(function(){
+	$("#spinner").animate({opacity:0,},300);
+},1500);
+setTimeout(function(){
+	$("#spinner").css("display","none");
+	$(".container").css("display","block");
+	$(".footer").css("display","block");
+},1800);
+setTimeout(function(){
+	$(".container").css("visibility","visible").animate({opacity:1,},300);
+	$(".footer").css("visibility","visible").animate({opacity:1,},300);
+},2000);
+}
 
 
 function visitHomePage(){

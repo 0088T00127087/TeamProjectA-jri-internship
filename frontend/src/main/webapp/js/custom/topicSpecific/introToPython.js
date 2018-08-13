@@ -9,6 +9,7 @@ var downloadTimer;
 var questionCount = 0;
 
 $(document).ready(function(){
+	loader();
 	var url = new URL(window.location.href);
 	userName =  url.searchParams.get("username");
 	if (userName === null){
@@ -20,6 +21,24 @@ $(document).ready(function(){
 	    $("#submitAnswer").css("background-color","green").prop("disabled",false);
 	});
 });
+
+function loader(){
+	$("#spinner").css("display","inline");
+setTimeout(function(){
+	$("#spinner").animate({opacity:0,},300);
+},1000);
+setTimeout(function(){
+	$("#spinner").css("display","none");
+	$(".container").css("display","block");
+	$(".footer").css("display","block");
+	$("#commenceTopic").css("display","block");
+},1300);
+setTimeout(function(){
+	$(".container").css("visibility","visible").animate({opacity:1,},300);
+	$("#commenceTopic").css("visibility","visible").animate({opacity:1,},300);
+	$(".footer").css("visibility","visible").animate({opacity:1,},300);
+},1500);
+}
 
 function commenceTopic(){
 	$("#commenceTopic").css("display","none");
@@ -214,6 +233,7 @@ function displayResultsToUser(){
 	$("#submitAnswer").css("display","none");
 	$("#timer").css("display","none");
 	$("#answerList").css("display","none");
+	$("#questionDisplayCount").css("display","none");
 	if (wrongAnswerIdList.length <= 1){
 		$("#resultsGreeting").text("Congratulations!");
 		$("#percentageFigure").text(resultCalculator());

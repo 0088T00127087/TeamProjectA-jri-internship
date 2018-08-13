@@ -30,7 +30,7 @@ public class SignInRegistrationServlet extends HttpServlet{
 			String username = req.getParameter("username");
 			String password = req.getParameter("password");
 			String encodedPassword =  URLEncoder.encode(password, "UTF-8");
-			String URL = signInURL + username + "/" + encodedPassword;
+			String URL = signInURL + username;
 			ClientResponse clientResponse = restClient.resource(URL).get();
 			String loggedPassword = clientResponse.getEntity(String.class);
 			

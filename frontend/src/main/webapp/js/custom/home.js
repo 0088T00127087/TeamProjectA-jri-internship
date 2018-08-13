@@ -1,5 +1,6 @@
 var userName;
 $(document).ready(function(){
+	loader();
 	var url = new URL(window.location.href);
 	userName =  url.searchParams.get("username");
 	if (userName === null){
@@ -9,6 +10,22 @@ $(document).ready(function(){
 	customisation();
 	getCourseCredentials();
 });
+
+function loader(){
+	$("#spinner").css("display","inline");
+setTimeout(function(){
+	$("#spinner").animate({opacity:0,},300);
+},2000);
+setTimeout(function(){
+	$("#spinner").css("display","none");
+	$(".container").css("display","block");
+	$(".footer").css("display","block");
+},2300);
+setTimeout(function(){
+	$(".container").css("visibility","visible").animate({opacity:1,},300);
+	$(".footer").css("visibility","visible").animate({opacity:1,},300);
+},2500);
+}
 
 function visitTopicsPage(){
 	document.location.href = '/frontend/pages/topics.html?username=' + userName;

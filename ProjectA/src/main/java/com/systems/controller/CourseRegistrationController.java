@@ -25,8 +25,15 @@ public class CourseRegistrationController {
 	
 	@Autowired
 	CourseRegistrationRepository repository;
+	
 	@Autowired
 	Repo userAccountsRepo;
+	
+	@Autowired
+	public CourseRegistrationController(CourseRegistrationRepository repository,Repo userAccountsRepo) {
+		this.repository = repository;
+		this.userAccountsRepo = userAccountsRepo;
+	}
 	
 	GlobalMailSenderRepository sender = new GlobalMailSenderRepository();
 	
@@ -45,8 +52,13 @@ public class CourseRegistrationController {
 	}
 	
 	@GetMapping("/getCurrentCourse/{userName}")
-	public String getCurrentVideo(@PathVariable("userName") String userName) {
+	public String getCurrentCourse(@PathVariable("userName") String userName) {
 		return repository.retrieveCourseStatus(userName);
+	}
+	
+	@GetMapping("/getCurrentStatus/{userName}")
+	public int getCurrentStatus(@PathVariable("userName") String userName) {
+		return repository.retrieveStatus(userName);
 	}
 	
 	@GetMapping("/updateToInProgress/{userName}/{videoTracker}")

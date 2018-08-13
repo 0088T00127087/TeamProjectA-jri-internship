@@ -4,12 +4,29 @@ var userName;
 
 $(document).ready(function(){	
 //	customisation();
+	loader();
 	checkForUsersRequiringAssignment();
 	checkForPendingActions();
 	if ($("#toDoDescriptor").css("display") !== "none"){
 		$("#toDoDescriptor").text("Pending Actions will appear here.");
 	}		
 });
+
+function loader(){
+	$("#spinner").css("display","inline");
+setTimeout(function(){
+	$("#spinner").animate({opacity:0,},300);
+},2500);
+setTimeout(function(){
+	$("#spinner").css("display","none");
+	$(".container").css("display","block");
+	$(".footer").css("display","block");
+},2800);
+setTimeout(function(){
+	$(".container").css("visibility","visible").animate({opacity:1,},300);
+	$(".footer").css("visibility","visible").animate({opacity:1,},300);
+},3000);
+}
 
 function customisation(){
 	$.get({

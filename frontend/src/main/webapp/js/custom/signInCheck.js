@@ -12,6 +12,7 @@ $(document).ready(function(){
 	});
 });
 
+
 function attemptSignIn(){
 	var username =  $("#username").val();
 	var password = $("#password").val();

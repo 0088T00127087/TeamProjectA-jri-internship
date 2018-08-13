@@ -1,5 +1,6 @@
 var userName;
 $(document).ready(function(){
+	loader();
 	var url = new URL(window.location.href);
 	userName =  url.searchParams.get("username");
 	if (userName === null){
@@ -9,6 +10,23 @@ $(document).ready(function(){
 	getCourseProgress();
 	window.history.replaceState({}, document.title, "/frontend/pages/topics.html");
 });
+
+function loader(){
+	$("#spinner").css("display","inline");
+setTimeout(function(){
+	$("#spinner").animate({opacity:0,},300);
+},2500);
+setTimeout(function(){
+	$("#spinner").css("display","none");
+	$(".container").css("display","block");
+	$(".footer").css("display","block");
+},2800);
+setTimeout(function(){
+	$(".container").css("visibility","visible").animate({opacity:1,},300);
+	$(".footer").css("visibility","visible").animate({opacity:1,},300);
+},3000);
+}
+
 
 function visitHomePage(){
 	document.location.href = '/frontend/pages/home.html?username=' + userName;
@@ -37,11 +55,22 @@ function getCourseProgress(){
 		cache: false,		
 		type : "GET",
 	}, function(response){
-		if (response === "1"){
+		if (response === "1"){	
+			$.get({
+			url: "http://localhost:8080/ProjectA/course-registration/getCurrentStatus/" + userName,
+			cache: false,		
+			type : "GET",
+		}, function(response){
+			if (response === 2){
+				$("#complete1").css("display","block");
+				$("#topicNotifier").css("display","block");
+			}
+		});	
 			$("#lock1").css({"visibility":"hidden"});
 			$("#button1").css("background-color","blueviolet").prop("disabled",false);
 			$("#s2_child1").css({"background":'url("/frontend/extra-resources/images/pygif.gif")',"background-size":"325px 218px"});
 		} else if (response === "2"){
+			$("#complete1").css("display","block");
 			$("#lock1").css({"visibility":"hidden"});
 			$("#button1").css("background-color","blueviolet").prop("disabled",false);
 			$("#button2").css("background-color","blueviolet").prop("disabled",false);
