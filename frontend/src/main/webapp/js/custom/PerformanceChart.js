@@ -67,17 +67,33 @@ var data = {
 			data: data
 		});
 		
-		function getUserResult(userAccount){
-			$.get({
-				url: "http://localhost:8080/ProjectA/results-table/getUserResult/" + userAccount,
-				async: false,
-				cache: false,		
-				type : "GET"
-			},function(result){
-				myChart.data.datasets[0].data[0] = parseFloat(result);
-				myChart.update();
+		function getUserResult(){
+			var userAccount = document.getElementById("DropDown").value
+			
+			if(userAccount == "overall"){
+				$.get({
+					url: "http://localhost:8080/ProjectA/results-table/getOverallResult",
+					async: false,
+					cache: false,		
+					type : "GET"
+				},function(result){
+					myChart.data.datasets[0].data[0] = parseFloat(result);
+					myChart.update();
+				});
 				
-			});
+			}else{
+				$.get({
+					url: "http://localhost:8080/ProjectA/results-table/getUserResult/" + userAccount,
+					async: false,
+					cache: false,		
+					type : "GET"
+				},function(result){
+					myChart.data.datasets[0].data[0] = parseFloat(result);
+					myChart.update();
+					
+				});
+			}
+			
 		}	
 		
 		
