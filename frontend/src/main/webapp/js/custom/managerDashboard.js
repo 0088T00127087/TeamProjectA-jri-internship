@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	loader();
 	retrieveMostRecentResults();
+	getAllUsers()
 });
 
 function loader(){
@@ -26,7 +27,7 @@ function retrieveMostRecentResults(){
 		cache: false,		
 		type : "GET",
 	}, function (response){
-		addResultsToTable(response);
+		addResultsToTable(response);		
 	});
 }
 
@@ -66,4 +67,23 @@ function configureTimeTaken(timeTaken){
 		totalTimeTaken = totalTimeTaken + timeTakenList[i];
 	}
 	return totalTimeTaken + " seconds";
+}
+
+function getAllUsers(){
+	$.get({
+		url: "http://localhost:8080/ProjectA/api/getAllUsers",
+		cache: false,		
+		type : "GET",
+	}, function (response){
+		fillDropDown(response);
+	});
+	
+}
+
+function fillDropDown(response){
+	var select = document.getElementById("DropDown");
+	select.options[select.options.length] = new Option("Overall", "overall");
+	for (var i = 0; i < response.length;i++){
+		select.options[select.options.length] = new Option(retrieveUserName(response[i].userName), response[i].userName);
+	}
 }

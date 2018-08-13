@@ -109,7 +109,19 @@ public class ResultsTableController {
 	
 	@GetMapping("/getUserResult/{userAccount}")
 	public String getUserResult(@PathVariable("userAccount") String userAccount) {
-		return resultsTableRepository.getUserResult(userAccount);
+		String answer = "";
 		
+		answer = resultsTableRepository.getUserResult(userAccount);
+		
+		return answer;
 	}
+	@GetMapping("/getOverallResult")
+	public String getOverallResult() {
+		String answer = "";
+		
+		answer = resultsTableRepository.getOverallResult();
+		
+		return answer;
+	}
+	
 }

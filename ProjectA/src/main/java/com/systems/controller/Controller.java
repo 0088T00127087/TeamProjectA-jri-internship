@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +54,7 @@ public class Controller {
 	public String getIndividualResult(@PathVariable("username") String username){
 		return repository.retrieve(username) + " " + repository.retrieveSurname(username);
 	}
+	
 	
 	@GetMapping("/getAllUsers")
 	public List<UserAccounts> getAllUsers(){
@@ -114,4 +116,5 @@ public class Controller {
 		List<UserAccounts> returned = repository.findAll();
 		System.out.println(returned);
 	}
+	
 }

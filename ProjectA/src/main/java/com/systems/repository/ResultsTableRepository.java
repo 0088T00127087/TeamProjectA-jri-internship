@@ -23,5 +23,8 @@ public interface ResultsTableRepository extends JpaRepository<ResultsTableEntity
 	
 	@Query(value = "SELECT avg(number_of_questions_correct) FROM `project-a-schema`.results_table where user_name= :userAccount",nativeQuery = true)
 	String getUserResult(@Param("userAccount") String userAccount);
+	
+	@Query(value = "SELECT avg(number_of_questions_correct) FROM `project-a-schema`.results_table",nativeQuery = true)
+	String getOverallResult();
 
 }

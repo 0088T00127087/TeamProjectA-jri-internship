@@ -44,8 +44,9 @@ public interface Repo extends JpaRepository<UserAccounts, Long>{
 	int countUserIds();
 	
 	// NB Charts
-	@Query(value = "select first_name from `project-a-schema`.user_accounts where user_id = 2088", nativeQuery = true)
+	@Query(value = "select first_name from `project-a-schema`.user_accounts where user_id = 2088", nativeQuery = true) 
 	String outputUserNames();
+	
 
 
 }
