@@ -167,7 +167,7 @@ function displayRelevantTopicsForChosenUser(response){
 	if (response[0] === 2 && response[1] === 1){
 		$("<option value='2' id='variables'> Python - Variables </option>").appendTo("#courseName");
 	} else if (response[0] === -1 && response[1] === -1){
-		$("<option value='2' id='variables'> Introduction To Python </option>").appendTo("#courseName");
+		$("<option value='1' id='variables'> Introduction To Python </option>").appendTo("#courseName");
 	}
 	$("select#courseName").prop('selectedIndex',0);
 	$("#assignCourse").prop("disabled",false);
@@ -183,6 +183,7 @@ function assignCourse(){
 			type : "POST",
 			data : {courseId: selectedCourse,userName: selectedUser,status:"0",countOfManagerReview:"0",videoTrackingNo:selectedCourse}
 		},function(result){
+			$("#courseName").empty();
 			courseAssignmentResult(result);
 		});	
 	} else if (selectedCourse === "2"){
@@ -192,7 +193,6 @@ function assignCourse(){
 			async: false,
 			type : "GET",
 		}, function(response){
-			console.log(response);
 			$("#courseName").empty();
 			checkForUsersRequiringAssignment();
 		});
