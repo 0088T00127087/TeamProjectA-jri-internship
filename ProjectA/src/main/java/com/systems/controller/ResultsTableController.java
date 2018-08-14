@@ -116,10 +116,15 @@ public class ResultsTableController {
 		return answer;
 	}
 	@GetMapping("/getOverallResult")
-	public String getOverallResult() {
-		String answer = "";
+	public float getOverallResult() {
+		float answer = 0;
+		List<String> userNames = resultsTableRepository.retrieveDistinctUserList();
 		
-		answer = resultsTableRepository.getOverallResult();
+		for (int i=0; i < userNames.size(); i++) {
+			answer += Float.valueOf(resultsTableRepository.getUserResult(userNames.get(i)));
+		}
+		
+		answer /= userNames.size();
 		
 		return answer;
 	}

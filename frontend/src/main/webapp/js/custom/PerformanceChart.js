@@ -24,7 +24,7 @@ function getOverallResult(){
 		cache: false,		
 		type : "GET"
 	},function(result){
-		returnedResult = parseFloat(result);
+		returnedResult = ((result / 6) * 100).toFixed(2);	
 	});
 }
 
@@ -32,7 +32,7 @@ var data = {
 		  labels: ["Python","Java","SQL","Automation","Unit Testing A"],
 		  datasets: [{
 		    label: "Dataset #1",
-		    data: [returnedResult,5, 5, 5, 5],
+		    data: [returnedResult,(Math.random() *100).toFixed(2), (Math.random() *100).toFixed(2), (Math.random() *100).toFixed(2), (Math.random() *100).toFixed(2)],
 		    backgroundColor: "rgba(255,99,132,0.2)",
 		    borderColor: "rgba(255,99,132,1)",
 		    borderWidth: 2,
@@ -62,7 +62,7 @@ var data = {
 	
 		
 		var myChart = new Chart('chart_1', {
-			type: 'bar',
+			type: 'radar',
 			options: option,
 			data: data
 		});
@@ -77,7 +77,7 @@ var data = {
 					cache: false,		
 					type : "GET"
 				},function(result){
-					myChart.data.datasets[0].data[0] = parseFloat(result);
+					myChart.data.datasets[0].data[0] = (parseFloat(result)/6 *100).toFixed(2);
 					myChart.update();
 				});
 				
@@ -88,7 +88,7 @@ var data = {
 					cache: false,		
 					type : "GET"
 				},function(result){
-					myChart.data.datasets[0].data[0] = parseFloat(result);
+					myChart.data.datasets[0].data[0] = (parseFloat(result)/6 *100).toFixed(2);
 					myChart.update();
 					
 				});
