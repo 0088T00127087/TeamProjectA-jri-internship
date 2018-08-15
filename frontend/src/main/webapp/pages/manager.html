@@ -26,16 +26,15 @@
  
     
   <script type="text/javascript" src="/frontend/js/custom/managerDashboard.js"></script>
-  
- <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="/frontend/js/custom/barChart.js"></script>
     <script type="text/javascript" src="/frontend/js/custom/pieChart.js"></script>
     <script type="text/javascript" src="/frontend/js/custom/polarChart.js"></script>
-    <script type="text/javascript" src="/frontend/extra-resources/charts/chart_0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy" crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="/frontend/js/custom/PerformanceChart.js"></script>
+    <script type="text/javascript" src="/frontend/js/custom/chartA.js"></script>
+    <script type="text/javascript" src="/frontend/js/custom/chartC.js"></script>
 </head>
 
 
@@ -68,53 +67,42 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li><a>Dashboard</a></li>
-          <li><a onclick="location.href = '/frontend/pages/managerAdmin.html'">Administration</a></li>
+          <li><a onclick="ert()">Administration</a></li>
           <li><a onclick="location.href = '/frontend/pages/index.html'">Sign Out</a></li>
         </ul>
       </div>
     </div>
   </div>
 </nav>   
-
-<div id="ChartsContainer"  class="col-sm-6">
-  	  
-  	    	  
-  	  <!-- Container for dashboard one -->
-  	  <div  id="container_box1">
-  	  
-  	    	<canvas id="chart_0">
-  	    	<script src="/frontend/js/custom/chartA.js"></script>
-  	    	
+	  <div  id="container_box2" style="height:325px;">
+	  <span>
+  	    	<canvas id="chart_overall_user" style="float:right;"> 	
+  	    	</canvas></span>
+  	   <p style="float:right;font-size:13px;margin-top:277px;margin-right:-323px;font-style:italic;">Results displayed as a total percentage.</p>
+  	   <select class="form-control" id="DropDown" style="float:right;max-width:219px;min-width:219px;margin-top:226px;margin-right:23px;background:lightgray" onchange="getUserResult()">
+  	   <option selected disabled value="-1">Select User...</option>
+  	  </select>
+  	    	<p style="float:right;margin-right:-375px;">Average Questions Correct: Per User</p>
+  	    	<canvas id="chart_overall_average" style="border-right:1px solid cornflowerblue;padding-right:200px;"> 	
   	    	</canvas>
-
-		<button id="chartExpandBtn1"  href="#">Expand</button>
-  	 </div> 
-  	  
-  	  
-  	  <div  id="container_box2">
-  	  
-  	    	<canvas id="chart_1">
-  	    	<script src="/frontend/js/custom/chartB.js"></script>
-  	    	
-  	    	</canvas>
-
-		<button id="chartExpandBtn1"  href="#">Expand</button>
-  	 </div> 
+  	   	 <p style="float:left;margin-top:-294px;margin-left:235px;font-size:13px;font-style:italic;">Results displayed as a total percentage.</p>
+  	   <p style="float:left;margin-top:-32px;margin-left:127px;">Average Questions Correct: Global</p>
+  	 </div>
+ 
+ 
   	 
-  	 
-  	  <!-- Container for chartbox3 THREE -->
-  	  <div id="Chartbox3">
-  	  <canvas id="chart_2">
-  	    	<script src="/frontend/js/custom/chartC.js"></script>
-  	    	
+ 
+  	 <div  id="container_box3" style="height:300px;">
+	  <span>
+  	    	<canvas id="chart_0" style="float:right;padding-left:269px;border-left:1px solid cornflowerblue;"> 	
+  	    	</canvas></span>
+  	   <p style="float:right;font-size:13px;margin-top:277px;margin-right:-323px;font-style:italic;">Results displayed as a total percentage.</p>
+  	    	<p style="float:right;margin-right:-400px;">TBC</p>
+  	    	<canvas id="chart_2" style=""> 	
   	    	</canvas>
-  	  
-  	  
-  	  		<button id="chartExpandBtn1"  href="#">Expand</button>
-  	  		  		
-  	  </div>
-	  
-</div>
+  	   	 <p style="float:left;font-size:13px;font-style:italic;">Results displayed as a total percentage.</p>
+  	   <p style="float:left;margin-top:112px;margin-left:127px;">TBC</p>
+  	 </div>    
 
 <div id="section4" style="margin-bottom:75px;margin-top:75px;" class="container-fluid">
   <h1>Latest Individual TRIC Results</h1>

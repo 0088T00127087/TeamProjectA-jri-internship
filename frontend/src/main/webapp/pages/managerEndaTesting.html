@@ -26,13 +26,14 @@
     
   <script type="text/javascript" src="/frontend/js/custom/managerDashboard.js"></script>
   
- <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="/frontend/js/custom/barChart.js"></script>
     <script type="text/javascript" src="/frontend/js/custom/pieChart.js"></script>
     <script type="text/javascript" src="/frontend/js/custom/polarChart.js"></script>
-    <script type="text/javascript" src="/frontend/extra-resources/charts/chart_0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script type="text/javascript" src="/frontend/js/custom/PerformanceChart.js"></script>
+    <script type="text/javascript" src="/frontend/js/custom/chartA.js"></script>
+    <script type="text/javascript" src="/frontend/js/custom/chartC.js"></script>
     
 
 </head>
@@ -68,6 +69,42 @@
   </div>
 </nav>   
 
+<div class="text-center">
+  	 <select id="DropDown" onchange="getUserResult()">
+  	  	
+  	  </select>
+  	 </div>
+<div id="ChartsContainer"  class="col-sm-6">
+  	  
+  	    	  
+  	  <div  id="container_box1">
+  	  
+  	    	<canvas id="chart_0">
+  	    	</canvas>
+
+		<button id="chartExpandBtn1"  href="#">Expand</button>
+  	 </div> 
+  	  
+  	  
+  	  <div  id="container_box2">
+  	  
+  	    	<canvas id="chart_1">
+  	    	</canvas>
+
+		<button id="chartExpandBtn1" href="#">Expand</button>
+  	 </div> 
+
+
+  	  <div id="Chartbox3">
+  	  <canvas id="chart_2">    	
+  	    	</canvas>
+  	  
+  	  
+  	  		<button id="chartExpandBtn1"  href="#">Expand</button>
+  	  		  		
+  	  </div>
+	  
+</div>
 
 <div id="section4" style="margin-bottom:75px;" class="container-fluid">
   <h1>Latest Individual TRIC Results</h1>
@@ -86,59 +123,8 @@
  
 </div> 
 
-
-
-<!-- JE Container for the charts -->
-
-<div class="text-center">
-  	 <select id="DropDown" onchange="getUserResult()">
-  	  	
-  	  </select>
-  	 </div>
-<div id="ChartsContainer"  class="col-sm-6">
-  	  
-  	    	  
-  	  <!-- Container for dashboard one -->
-  	  <div  id="container_box1">
-  	  
-  	    	<canvas id="chart_0">
-  	    	<script src="/frontend/js/custom/chartA.js"></script>
-  	    	
-  	    	</canvas>
-
-		<button id="chartExpandBtn1"  href="#">Expand</button>
-  	 </div> 
-  	  
-  	  
-  	  <div  id="container_box2">
-  	  
-  	    	<canvas id="chart_1">
-  	    	<script src="/frontend/js/custom/PerformanceChart.js"></script>
-  	    	
-  	    	</canvas>
-
-		<button id="chartExpandBtn1" href="#">Expand</button>
-  	 </div> 
-  	 
-  	 
-  	  <!-- Container for chartbox3 THREE -->
-  	  <div id="Chartbox3">
-  	  <canvas id="chart_2">
-  	    	<script src="/frontend/js/custom/chartC.js"></script>
-  	    	
-  	    	</canvas>
-  	  
-  	  
-  	  		<button id="chartExpandBtn1"  href="#">Expand</button>
-  	  		  		
-  	  </div>
-	  
 </div>
 
-</div> <!-- End of Container div --> 
-
-<!-- FOOTER CONAINTER..  -->
-<!-- I just used this to get positioning. John Long if you could update the css file rather than having the css embedded.  -->
 <div class="footer" style="position:relative; margin-left: 7.5pc; padding-top:20px; width: 70pc; height:5pc; float:bottom; border:1px solid red">
 			<footer>
 				  <div class="container" >

@@ -13,6 +13,7 @@ setTimeout(function(){
 	$("#spinner").css("display","none");
 	$(".container").css("display","block");
 	$(".footer").css("display","block");
+	document.getElementById("container_box2").scrollIntoView();
 },2800);
 setTimeout(function(){
 	$(".container").css("visibility","visible").animate({opacity:1,},300);
@@ -63,7 +64,6 @@ function configureTimeTaken(timeTaken){
 	var totalTimeTaken = 0;
 	var timeTakenList = JSON.parse("[" + timeTaken + "]");
 	for (var i = 0; i < timeTakenList.length;i++){
-		console.log(typeof timeTakenList[i]);
 		totalTimeTaken = totalTimeTaken + timeTakenList[i];
 	}
 	return totalTimeTaken + " seconds";
@@ -82,7 +82,7 @@ function getAllUsers(){
 
 function fillDropDown(response){
 	var select = document.getElementById("DropDown");
-	select.options[select.options.length] = new Option("Overall", "overall");
+	$("select#DropDown").prop('selectedIndex',0);
 	for (var i = 0; i < response.length;i++){
 		select.options[select.options.length] = new Option(retrieveUserName(response[i].userName), response[i].userName);
 	}

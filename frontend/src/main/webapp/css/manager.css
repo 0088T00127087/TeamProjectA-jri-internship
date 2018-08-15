@@ -69,40 +69,46 @@
 
 #container_box1{
 	margin-right:1pc;
-	padding-top:20px;
 	   width: 75pc; 
 	   height: 20pc; 
-	   border: 1px solid yellow; 
 }
 
 #chart_0{
-	width="230px"; height="250px";
-	padding-top:30px;  
 	}
 
 #chart_1{
-	width="300px"; height="250px";
-	padding-top:40px; 
 	
 	}
 	
 #chart_2{
-	width="230px"; height="250px"; 
-	padding-top:40px; 
 	}
 
 #container_box2{
+	border-bottom: 1px solid cornflowerblue;
 	padding-top:20px;
 	margin-right:1pc; 
 	width: 70pc; height: 20pc;
 	padding: 25px 25px 25px 25px; 
-	border: 1px solid green; 
+}
+
+
+#container_box3{
+	border-bottom: 1px solid cornflowerblue;
+	padding-top:20px;
+	margin-right:1pc; 
+	width: 70pc; height: 20pc;
+	padding: 0px 25px 25px 25px; 
+}
+
+
+select option {
+  text-overflow: ellipsis;
 }
 
 
 
 #Chartbox3{
-	 padding: 25px 25px 25px 25px; width: 70pc; height: 20pc; border: 1px solid blue;
+	 padding: 25px 25px 25px 25px; width: 70pc; height: 13pc;
 }
 
 

@@ -1,7 +1,13 @@
-var data = {
+var chartC;
+
+$(document).ready(function(){
+	renderChartC();
+});
+
+var dataC = {
 		  labels: ["Python","Java","SQL","Automation","Unit Test B"],
 		  datasets: [{
-		    label: "Dataset #1",
+		    label: "Dataset #3",
 		    backgroundColor: "rgba(255,99,132,0.2)",
 		    borderColor: "rgba(255,99,132,1)",
 		    borderWidth: 2,
@@ -11,13 +17,16 @@ var data = {
 		  }]
 		};
 
-		var option = {
+		var optionC = {
+				legend: {
+		            display: false
+		         },
 		  responsive: false,
 		  scales: {
 		    yAxes: [{
 		      stacked: true,
 		      gridLines: {
-		        display: true,
+		        display: false,
 		        color: "rgba(255,99,132,0.2)"
 		      }
 		    }],
@@ -29,7 +38,9 @@ var data = {
 		  }
 		};
 		
-		Chart.Line('chart_2', {
-		  options: option,
-		  data: data
+function renderChartC(){
+	chartC = Chart.Line('chart_2', {
+			options: optionC,
+			data: dataC
 		});
+}
