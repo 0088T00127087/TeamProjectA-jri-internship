@@ -1,1 +1,11 @@
+#transcript{
+    position:absolute;
+    left:0;
+    right:0;
+    border:1px solid #000;
+}
+#transcript{   
+    overflow:auto;
+    top:0;
+    bottom:3em;
 }

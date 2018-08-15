@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="/frontend/css/commonStyle.css"></link>
+    <link rel="stylesheet" href="/frontend/css/introToPython.css"></link>
   <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>
   <link href='https://fonts.googleapis.com/css?family=Shrikhand' rel='stylesheet'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -67,12 +68,12 @@
 <div id="pageContent" style="display:none;">
 <h1 style="margin-left: 8%; margin-bottom:2%;">Introduction To Python</h1> 
 <div style="float:left">
- <video id="homepageVideo" style="margin-left:8%; margin-bottom:0%;" width="640" height="440">
-  <source src="/frontend/extra-resources/videos/sampleVideo2.mp4" type="video/mp4">
+ <video id="homepageVideo" style="margin-left:8%; margin-bottom:0%;margin-right:90px;" width="640" height="440">
+  <source src="/frontend/extra-resources/videos/ProjectAVideoFinal.mp4" type="video/mp4">
 </video>
 </div>
-<div style= "height:440px; width: 500px; border:1px solid #ccc; font:16px/26px Georgia, Garamond, Serif; overflow:scroll; padding: 5px;">
-	<div id="transcript" style="margin-left:33px;">Learning Objectives
+<div style="position:relative;height:440px; width: 500px; border:1px solid #ccc; font:16px/26px Georgia, Garamond, Serif; overflow:auto; padding: 5px;">
+	<div id="transcript" style="margin-left:0px;float:right;position:absolute;height:438px;">Learning Objectives
 	<ul>
 		<li>What is Python</li>
 		<li>What a programming languages.</li>
@@ -103,9 +104,10 @@
 		Don’t worry about these concepts for now we will learn more about these topics in later videos but for now just remember that a programming language allows us to interact with our computers.<br /><br />
 	
 	What is a program?<br /><br />
-	Remember we said that a programming language was a way for us to communicate with our computers, well a computer program contains a very specific set of instructions written in a programming language that the computer understands. #
+	Remember we said that a programming language was a way for us to communicate with our computers, well a computer program contains a very specific set of instructions written in a programming language that the computer understands. 
 	In Python we call these scripts. <br /><br />
-	 
+	 <br>
+	 <br>
 	 
 	Now we will look at writing our first python script!<br />
 	Open up for your Python code editor.<br />
@@ -115,8 +117,8 @@
 	You should get an output of Hello World!<br /><br />
 	
 	
-	Let’s dive deeper into what we just wrote. The first part of this syntax, syntax is the name given to programming code, is print(). This is known as a function. A function is a part of a program which performs a specific task. In this case, output onto the screen whatever is between the brackets.
-	The second part is the value within the brackets, known as an argument. An argument is a value which the function uses. When you use a value in a function like this it is known as passing an argument to a function. However, we will cover this and how to make your own function in greater detail in a later video.
+	Let’s dive deeper into what we just wrote. The first part of this syntax, syntax is the name given to programming code, is print(). This is known as a function.<br> A function is a part of a program which performs a specific task. In this case, output onto the screen whatever is between the brackets.
+	The second part is the value within the brackets, known as an argument. An argument is a value which the function uses. When you use a value in a function like this it is known as passing an argument to a function. <br><br>However, we will cover this and how to make your own function in greater detail in a later video.
 	You will notice that we have the text hello world surrounded by quotation marks. This is to tell the computer that this is a text value. In programming we call values which are contained within Quotation marks strings.
 	However manually inputting a string or value each time we want to use it, especially if it is a long or complex value can lead to a lot repetition and does not allow us to dynamically change / modify values.<br />
 	The solution? Variables!<br /><br />

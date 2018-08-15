@@ -82,6 +82,8 @@ function commenceTRICOnResponseResult(response){
 	} else if (response === 2){
 		customisation();
 		$("#pageContent").css("display","inline");
+		$('#transcript').animate({
+			  scrollTop: $('#transcript').get(0).scrollHeight}, 400000);
 		videoFunctionalityWhenCompletePrior();
 	}
 }
