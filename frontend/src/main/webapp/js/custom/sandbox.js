@@ -36,6 +36,10 @@ function visitTopicsPage(){
 	document.location.href = '/frontend/pages/topics.html?username=' + userName;
 }
 
+function visitUserDashboardPage(){
+	document.location.href = '/frontend/pages/userDash.html?username=' + userName;
+}
+
 function clearArea(){
 	$("#yourcode").val('');
 }

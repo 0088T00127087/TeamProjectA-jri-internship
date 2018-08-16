@@ -36,6 +36,10 @@ function visitSandboxPage(){
 	document.location.href = '/frontend/pages/py-sandbox.html?username=' + userName;
 }
 
+function visitUserDashboardPage(){
+	document.location.href = '/frontend/pages/userDash.html?username=' + userName;
+}
+
 function customisation(){
 	$.get({
 		url: "/frontend/HomepageInitialLoadServlet",
