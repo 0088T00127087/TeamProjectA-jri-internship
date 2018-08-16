@@ -44,11 +44,13 @@ public class ResultsTableController {
 			if (entity.getResult().equals("pass")) {
 				sender.sendNotifierOfTopicPassToManager(entity.getUserName());
 				courseRegistrationRepository.updateStatus(entity.getUserName(), String.valueOf(entity.getVideoId()),"2");	
-				courseRegistrationRepository.updateVideoTrackingId(entity.getUserName(), String.valueOf(entity.getVideoId()), "2");
+			//	courseRegistrationRepository.updateVideoTrackingId(entity.getUserName(), String.valueOf(entity.getVideoId()), "2");
 			} else if (entity.getResult().equals("fail")) {
-				sender.sendNotifierOfTopicFirstFailureToManager(entity.getUserName());
 				courseRegistrationRepository.updateStatus(entity.getUserName(), String.valueOf(entity.getVideoId()),"0");	
-				courseRegistrationRepository.updateVideoTrackingId(entity.getUserName(), String.valueOf(entity.getVideoId()), "2");
+				courseRegistrationRepository.updateVideoTrackingId(entity.getUserName(), String.valueOf(entity.getVideoId()), "1");
+				int managerReviewCount = courseRegistrationRepository.examineIfUserIsLegibleToTakeTopic(entity.getUserName(), String.valueOf(entity.getVideoId()));
+				courseRegistrationRepository.updateManagerReviewCount(entity.getUserName(),String.valueOf(entity.getVideoId()), ++managerReviewCount);
+				sender.sendNotifierOfTopicFirstFailureToManager(entity.getUserName());
 			}
 			entity.setResultSubmissionTime();
 			resultsTableRepository.save(entity);
@@ -132,12 +134,11 @@ public class ResultsTableController {
 	@GetMapping("/getCountFails")
     public int getCountFails() {
         int count = 0;
-        List<String> userNames = resultsTableRepository.retrieveDistinctUserList();
+        List<ResultsTableEntity> userNames = resultsTableRepository.findAll();
         for (int i=0; i < userNames.size(); i++) {
-            String result = resultsTableRepository.getUserLatestResult(userNames.get(i));
-            if (result.equals("fail") ) {
-                count += 1;
-            }
+        	if (userNames.get(i).getResult().equals("fail")) {
+        		count++;
+        	}
         }
         return count;
     }
@@ -147,12 +148,11 @@ public class ResultsTableController {
     @GetMapping("/getCountPass")
     public int getCountPass() {
         int count = 0;
-        List<String> userNames = resultsTableRepository.retrieveDistinctUserList();
+        List<ResultsTableEntity> userNames = resultsTableRepository.findAll();
         for (int i=0; i < userNames.size(); i++) {
-            String result = resultsTableRepository.getUserLatestResult(userNames.get(i));
-            if (result.equals("pass") ) {
-                count += 1;
-            }
+        	if (userNames.get(i).getResult().equals("pass")) {
+        		count++;
+        	}
         }
         return count;
     }

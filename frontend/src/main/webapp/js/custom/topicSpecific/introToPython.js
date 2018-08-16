@@ -70,7 +70,10 @@ function commenceTRICOnResponseResult(response){
 		updateDatabaseAndNotifyManager();
 		setTimeout(function(){
 			videoFunctionality();
-			$("#pageContent").css("display","inline");						
+			$("#pageContent").css("display","inline");	
+			$("#name").css("display","inline");	
+			$('#transcript').animate({
+				  scrollTop: $('#transcript').get(0).scrollHeight}, 400000);
 		},3000);
 		$("#homepageVideo").get(0).prop("volume", this.value);		
 	} else if (response === 1){
@@ -82,6 +85,7 @@ function commenceTRICOnResponseResult(response){
 	} else if (response === 2){
 		customisation();
 		$("#pageContent").css("display","inline");
+		$("#name").css("display","inline");	
 		$('#transcript').animate({
 			  scrollTop: $('#transcript').get(0).scrollHeight}, 400000);
 		videoFunctionalityWhenCompletePrior();

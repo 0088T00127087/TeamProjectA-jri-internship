@@ -43,7 +43,7 @@
 		    <div>
 		      <div class="collapse navbar-collapse" id="myNavbar">
 		        <ul class="nav navbar-nav">
-		         <li><a id="name">Python Training</a></li>
+		         <li><a style="display:none;" id="name"></a></li>
 		        </ul>
 		      </div>
 		    </div>
@@ -188,7 +188,7 @@
       <h2 id="resultsHeader">Results</h2>
       <p id="resultsGreeting"></p>
       <p id="resultsLogistics">You have achieved <span id="percentageFigure"></span> in 'Introduction To Python'.</p>
-      <button id="resultsStageButton" onclick="returnToTopics()">Return To Topics.</button>
+      <button class="btn-info" style="background-color:darkgray;color:black;" id="resultsStageButton" onclick="returnToTopics()">Return To Topics.</button>
       </div>
         <h2 id="question" style="margin-left:35px;"></h2>        
 		<form id="answerList" style="margin-top:50px;margin-left:35px;'" action="">
@@ -199,7 +199,7 @@
 		</form>
 		<button disabled="disabled" style="background-color:lightgray;color:white;float:right;border-radius:50%;padding-left:23px;padding-right:23px;padding-top:5px;padding-bottom:5px;margin-top:50px;margin-right:386px;" id="submitAnswer" onclick="submitAnswer()">Submit Answer</button>
 		<div style="margin-top:95px;font-size:40px;margin-left:30px;" id="timer"></div>
-		     <p style="float:right" id="questionDisplayCount">Question <span id="questionCount"></span>/6</p>
+		     <p style="float:right;margin-top:-30px;" id="questionDisplayCount">Question <span id="questionCount"></span>/6</p>
       </div>
     </div>
   </div>

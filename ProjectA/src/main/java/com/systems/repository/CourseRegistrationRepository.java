@@ -41,6 +41,11 @@ public interface CourseRegistrationRepository extends JpaRepository<CourseRegist
 	@Query(value = "update `project-a-schema`.course_registration set count_of_manager_review = :managerReviewCount, status = 0 where user_name = :userName and course_id = :courseId",nativeQuery = true)
 	void updateManagerReviewCountAndStatus(@Param("userName")String userName, @Param("courseId")String courseId, @Param("managerReviewCount")int managerReviewCount);
 	
+	@Transactional
+	@Modifying(clearAutomatically = true)
+	@Query(value = "update `project-a-schema`.course_registration set count_of_manager_review = :managerReviewCount where user_name = :userName and course_id = :courseId",nativeQuery = true)
+	void updateManagerReviewCount(@Param("userName")String userName, @Param("courseId")String courseId, @Param("managerReviewCount")int managerReviewCount);
+	
 	@Query(value= "select distinct count_of_manager_review from `project-a-schema`.course_registration where user_name = :userName and course_id = :courseId",nativeQuery = true)
 	int examineIfUserIsLegibleToTakeTopic(@Param("userName")String userName, @Param("courseId")String courseId);
 	
