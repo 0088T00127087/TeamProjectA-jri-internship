@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var url = new URL(window.location.href);
 	userName =  url.searchParams.get("username");
 	if (userName === null){
-		document.location.href = '/frontend /pages/topics.html';
+		document.location.href = '/frontend /pages/index.html';
 	}
 	customisation();
 	getCourseCredentials();
