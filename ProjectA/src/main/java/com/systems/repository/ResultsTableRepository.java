@@ -24,6 +24,9 @@ public interface ResultsTableRepository extends JpaRepository<ResultsTableEntity
 	@Query(value = "SELECT number_of_questions_correct FROM `project-a-schema`.results_table where user_name= :userAccount and result_submission_time = (select max(result_submission_time) from results_table where user_name = :userAccount);",nativeQuery = true)
 	String getUserResult(@Param("userAccount") String userAccount);
 	
+	@Query(value = "SELECT result FROM `project-a-schema`.results_table where user_name= :userAccount and result_submission_time = (select max(result_submission_time) from results_table where user_name = :userAccount);",nativeQuery = true)
+    String getUserLatestResult(@Param("userAccount") String userAccount);
+	
 //	@Query(value = "SELECT avg(number_of_questions_correct) where result_submission_time = (select max(result_submission_time) FROM `project-a-schema`.results_table)",nativeQuery = true)
 //	String getOverallResult();
 

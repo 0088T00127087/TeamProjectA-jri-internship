@@ -129,4 +129,32 @@ public class ResultsTableController {
 		return answer;
 	}
 	
+	@GetMapping("/getCountFails")
+    public int getCountFails() {
+        int count = 0;
+        List<String> userNames = resultsTableRepository.retrieveDistinctUserList();
+        for (int i=0; i < userNames.size(); i++) {
+            String result = resultsTableRepository.getUserLatestResult(userNames.get(i));
+            if (result.equals("fail") ) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
+    
+
+    @GetMapping("/getCountPass")
+    public int getCountPass() {
+        int count = 0;
+        List<String> userNames = resultsTableRepository.retrieveDistinctUserList();
+        for (int i=0; i < userNames.size(); i++) {
+            String result = resultsTableRepository.getUserLatestResult(userNames.get(i));
+            if (result.equals("pass") ) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+	
 }
