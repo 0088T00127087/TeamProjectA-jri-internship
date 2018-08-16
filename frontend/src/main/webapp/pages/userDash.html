@@ -24,8 +24,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-        <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy" crossorigin="anonymous"></script>
-
+   <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="/frontend/js/custom/barChart.js"></script>
+    <script type="text/javascript" src="/frontend/js/custom/pieChart.js"></script>
+    <script type="text/javascript" src="/frontend/js/custom/polarChart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/frontend/js/custom/PerformanceChartUserOnly.js"></script>
+    <script type="text/javascript" src="/frontend/js/custom/chartA.js"></script>
+    <script type="text/javascript" src="/frontend/js/custom/passFailChart.js"></script>
 </head>
 
 <body  data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -70,7 +78,18 @@
 		    </div>
 		  </div>
 </nav>  
-
+	<div  id="container_box2" style="height:325px;">
+	<input type="hidden" id="DropDown">
+	  <span>
+  	    	<canvas id="chart_overall_user" style="float:right;"> 	
+  	    	</canvas></span>
+  	   <p style="float:right;font-size:13px;margin-top:277px;margin-right:-323px;font-style:italic;">Results displayed as a total percentage.</p>
+  	    	<p style="float:right;margin-right:-375px;">Average Questions Correct: Per User</p>
+  	    	<canvas id="chart_2" style="border-right:1px solid cornflowerblue;padding-right:200px;"> 	
+  	    	</canvas>
+  	   	 <p style="float:left;margin-top:-294px;margin-left:235px;font-size:13px;font-style:italic;">Results displayed as a total percentage.</p>
+  	   <p style="float:left;margin-top:-32px;margin-left:127px;">Average Questions Correct: Global</p>
+  	 </div>
 
 	<footer class="footer" style="display:none;visibility:hidden;opacity:0;">
 	      <div class="container">
