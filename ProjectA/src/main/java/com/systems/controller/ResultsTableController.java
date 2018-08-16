@@ -85,6 +85,8 @@ public class ResultsTableController {
 		return listOfResults;
 	}
 	
+	
+	
 	@GetMapping("/retrieveQuestionsAnsweredIncorrectly/{userName}")
 	public String retrieveWrongQuestions(@PathVariable("userName") String userName) {
 		try {
@@ -117,6 +119,8 @@ public class ResultsTableController {
 		
 		return answer;
 	}
+	
+	
 	@GetMapping("/getOverallResult")
 	public int getOverallResult() {
 		int answer = 0;
@@ -156,5 +160,52 @@ public class ResultsTableController {
         }
         return count;
     }
+    
+    
+    
+    /*
+     * Get Average of times 
+     */
+//    @GetMapping("/getAvgOverallTime")
+//    public List<String> getAvgOverallTime() {
+//    	List<String> listOfResults = new ArrayList<String>();
+//    	List<String> listOfTimes = new ArrayList<String>();
+//    
+//    	listOfTimes = listOfResults.get().getTimeTakenPerQuestion();
+//     
+//    }       
+    
+    /*
+     * Get All Times
+     */
+    
+//    @GetMapping("/getAllTime")
+//	public List<String> getAllResults(){
+//    	List<String> listOfTimes = new ArrayList<String>();
+//		List<ResultsTableEntity> allRows = resultsTableRepository.findAll();
+//		for (ResultsTableEntity row : allRows) {
+//			
+//				listOfTimes.add(row.getTimeTakenPerQuestion());
+//			
+//		}
+//		return listOfTimes;
+//	}
+//    
+    
+    
+//    @GetMapping("/getAvgAllTime")
+//    public void getAvgTime(List<String> times) {
+//    	List<String> avgTimes = new ArrayList<String>();
+//    	String timeString ="";
+//    	int timeToInt;
+//    	
+//    	
+//    	for(int i = 0; i <= times.size(); i++) {
+//    		timeToInt = Integer.parse(times.get(i).substring(i, 5))
+//    	}
+//    }
+    
+    
+    
 	
 }
