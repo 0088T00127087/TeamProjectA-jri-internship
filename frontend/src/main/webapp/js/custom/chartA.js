@@ -5,15 +5,15 @@ $(document).ready(function(){
 });
 
 var dataA = {
-		  labels: ["Python","Java","SQL","Automation","Unit Testing A"],
+		  labels: ["Intro to Python", "Variables", "Functions", "Operators", "Objects", "Classes"],
 		  datasets: [{
-		    label: "Dataset #2",
+		    label: "Tric by Video",
 		    backgroundColor: "rgba(255,99,132,0.2)",
 		    borderColor: "rgba(255,99,132,1)",
 		    borderWidth: 2,
 		    hoverBackgroundColor: "rgba(255,99,132,0.4)",
 		    hoverBorderColor: "rgba(255,99,132,1)",
-		    data: [65, 59, 30, 81, 56 ],
+		    data: [3, 25, 30, 81, 56, 70 ],
 		  }]
 		};
 
@@ -27,7 +27,7 @@ var dataA = {
 		      stacked: true,
 		      gridLines: {
 		        display: false,
-		        color: "red"
+		        color: "green"
 		      }
 		    }],
 		    xAxis: [{
@@ -38,9 +38,26 @@ var dataA = {
 		  }
 		};
 		
+		
 	function renderChartA(){
-		chartA = Chart.Radar('chart_0', {
+		chartA = new Chart('chart_0', {
+			  type: 'horizontalBar',
 			  options: optionA,
 			  data: dataA
 			});
+		}
+	
+	
+	// Get average time  
+	function getAllTimes() {
+		$.get({
+			url : "http://localhost:8080/ProjectA/results-table/getAllTime",
+			async : false,
+			cache : false,
+			type : "GET"
+		}, function(response) {
+			
+			console.log(response);
+			
+		});
 	}
