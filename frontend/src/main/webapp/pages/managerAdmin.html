@@ -45,7 +45,7 @@
 
 		<hr>
         <nav class="navbar navbar-light  navbar-fixed">
-  <div class="container-fluid">
+  <div class="container-fluid" style="padding-left:0px !important;">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
@@ -57,14 +57,24 @@
     <div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a onclick="location.href = '/frontend/pages/manager.html'">Manager Dashboard</a></li>
-          <li><a>Manager Admin</a></li>
+          <li><a onclick="location.href = '/frontend/pages/manager.html'">Dashboard</a></li>
+          <li><a>Administration</a></li>
           <li><a onclick="location.href = '/frontend/pages/index.html'">Sign Out</a></li>
         </ul>
       </div>
     </div>
   </div>
 </nav> 
+
+  
+<div id="section3" class="container-fluid" style="margin-bottom: 50px;padding-left:0px !important;">
+	 <p id="reassignSuccess">Module Successfully Reassigned</p>
+		  <h1><b>To Do List</b></h1>
+		  <p id="toDoDescriptor"> Retrieving Details... </p>
+		  <div id="usersRequiringAttention">
+		  </div>
+		  
+</div>
 
 
 <div id="userInvitation" style="margin-bottom: 50px;">
@@ -90,18 +100,6 @@
 <button disabled="disabled" id="assignCourse" onclick="assignCourse()" style="float:left;margin: 10px;">Assign Course</button>
 </div>
 <br>
-  
-<div id="section3" class="container-fluid" style="margin-bottom: 50px;">
-	 <p id="reassignSuccess">Module Successfully Reassigned</p>
-		  <h1><b>To Do List</b></h1>
-		  <p id="toDoDescriptor"> Retrieving Details... </p>
-		  <div id="usersRequiringAttention">
-		  </div>
-		  
-</div>
-
-
-  
 
 <div>
 	<footer class="footer">

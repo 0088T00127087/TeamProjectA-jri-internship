@@ -144,7 +144,7 @@ select option {
 .userRequiringManagerAttention{
 	cursor:pointer;
 	font-style:italic;
-	color:red;
+	color:red !important;
 	
 }
 

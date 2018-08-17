@@ -88,9 +88,19 @@ function checkForPendingActions(){
 		if (response[0] !== undefined){
 			$("#toDoDescriptor").css("display","none");
 			for (var i = 0; i < response.length;i++){
-				$("<p class='userRequiringManagerAttention'>" + response[i].userName + " requires attention</p>" +
-						"<button onclick='reAssignCourseToChosenUser(\""+ response[i].userName + "\")' " +
-								"style='float:right;margin-right:583px;margin-top:-42px;'>Reassign Course</button>").appendTo("#usersRequiringAttention");	
+				var userFullName = response[i].userName;
+				$.get({
+					url: "/frontend/HomepageInitialLoadServlet",
+					async: false,
+					cache: false,		
+					type : "GET",
+					data : {username: userFullName}
+				}, function(fullName){
+					$("<p class='userRequiringManagerAttention'>"+ fullName + " (" + response[i].userName + ") has failed to pass 'Introduction To Python'.</p>" +
+							"<button style='font-weight:bold;background-color:#6495ed;float:right;margin-top:-42px;color:white;' onclick='reAssignCourseToChosenUser(\""+ response[i].userName + "\")' " +
+									"style='float:right;margin-top:-42px;'>Reassign Course</button>").appendTo("#usersRequiringAttention");	
+				});	
+
 			}
 			$("select#usersRequiringAttention").prop('selectedIndex',0);
 			$("#examineUser").prop("disabled",false);
@@ -98,6 +108,10 @@ function checkForPendingActions(){
 			$("#toDoDescriptor").css("display","inline");
 		}
 	});
+}
+
+function getUsersFullName(userName){
+
 }
 
 function expandDetailsConcerningUser(userName){
